@@ -18,6 +18,8 @@
 		03A74868303CF81700F49C45 /* DetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */; };
 		03A7486A303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */; };
 		03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */; };
+		03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486D303CFB4A00F49C45 /* OddsListView.swift */; };
+		03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486F303CFB8900F49C45 /* OddsDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectArbitrageUseCase.swift; sourceTree = "<group>"; };
 		03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDetectArbitrageUseCase.swift; sourceTree = "<group>"; };
 		03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsListViewModel.swift; sourceTree = "<group>"; };
+		03A7486D303CFB4A00F49C45 /* OddsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsListView.swift; sourceTree = "<group>"; };
+		03A7486F303CFB8900F49C45 /* OddsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 		03A74851303CEBB300F49C45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				03A7486F303CFB8900F49C45 /* OddsDetailView.swift */,
+				03A7486D303CFB4A00F49C45 /* OddsListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,7 +231,9 @@
 				03A74862303CF18300F49C45 /* DefaultOddsRepository.swift in Sources */,
 				03A74868303CF81700F49C45 /* DetectArbitrageUseCase.swift in Sources */,
 				03A74860303CF16600F49C45 /* OddsRepository.swift in Sources */,
+				03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */,
 				03A74856303CEBB300F49C45 /* ContentView.swift in Sources */,
+				03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */,
 				03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */,
 				03A7485C303CEFE500F49C45 /* NetworkService.swift in Sources */,
 				03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */,
