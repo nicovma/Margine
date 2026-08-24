@@ -10,7 +10,7 @@ protocol DetectArbitrageUseCase {
     func execute(sport: String) async throws -> [MatchOdds]
 }
 
-struct MatchOdds: Identifiable {
+struct MatchOdds: Identifiable, Hashable {
     let id: String
     let homeTeam: String
     let awayTeam: String
@@ -20,7 +20,7 @@ struct MatchOdds: Identifiable {
     let arbitrageMargin: Double?
 }
 
-struct BestOutcome {
+struct BestOutcome: Hashable {
     let bookmakerTitle: String
     let price: Double
 }
