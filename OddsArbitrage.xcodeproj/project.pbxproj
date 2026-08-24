@@ -20,6 +20,7 @@
 		03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */; };
 		03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486D303CFB4A00F49C45 /* OddsListView.swift */; };
 		03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486F303CFB8900F49C45 /* OddsDetailView.swift */; };
+		03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsListViewModel.swift; sourceTree = "<group>"; };
 		03A7486D303CFB4A00F49C45 /* OddsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsListView.swift; sourceTree = "<group>"; };
 		03A7486F303CFB8900F49C45 /* OddsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsDetailView.swift; sourceTree = "<group>"; };
+		03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDetectArbitrageUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		03A74855303CEBB300F49C45 /* OddsArbitrage */ = {
 			isa = PBXGroup;
 			children = (
+				03A74872303CFD3C00F49C45 /* Previews */,
 				03A74866303CF61900F49C45 /* Info.plist */,
 				03A7484A303CEBB300F49C45 /* Models */,
 				03A7484B303CEBB300F49C45 /* Networking */,
@@ -152,6 +155,14 @@
 				03A74864303CF49B00F49C45 /* Config.xcconfig */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		03A74872303CFD3C00F49C45 /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */,
+			);
+			path = Previews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 				03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */,
 				03A74856303CEBB300F49C45 /* ContentView.swift in Sources */,
 				03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */,
+				03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */,
 				03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */,
 				03A7485C303CEFE500F49C45 /* NetworkService.swift in Sources */,
 				03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */,

@@ -59,3 +59,6 @@ struct OddsListView: View {
         }
     }
 
+#Preview {
+    OddsListView(viewModel: OddsListViewModel(useCase: MockDetectArbitrageUseCase()))
+}

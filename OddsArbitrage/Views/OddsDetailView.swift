@@ -37,3 +37,9 @@ struct OddsDetailView: View {
         .navigationTitle("\(match.homeTeam) vs \(match.awayTeam)")
     }
 }
+
+#Preview {
+    NavigationStack {
+        OddsDetailView(match: MockDetectArbitrageUseCase.sampleMatches[1])
+    }
+}
