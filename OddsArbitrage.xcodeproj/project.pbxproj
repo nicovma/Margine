@@ -17,6 +17,7 @@
 		03A74862303CF18300F49C45 /* DefaultOddsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74861303CF18200F49C45 /* DefaultOddsRepository.swift */; };
 		03A74868303CF81700F49C45 /* DetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */; };
 		03A7486A303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */; };
+		03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		03A74866303CF61900F49C45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectArbitrageUseCase.swift; sourceTree = "<group>"; };
 		03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDetectArbitrageUseCase.swift; sourceTree = "<group>"; };
+		03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		03A74850303CEBB300F49C45 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				03A74856303CEBB300F49C45 /* ContentView.swift in Sources */,
 				03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */,
 				03A7485C303CEFE500F49C45 /* NetworkService.swift in Sources */,
+				03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */,
 				03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
