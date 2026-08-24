@@ -11,7 +11,15 @@ import SwiftUI
 struct OddsArbitrageApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OddsListView(viewModel: makeViewModel())
         }
+    }
+
+    private func makeViewModel() -> OddsListViewModel {
+        let apiKey = Bundle.main.object(forInfoDictionaryKey: "ODDS_API_KEY") as? String ?? ""
+        let networkService = URLSessionNetworkService()
+        let repository = DefaultOddsRepository(networkService: networkService, apiKey: apiKey)
+        let useCase = DefaultDetectArbitrageUseCase(repository: repository)
+        return OddsListViewModel(useCase: useCase)
     }
 }
