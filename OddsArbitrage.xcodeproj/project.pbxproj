@@ -20,6 +20,7 @@
 		03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486D303CFB4A00F49C45 /* OddsListView.swift */; };
 		03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486F303CFB8900F49C45 /* OddsDetailView.swift */; };
 		03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */; };
+		03A748933040757000F49C45 /* MatchOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A748923040756F00F49C45 /* MatchOdds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		03A7486F303CFB8900F49C45 /* OddsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsDetailView.swift; sourceTree = "<group>"; };
 		03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDetectArbitrageUseCase.swift; sourceTree = "<group>"; };
 		03A74879303CFEBF00F49C45 /* OddsArbitrageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OddsArbitrageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03A748923040756F00F49C45 /* MatchOdds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchOdds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -100,6 +102,7 @@
 		03A7484A303CEBB300F49C45 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				03A748923040756F00F49C45 /* MatchOdds.swift */,
 				03A74859303CEF5100F49C45 /* OddsEvent.swift */,
 			);
 			path = Models;
@@ -304,6 +307,7 @@
 				03A74868303CF81700F49C45 /* DetectArbitrageUseCase.swift in Sources */,
 				03A74860303CF16600F49C45 /* OddsRepository.swift in Sources */,
 				03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */,
+				03A748933040757000F49C45 /* MatchOdds.swift in Sources */,
 				03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */,
 				03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */,
 				03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */,
