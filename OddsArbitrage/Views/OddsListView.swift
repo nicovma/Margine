@@ -18,7 +18,23 @@ struct OddsListView: View {
         NavigationStack {
             content
                 .navigationTitle("Próximos partidos")
-                .task { await viewModel.loadOdds() }
+                .searchable(text: $viewModel.searchText, prompt: "Buscar equipo")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Toggle("Solo arbitraje", isOn: $viewModel.showOnlyArbitrage)
+                            .toggleStyle(.button)
+                    }
+                }
+                .onAppear { viewModel.startLiveUpdates() }
+                .onDisappear { viewModel.stopLiveUpdates() }
+                .alert("No se pudo actualizar", isPresented: Binding(
+                    get: { viewModel.bannerErrorMessage != nil },
+                    set: { if !$0 { viewModel.bannerErrorMessage = nil } }
+                )) {
+                    Button("OK", role: .cancel) {}
+                } message: {
+                    Text(viewModel.bannerErrorMessage ?? "")
+                }
         }
     }
     
@@ -33,6 +49,7 @@ struct OddsListView: View {
                     matchRow(match)
                 }
             }
+            .refreshable { await viewModel.manualRefresh() }
             .navigationDestination(for: MatchOdds.self) { match in
                 OddsDetailView(match: match)
             }
@@ -60,5 +77,5 @@ struct OddsListView: View {
     }
 
 #Preview {
-    OddsListView(viewModel: OddsListViewModel(useCase: MockDetectArbitrageUseCase()))
+    OddsListView(viewModel: OddsListViewModel(liveOddsService: MockLiveOddsService()))
 }

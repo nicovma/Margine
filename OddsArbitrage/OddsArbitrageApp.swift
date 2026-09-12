@@ -20,6 +20,7 @@ struct OddsArbitrageApp: App {
         let networkService = URLSessionNetworkService()
         let repository = DefaultOddsRepository(networkService: networkService, apiKey: apiKey)
         let useCase = DefaultDetectArbitrageUseCase(repository: repository)
-        return OddsListViewModel(useCase: useCase)
+        let liveOddsService = LiveOddsService(useCase: useCase)
+        return OddsListViewModel(liveOddsService: liveOddsService)
     }
 }

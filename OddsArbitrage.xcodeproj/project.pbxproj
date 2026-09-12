@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03823BC4305593CC00DE14DC /* LiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC3305593CC00DE14DC /* LiveOddsService.swift */; };
+		03823BC6305593EC00DE14DC /* LiveOddsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */; };
+		03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC730559A1700DE14DC /* MockLiveOddsService.swift */; };
+		03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */; };
 		03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */; };
 		03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03A74852303CEBB300F49C45 /* Assets.xcassets */; };
 		03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74859303CEF5100F49C45 /* OddsEvent.swift */; };
@@ -34,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03823BC3305593CC00DE14DC /* LiveOddsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsService.swift; sourceTree = "<group>"; };
+		03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsServiceProtocol.swift; sourceTree = "<group>"; };
+		03823BC730559A1700DE14DC /* MockLiveOddsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLiveOddsService.swift; sourceTree = "<group>"; };
+		03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsCoordinator.swift; sourceTree = "<group>"; };
 		03A74831303CE9C600F49C45 /* OddsArbitrage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OddsArbitrage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A74852303CEBB300F49C45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsArbitrageApp.swift; sourceTree = "<group>"; };
@@ -80,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03823BC2305593BB00DE14DC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */,
+				03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */,
+				03823BC3305593CC00DE14DC /* LiveOddsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		03A74828303CE9C600F49C45 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +180,7 @@
 		03A74855303CEBB300F49C45 /* OddsArbitrage */ = {
 			isa = PBXGroup;
 			children = (
+				03823BC2305593BB00DE14DC /* Services */,
 				03A74872303CFD3C00F49C45 /* Previews */,
 				03A74866303CF61900F49C45 /* Info.plist */,
 				03A7484A303CEBB300F49C45 /* Models */,
@@ -188,6 +207,7 @@
 		03A74872303CFD3C00F49C45 /* Previews */ = {
 			isa = PBXGroup;
 			children = (
+				03823BC730559A1700DE14DC /* MockLiveOddsService.swift */,
 				03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */,
 			);
 			path = Previews;
@@ -304,15 +324,19 @@
 				03A7485E303CF04300F49C45 /* URLSessionNetworkService.swift in Sources */,
 				03A7486A303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift in Sources */,
 				03A74862303CF18300F49C45 /* DefaultOddsRepository.swift in Sources */,
+				03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */,
+				03823BC4305593CC00DE14DC /* LiveOddsService.swift in Sources */,
 				03A74868303CF81700F49C45 /* DetectArbitrageUseCase.swift in Sources */,
 				03A74860303CF16600F49C45 /* OddsRepository.swift in Sources */,
 				03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */,
 				03A748933040757000F49C45 /* MatchOdds.swift in Sources */,
 				03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */,
+				03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */,
 				03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */,
 				03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */,
 				03A7485C303CEFE500F49C45 /* NetworkService.swift in Sources */,
 				03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */,
+				03823BC6305593EC00DE14DC /* LiveOddsServiceProtocol.swift in Sources */,
 				03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
