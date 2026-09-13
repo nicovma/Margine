@@ -11,6 +11,17 @@
 		03823BC6305593EC00DE14DC /* LiveOddsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */; };
 		03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC730559A1700DE14DC /* MockLiveOddsService.swift */; };
 		03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */; };
+		03823BDC3056E09700DE14DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03823BDB3056E09700DE14DC /* GoogleService-Info.plist */; };
+		03823BDF3056E13100DE14DC /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BDE3056E13000DE14DC /* AuthUser.swift */; };
+		03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE03056E14F00DE14DC /* AuthRepository.swift */; };
+		03823BE53056E1FF00DE14DC /* FirebaseAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */; };
+		03823BE73056E24100DE14DC /* MockAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE63056E24000DE14DC /* MockAuthRepository.swift */; };
+		03823BE93056E2B300DE14DC /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE83056E2B100DE14DC /* AuthUseCase.swift */; };
+		03823BEE3056E39800DE14DC /* DefaultAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */; };
+		03823BF03056E3CA00DE14DC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BEF3056E3C900DE14DC /* AuthViewModel.swift */; };
+		03823BF33056E42D00DE14DC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BF23056E42C00DE14DC /* LoginView.swift */; };
+		03823BF83056E71500DE14DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03823BF73056E71500DE14DC /* FirebaseAuth */; };
+		03823BFA3056E71500DE14DC /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03823BF93056E71500DE14DC /* FirebaseCore */; };
 		03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */; };
 		03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03A74852303CEBB300F49C45 /* Assets.xcassets */; };
 		03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74859303CEF5100F49C45 /* OddsEvent.swift */; };
@@ -42,6 +53,15 @@
 		03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsServiceProtocol.swift; sourceTree = "<group>"; };
 		03823BC730559A1700DE14DC /* MockLiveOddsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLiveOddsService.swift; sourceTree = "<group>"; };
 		03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsCoordinator.swift; sourceTree = "<group>"; };
+		03823BDB3056E09700DE14DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		03823BDE3056E13000DE14DC /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
+		03823BE03056E14F00DE14DC /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthRepository.swift; sourceTree = "<group>"; };
+		03823BE63056E24000DE14DC /* MockAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthRepository.swift; sourceTree = "<group>"; };
+		03823BE83056E2B100DE14DC /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthUseCase.swift; sourceTree = "<group>"; };
+		03823BEF3056E3C900DE14DC /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		03823BF23056E42C00DE14DC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		03A74831303CE9C600F49C45 /* OddsArbitrage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OddsArbitrage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A74852303CEBB300F49C45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsArbitrageApp.swift; sourceTree = "<group>"; };
@@ -75,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03823BFA3056E71500DE14DC /* FirebaseCore in Frameworks */,
+				03823BF83056E71500DE14DC /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,12 +120,56 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		03823BE23056E16200DE14DC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */,
+				03823BE03056E14F00DE14DC /* AuthRepository.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		03823BE33056E16D00DE14DC /* Odds */ = {
+			isa = PBXGroup;
+			children = (
+				03A74861303CF18200F49C45 /* DefaultOddsRepository.swift */,
+				03A7485F303CF16400F49C45 /* OddsRepository.swift */,
+			);
+			path = Odds;
+			sourceTree = "<group>";
+		};
+		03823BEA3056E2B600DE14DC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */,
+				03823BE83056E2B100DE14DC /* AuthUseCase.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		03823BEB3056E2C300DE14DC /* DetectArbitrageUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */,
+				03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */,
+			);
+			path = DetectArbitrageUseCase;
+			sourceTree = "<group>";
+		};
+		03823BFB3056E76700DE14DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		03A74828303CE9C600F49C45 = {
 			isa = PBXGroup;
 			children = (
 				03A74865303CF49B00F49C45 /* Resources */,
 				03A74855303CEBB300F49C45 /* OddsArbitrage */,
 				03A7487A303CFEBF00F49C45 /* OddsArbitrageTests */,
+				03823BFB3056E76700DE14DC /* Frameworks */,
 				03A74832303CE9C600F49C45 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,6 +186,7 @@
 		03A7484A303CEBB300F49C45 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				03823BDE3056E13000DE14DC /* AuthUser.swift */,
 				03A748923040756F00F49C45 /* MatchOdds.swift */,
 				03A74859303CEF5100F49C45 /* OddsEvent.swift */,
 			);
@@ -138,8 +205,8 @@
 		03A7484C303CEBB300F49C45 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				03A74861303CF18200F49C45 /* DefaultOddsRepository.swift */,
-				03A7485F303CF16400F49C45 /* OddsRepository.swift */,
+				03823BE33056E16D00DE14DC /* Odds */,
+				03823BE23056E16200DE14DC /* Auth */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -154,8 +221,8 @@
 		03A7484F303CEBB300F49C45 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */,
-				03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */,
+				03823BEB3056E2C300DE14DC /* DetectArbitrageUseCase */,
+				03823BEA3056E2B600DE14DC /* Auth */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -163,6 +230,7 @@
 		03A74850303CEBB300F49C45 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				03823BEF3056E3C900DE14DC /* AuthViewModel.swift */,
 				03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -171,6 +239,7 @@
 		03A74851303CEBB300F49C45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				03823BF23056E42C00DE14DC /* LoginView.swift */,
 				03A7486F303CFB8900F49C45 /* OddsDetailView.swift */,
 				03A7486D303CFB4A00F49C45 /* OddsListView.swift */,
 			);
@@ -183,6 +252,7 @@
 				03823BC2305593BB00DE14DC /* Services */,
 				03A74872303CFD3C00F49C45 /* Previews */,
 				03A74866303CF61900F49C45 /* Info.plist */,
+				03823BDB3056E09700DE14DC /* GoogleService-Info.plist */,
 				03A7484A303CEBB300F49C45 /* Models */,
 				03A7484B303CEBB300F49C45 /* Networking */,
 				03A7484C303CEBB300F49C45 /* Repositories */,
@@ -207,6 +277,7 @@
 		03A74872303CFD3C00F49C45 /* Previews */ = {
 			isa = PBXGroup;
 			children = (
+				03823BE63056E24000DE14DC /* MockAuthRepository.swift */,
 				03823BC730559A1700DE14DC /* MockLiveOddsService.swift */,
 				03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */,
 			);
@@ -230,6 +301,8 @@
 			);
 			name = OddsArbitrage;
 			packageProductDependencies = (
+				03823BF73056E71500DE14DC /* FirebaseAuth */,
+				03823BF93056E71500DE14DC /* FirebaseCore */,
 			);
 			productName = OddsArbitrage;
 			productReference = 03A74831303CE9C600F49C45 /* OddsArbitrage.app */;
@@ -287,6 +360,9 @@
 			);
 			mainGroup = 03A74828303CE9C600F49C45;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 03A74832303CE9C600F49C45 /* Products */;
 			projectDirPath = "";
@@ -304,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */,
+				03823BDC3056E09700DE14DC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +400,7 @@
 			files = (
 				03A7485E303CF04300F49C45 /* URLSessionNetworkService.swift in Sources */,
 				03A7486A303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift in Sources */,
+				03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */,
 				03A74862303CF18300F49C45 /* DefaultOddsRepository.swift in Sources */,
 				03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */,
 				03823BC4305593CC00DE14DC /* LiveOddsService.swift in Sources */,
@@ -330,13 +408,20 @@
 				03A74860303CF16600F49C45 /* OddsRepository.swift in Sources */,
 				03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */,
 				03A748933040757000F49C45 /* MatchOdds.swift in Sources */,
+				03823BE53056E1FF00DE14DC /* FirebaseAuthRepository.swift in Sources */,
+				03823BE93056E2B300DE14DC /* AuthUseCase.swift in Sources */,
 				03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */,
+				03823BF33056E42D00DE14DC /* LoginView.swift in Sources */,
 				03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */,
+				03823BEE3056E39800DE14DC /* DefaultAuthUseCase.swift in Sources */,
 				03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */,
 				03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */,
 				03A7485C303CEFE500F49C45 /* NetworkService.swift in Sources */,
 				03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */,
 				03823BC6305593EC00DE14DC /* LiveOddsServiceProtocol.swift in Sources */,
+				03823BF03056E3CA00DE14DC /* AuthViewModel.swift in Sources */,
+				03823BDF3056E13100DE14DC /* AuthUser.swift in Sources */,
+				03823BE73056E24100DE14DC /* MockAuthRepository.swift in Sources */,
 				03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,6 +697,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.19.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		03823BF73056E71500DE14DC /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		03823BF93056E71500DE14DC /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 03A74829303CE9C600F49C45 /* Project object */;
 }
