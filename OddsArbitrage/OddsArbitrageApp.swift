@@ -14,6 +14,9 @@ struct OddsArbitrageApp: App {
     init() {
         FirebaseApp.configure()
         let authRepository = FirebaseAuthRepository()
+        if ProcessInfo.processInfo.arguments.contains("--uitesting-signed-out") {
+            try? authRepository.signOut()
+        }
         let authUseCase = DefaultAuthUseCase(repository: authRepository)
         _authViewModel = StateObject(wrappedValue: AuthViewModel(authUseCase: authUseCase))
     }
