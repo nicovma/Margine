@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */; };
 		03823BC4305593CC00DE14DC /* LiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC3305593CC00DE14DC /* LiveOddsService.swift */; };
 		03823BC6305593EC00DE14DC /* LiveOddsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */; };
 		03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC730559A1700DE14DC /* MockLiveOddsService.swift */; };
@@ -72,6 +73,7 @@
 		03823C023056ECDA00DE14DC /* OddsArbitrageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OddsArbitrageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A74831303CE9C600F49C45 /* OddsArbitrage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OddsArbitrage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A74852303CEBB300F49C45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsArbitrageApp.swift; sourceTree = "<group>"; };
 		03A74859303CEF5100F49C45 /* OddsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsEvent.swift; sourceTree = "<group>"; };
 		03A7485B303CEFD600F49C45 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				03A74850303CEBB300F49C45 /* ViewModels */,
 				03A74851303CEBB300F49C45 /* Views */,
 				03A74852303CEBB300F49C45 /* Assets.xcassets */,
+				BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */,
 				03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */,
 			);
 			path = OddsArbitrage;
@@ -393,10 +396,11 @@
 				};
 			};
 			buildConfigurationList = 03A7482C303CE9C600F49C45 /* Build configuration list for PBXProject "OddsArbitrage" */;
-			developmentRegion = en;
+			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 				Base,
 			);
 			mainGroup = 03A74828303CE9C600F49C45;
@@ -430,6 +434,7 @@
 			files = (
 				03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */,
 				03823BDC3056E09700DE14DC /* GoogleService-Info.plist in Resources */,
+				3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

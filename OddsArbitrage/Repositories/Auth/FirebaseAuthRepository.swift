@@ -4,12 +4,28 @@
 //
 //  Created by Nicolas Valentini on 13/9/2026.
 //
+import Combine
 import Foundation
 import FirebaseAuth
 
 final class FirebaseAuthRepository: AuthRepository {
-    var currentUser: AuthUser? {
-        Auth.auth().currentUser.map { AuthUser(uid: $0.uid, email: $0.email) }
+    private let authStateSubject: CurrentValueSubject<AuthUser?, Never>
+    private var handle: AuthStateDidChangeListenerHandle?
+
+    var currentUser: AuthUser? { authStateSubject.value }
+    var authStateChanges: AnyPublisher<AuthUser?, Never> { authStateSubject.eraseToAnyPublisher() }
+
+    init() {
+        authStateSubject = CurrentValueSubject(Auth.auth().currentUser.map { AuthUser(uid: $0.uid, email: $0.email) })
+        handle = Auth.auth().addStateDidChangeListener { [authStateSubject] _, user in
+            authStateSubject.send(user.map { AuthUser(uid: $0.uid, email: $0.email) })
+        }
+    }
+
+    deinit {
+        if let handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
     }
 
     func signIn(email: String, password: String) async throws -> AuthUser {

@@ -4,6 +4,7 @@
 //
 //  Created by Nicolas Valentini on 13/9/2026.
 //
+import Combine
 import Foundation
 
 final class DefaultAuthUseCase: AuthUseCase {
@@ -14,6 +15,7 @@ final class DefaultAuthUseCase: AuthUseCase {
     }
 
     var currentUser: AuthUser? { repository.currentUser }
+    var authStateChanges: AnyPublisher<AuthUser?, Never> { repository.authStateChanges }
 
     func signIn(email: String, password: String) async throws -> AuthUser {
         try await repository.signIn(email: email, password: password)

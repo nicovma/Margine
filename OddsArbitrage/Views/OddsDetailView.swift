@@ -14,8 +14,12 @@ struct OddsDetailView: View {
         List {
             if match.hasArbitrage, let margin = match.arbitrageMargin {
                 Section {
-                    Label("Arbitraje: \(margin, specifier: "%.2f")% de margen", systemImage: "dollarsign.circle.fill")
-                        .foregroundStyle(.green)
+                    Label {
+                        Text("Arbitraje: ") + Text(String(format: "%.2f", margin)) + Text("% de margen")
+                    } icon: {
+                        Image(systemName: "dollarsign.circle.fill")
+                    }
+                    .foregroundStyle(.green)
                 }
             }
 
@@ -34,7 +38,7 @@ struct OddsDetailView: View {
                 }
             }
         }
-        .navigationTitle("\(match.homeTeam) vs \(match.awayTeam)")
+        .navigationTitle(Text(match.homeTeam) + Text(" vs ") + Text(match.awayTeam))
     }
 }
 

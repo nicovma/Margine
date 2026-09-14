@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 protocol LiveOddsServiceProtocol {
-    var currentMatches: CurrentValueSubject<[MatchOdds], Never> { get }
+    var currentMatches: CurrentValueSubject<[MatchOdds]?, Never> { get }
     var refreshErrors: PassthroughSubject<String, Never> { get }
     func startPolling()
     func stopPolling()

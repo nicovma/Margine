@@ -4,6 +4,7 @@
 //
 //  Created by Nicolas Valentini on 13/9/2026.
 //
+import Combine
 import Foundation
 import FirebaseAuth
 
@@ -12,15 +13,20 @@ final class AuthViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published private(set) var state: ViewState<AuthUser> = .idle
+    @Published private(set) var isAuthenticated: Bool
 
     private let authUseCase: AuthUseCase
-
-    var isAuthenticated: Bool {
-        authUseCase.currentUser != nil
-    }
+    private var cancellables = Set<AnyCancellable>()
 
     init(authUseCase: AuthUseCase) {
         self.authUseCase = authUseCase
+        self.isAuthenticated = authUseCase.currentUser != nil
+
+        authUseCase.authStateChanges
+            .map { $0 != nil }
+            .removeDuplicates()
+            .sink { [weak self] in self?.isAuthenticated = $0 }
+            .store(in: &cancellables)
     }
 
     func signIn() async {
@@ -44,7 +50,11 @@ final class AuthViewModel: ObservableObject {
     }
 
     func signOut() {
-        try? authUseCase.signOut()
+        do {
+            try authUseCase.signOut()
+        } catch {
+            print("AuthViewModel.signOut failed: \(error)")
+        }
         state = .idle
     }
 

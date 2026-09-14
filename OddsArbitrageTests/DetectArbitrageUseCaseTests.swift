@@ -25,6 +25,17 @@ struct DetectArbitrageUseCaseTests {
         #expect(result[0].arbitrageMargin == nil)
     }
     
+    @Test("Sin bookmakers, no hay arbitraje ni margen")
+    func noArbitrageWhenNoBookmakers() async throws {
+        let event = Self.makeEvent(bookmakers: [])
+        let sut = DefaultDetectArbitrageUseCase(repository: StubOddsRepository(events: [event]))
+
+        let result = try await sut.execute(sport: "soccer_epl")
+
+        #expect(result[0].hasArbitrage == false)
+        #expect(result[0].arbitrageMargin == nil)
+    }
+    
     @Test("Detecta arbitraje cuando la suma de probabilidades implícitas es menor a 100%")
     func detectsArbitrageWhenSumBelowOne() async throws {
         let event = Self.makeEvent(bookmakers: [

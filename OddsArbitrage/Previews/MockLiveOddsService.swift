@@ -11,11 +11,11 @@ import Foundation
 final class MockLiveOddsService: LiveOddsServiceProtocol {
     let refreshErrors = PassthroughSubject<String, Never>()
     
-    let currentMatches: CurrentValueSubject<[MatchOdds], Never>
+    let currentMatches: CurrentValueSubject<[MatchOdds]?, Never>
     private(set) var startPollingCallCount = 0
     private(set) var refreshNowCallCount = 0
 
-    init(matches: [MatchOdds] = MockDetectArbitrageUseCase.sampleMatches) {
+    init(matches: [MatchOdds]? = MockDetectArbitrageUseCase.sampleMatches) {
         currentMatches = CurrentValueSubject(matches)
     }
 

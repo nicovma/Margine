@@ -17,14 +17,16 @@ final class DefaultOddsRepository: OddsRepository {
     }
 
     func fetchUpcomingOdds(sport: String) async throws -> [OddsEvent] {
-        var components = URLComponents(string: "\(baseURL)/sports/\(sport)/odds")!
+        guard var components = URLComponents(string: "\(baseURL)/sports/\(sport)/odds") else {
+            throw NetworkError.invalidURL
+        }
         components.queryItems = [
             URLQueryItem(name: "regions", value: "eu"),
             URLQueryItem(name: "markets", value: "h2h"),
             URLQueryItem(name: "apiKey", value: apiKey)
         ]
         guard let url = components.url else {
-            throw NetworkError.invalidResponse
+            throw NetworkError.invalidURL
         }
         return try await networkService.fetch(url)
     }

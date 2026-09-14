@@ -24,7 +24,7 @@ final class OddsListViewModelTests: XCTestCase {
     }
 
     func test_startLiveUpdates_setsLoadingState_andStartsPolling() {
-        let service = MockLiveOddsService(matches: [])
+        let service = MockLiveOddsService(matches: nil)
         let sut = OddsListViewModel(liveOddsService: service)
 
         sut.startLiveUpdates()
@@ -70,7 +70,7 @@ final class OddsListViewModelTests: XCTestCase {
     }
 
     func test_refreshError_whileLoading_setsErrorState() {
-        let service = MockLiveOddsService(matches: [])
+        let service = MockLiveOddsService(matches: nil)
         let sut = OddsListViewModel(liveOddsService: service)
         sut.startLiveUpdates()
 

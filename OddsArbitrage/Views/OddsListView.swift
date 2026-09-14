@@ -62,7 +62,7 @@ struct OddsListView: View {
     private func matchRow(_ match: MatchOdds) -> some View {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("\(match.homeTeam) vs \(match.awayTeam)")
+                    Text(match.homeTeam) + Text(" vs ") + Text(match.awayTeam)
                     Text(match.commenceTime, style: .date)
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -71,6 +71,7 @@ struct OddsListView: View {
                 if match.hasArbitrage {
                     Image(systemName: "dollarsign.circle.fill")
                         .foregroundStyle(.green)
+                        .accessibilityLabel("Oportunidad de arbitraje")
                 }
             }
         }
