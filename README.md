@@ -8,7 +8,7 @@ For each match, the app compares the best available price per outcome across boo
 
 ## Features
 
-- Live odds ticker: polls for updated odds every 15 seconds, with pull-to-refresh and no disruption to already-loaded content.
+- Live odds ticker: polls for updated odds every 60 seconds, with pull-to-refresh and no disruption to already-loaded content.
 - Arbitrage detection with computed profit margin per match, plus an in-app explanation of how to split the stake to lock in the profit.
 - Search by team name and a toggle to show arbitrage-only matches.
 - A **Partidos / Perfil** tab bar. Profile shows the signed-in account, lets the user pick which bookmakers count toward arbitrage detection (a house they don't have an account with shouldn't factor into the calculation), and sign out.
@@ -20,20 +20,20 @@ For each match, the app compares the best available price per outcome across boo
 MVVM + UseCase + Repository, each layer behind a protocol so it can be swapped or mocked independently:
 
 ```
-View ── ViewModel ── UseCase ── Repository ── NetworkService / Firebase SDK / GoogleSignIn SDK
-                         │
+View ── ViewModel ── UseCase ── Repository ── NetworkService ── The Odds API
+                         │                 └─ FirebaseAuthRepository ── Firebase Auth / Google Sign-In
                     (business logic:
                   arbitrage detection,
                   bookmaker filtering,
                    auth error mapping)
 ```
 
-- **Repository** (`OddsRepository`, `AuthRepository`) — the only layer that knows about network requests or the Firebase/GoogleSignIn SDKs.
+- **Repository** (`OddsRepository`, `AuthRepository`) — the only layer that knows about network requests or the Firebase/GoogleSignIn SDKs. `OddsRepository` talks to [The Odds API](https://the-odds-api.com) over plain HTTP via `NetworkService`; `AuthRepository` talks to Firebase Auth (email/password and Google) via the Firebase/GoogleSignIn SDKs.
 - **UseCase** (`DetectArbitrageUseCase`, `AuthUseCase`) — pure business logic, no I/O. This is where the arbitrage math lives, independently testable from networking.
 - **ViewModel** — exposes a `ViewState<T>` enum (`idle` / `loading` / `loaded` / `error`) to each View, and owns Combine wiring (live odds pipeline, search debounce, auth state subscription).
 - **View** — SwiftUI, no business logic.
 
-Live odds use a small reactive pipeline: `LiveOddsService` exposes a `CurrentValueSubject` polled every 15s via `Timer.publish`, bridged to an `actor LiveOddsCoordinator` that guards against overlapping refreshes (manual pull-to-refresh vs. the automatic poll never race).
+Live odds use a small reactive pipeline: `LiveOddsService` exposes a `CurrentValueSubject` polled every 60s via `Timer.publish`, bridged to an `actor LiveOddsCoordinator` that guards against overlapping refreshes (manual pull-to-refresh vs. the automatic poll never race).
 
 **Bookmaker filtering** (`Services/Bookmakers/`) is its own small piece, same protocol-first pattern: `BookmakerPreferencesStore` (backed by `UserDefaults`) records every bookmaker the app has ever seen in a response and tracks which ones are disabled — new bookmakers are opt-out, so existing behavior never silently changes. It's injected straight into `DefaultDetectArbitrageUseCase`, the only layer that already needs to look at each bookmaker's odds to compute `bestOutcomes` — filtering there means the Repository and ViewModel don't need to know it exists. The Profile tab reads and writes the same store, and triggers a manual refresh after a toggle so the change is reflected without waiting for the next poll.
 
