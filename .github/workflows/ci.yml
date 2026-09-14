@@ -12,9 +12,13 @@ jobs:
       - name: Create Config.xcconfig from secret
         run: |
           mkdir -p Resources
-          echo "API_KEY = ${{ secrets.ODDS_API_KEY }}" > Resources/Config.xcconfig
-      - name: Create GoogleService-Info.plist from secret
-        run: echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }}" | base64 --decode > Margine/GoogleService-Info.plist
+          cat > Resources/Config.xcconfig << EOF
+          API_KEY = ${{ secrets.ODDS_API_KEY }}
+          GID_CLIENT_ID = 690908505728-h54rb0rtk0f2urn0h849cbulvd0040f3.apps.googleusercontent.com
+          GID_URL_SCHEME = com.googleusercontent.apps.690908505728-h54rb0rtk0f2urn0h849cbulvd0040f3
+          EOF
+      - name: Create GoogleService-Info-Dev.plist from secret
+        run: echo "${{ secrets.GOOGLE_SERVICE_INFO_DEV_PLIST_BASE64 }}" | base64 --decode > Margine/GoogleService-Info-Dev.plist
       - name: Create TestCredentials.swift from secrets
         run: |
           cat > MargineUITests/TestCredentials.swift << EOF

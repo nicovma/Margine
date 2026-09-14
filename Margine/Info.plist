@@ -9,12 +9,12 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.690908505728-h54rb0rtk0f2urn0h849cbulvd0040f3</string>
+				<string>$(GID_URL_SCHEME)</string>
 			</array>
 		</dict>
 	</array>
 	<key>GIDClientID</key>
-	<string>690908505728-h54rb0rtk0f2urn0h849cbulvd0040f3.apps.googleusercontent.com</string>
+	<string>$(GID_CLIENT_ID)</string>
 	<key>ODDS_API_KEY</key>
 	<string>$(API_KEY)</string>
 </dict>
