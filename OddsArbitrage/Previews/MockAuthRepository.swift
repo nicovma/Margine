@@ -6,11 +6,13 @@
 //
 import Combine
 import Foundation
+import UIKit
 
 final class MockAuthRepository: AuthRepository {
     private let authStateSubject: CurrentValueSubject<AuthUser?, Never>
     var signInResult: Result<AuthUser, Error> = .success(AuthUser(uid: "mock-uid", email: "test@test.com"))
     var signUpResult: Result<AuthUser, Error> = .success(AuthUser(uid: "mock-uid", email: "test@test.com"))
+    var signInWithGoogleResult: Result<AuthUser, Error> = .success(AuthUser(uid: "mock-google-uid", email: "test@gmail.com"))
     private(set) var signOutCallCount = 0
 
     var currentUser: AuthUser? {
@@ -31,6 +33,12 @@ final class MockAuthRepository: AuthRepository {
 
     func signUp(email: String, password: String) async throws -> AuthUser {
         let user = try signUpResult.get()
+        currentUser = user
+        return user
+    }
+
+    func signInWithGoogle(presenting: UIViewController) async throws -> AuthUser {
+        let user = try signInWithGoogleResult.get()
         currentUser = user
         return user
     }

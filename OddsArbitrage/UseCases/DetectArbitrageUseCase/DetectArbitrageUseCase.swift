@@ -6,6 +6,11 @@
 //
 import Foundation
 
+/// Fetches upcoming odds for `sport` and analyzes them for arbitrage opportunities.
+///
+/// As a side effect, every bookmaker seen in the response is recorded into the
+/// bookmaker catalog (`BookmakerPreferences`), so the Profile tab's filter list
+/// stays up to date without a separate fetch.
 protocol DetectArbitrageUseCase {
     func execute(sport: String) async throws -> [MatchOdds]
 }

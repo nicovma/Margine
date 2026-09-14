@@ -64,6 +64,34 @@ struct DetectArbitrageUseCaseTests {
         #expect(result[0].bestOutcomes["Arsenal"]?.bookmakerTitle == "Bet365")
     }
     
+    @Test("Un bookmaker deshabilitado queda afuera del cálculo de mejores cuotas")
+    func disabledBookmakerIsExcludedFromBestOutcomes() async throws {
+        let event = Self.makeEvent(bookmakers: [
+            Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.60), ("Draw", 3.60), ("Chelsea", 3.10)]),
+            Self.makeBookmaker(title: "Betfair", outcomes: [("Arsenal", 2.30), ("Draw", 3.40), ("Chelsea", 3.20)])
+        ])
+        let preferences = StubBookmakerPreferences(disabledKeys: ["bet365"])
+        let sut = DefaultDetectArbitrageUseCase(repository: StubOddsRepository(events: [event]), preferences: preferences)
+
+        let result = try await sut.execute(sport: "soccer_epl")
+
+        #expect(result[0].bestOutcomes["Arsenal"]?.bookmakerTitle == "Betfair")
+        #expect(result[0].bestOutcomes["Arsenal"]?.price == 2.30)
+    }
+
+    @Test("Registra los bookmakers vistos en cada evento traído del repositorio")
+    func recordsSeenBookmakersFromFetchedEvents() async throws {
+        let event = Self.makeEvent(bookmakers: [
+            Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.60), ("Draw", 3.60), ("Chelsea", 3.10)])
+        ])
+        let preferences = StubBookmakerPreferences()
+        let sut = DefaultDetectArbitrageUseCase(repository: StubOddsRepository(events: [event]), preferences: preferences)
+
+        _ = try await sut.execute(sport: "soccer_epl")
+
+        #expect(preferences.recordedBookmakers.map(\.title) == ["Bet365"])
+    }
+
     // MARK: - Helpers
 
     private static func makeEvent(bookmakers: [Bookmaker]) -> OddsEvent {
@@ -81,4 +109,21 @@ private final class StubOddsRepository: OddsRepository {
     let events: [OddsEvent]
     init(events: [OddsEvent]) { self.events = events }
     func fetchUpcomingOdds(sport: String) async throws -> [OddsEvent] { events }
+}
+
+private final class StubBookmakerPreferences: BookmakerPreferences {
+    private let disabledKeys: Set<String>
+    private(set) var recordedBookmakers: [Bookmaker] = []
+
+    init(disabledKeys: Set<String> = []) {
+        self.disabledKeys = disabledKeys
+    }
+
+    func isEnabled(_ bookmakerKey: String) async -> Bool {
+        !disabledKeys.contains(bookmakerKey)
+    }
+
+    func recordSeen(_ bookmakers: [Bookmaker]) async {
+        recordedBookmakers.append(contentsOf: bookmakers)
+    }
 }

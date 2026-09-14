@@ -11,22 +11,22 @@
         }
       }
     },
-    "% de margen" : {
+    "¿No tenés cuenta? Registrate" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "% margin"
+            "value" : "Don't have an account? Sign up"
           }
         }
       }
     },
-    "Arbitraje: " : {
+    "¿Ya tenés cuenta? Ingresá" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arbitrage: "
+            "value" : "Already have an account? Log in"
           }
         }
       }
@@ -41,6 +41,39 @@
         }
       }
     },
+    "% de margen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "% margin"
+          }
+        }
+      }
+    },
+    "••••••••" : {
+
+    },
+    "Accedé para ver tus partidos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in to see your matches"
+          }
+        }
+      }
+    },
+    "Arbitraje: " : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arbitrage: "
+          }
+        }
+      }
+    },
     "Buscar equipo" : {
       "localizations" : {
         "en" : {
@@ -51,12 +84,41 @@
         }
       }
     },
+    "Casas de apuestas para arbitraje" : {
+
+    },
+    "Cerrar sesión" : {
+
+    },
+    "Cómo jugar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to play"
+          }
+        }
+      }
+    },
+    "Continuar con Google" : {
+
+    },
     "Contraseña" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Password"
+          }
+        }
+      }
+    },
+    "Creá tu cuenta para empezar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create an account to get started"
           }
         }
       }
@@ -71,12 +133,35 @@
         }
       }
     },
+    "El detector solo compara cuotas entre las casas activadas." : {
+
+    },
+    "El email no es válido." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That email isn't valid."
+          }
+        }
+      }
+    },
     "El servidor respondió con un error (código " : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The server returned an error (code "
+          }
+        }
+      }
+    },
+    "Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We already picked the highest odds for each outcome. When the arbitrage badge shows up, split your stake across the bookmakers in inverse proportion to each outcome's odds — that way you win the same amount no matter what happens, and it's more than you staked."
           }
         }
       }
@@ -91,12 +176,42 @@
         }
       }
     },
+    "Email o contraseña incorrectos." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect email or password."
+          }
+        }
+      }
+    },
+    "Empate" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draw"
+          }
+        }
+      }
+    },
     "Ingresar" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Log In"
+          }
+        }
+      }
+    },
+    "La contraseña es muy débil (mínimo 6 caracteres)." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password is too weak (6 characters minimum)."
           }
         }
       }
@@ -111,12 +226,12 @@
         }
       }
     },
-    "No se pudo construir la URL del pedido." : {
+    "No se pudo abrir el selector de cuentas de Google." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Couldn't build the request URL."
+            "value" : "Couldn't open the Google account picker."
           }
         }
       }
@@ -127,6 +242,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn't refresh"
+          }
+        }
+      }
+    },
+    "No se pudo construir la URL del pedido." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't build the request URL."
           }
         }
       }
@@ -151,6 +276,26 @@
         }
       }
     },
+    "o continuá con" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "or continue with"
+          }
+        }
+      }
+    },
+    "Ocurrió un error. Intentá de nuevo." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong. Try again."
+          }
+        }
+      }
+    },
     "OK" : {
       "localizations" : {
         "en" : {
@@ -171,12 +316,28 @@
         }
       }
     },
+    "Partidos" : {
+
+    },
+    "Perfil" : {
+
+    },
     "Próximos partidos" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Upcoming Matches"
+          }
+        }
+      }
+    },
+    "Sin conexión. Probá de nuevo." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No connection. Try again."
           }
         }
       }
@@ -191,22 +352,42 @@
         }
       }
     },
-    "¿No tenés cuenta? Registrate" : {
+    "Todavía no vimos casas de apuestas. Abrí la lista de partidos para que se detecten." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Don't have an account? Sign up"
+            "value" : "We haven't seen any bookmakers yet. Open the match list so they get detected."
           }
         }
       }
     },
-    "¿Ya tenés cuenta? Ingresá" : {
+    "tu@email.com" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Already have an account? Log in"
+            "value" : "you@email.com"
+          }
+        }
+      }
+    },
+    "Usuario" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User"
+          }
+        }
+      }
+    },
+    "Ya existe una cuenta con ese email." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An account with that email already exists."
           }
         }
       }

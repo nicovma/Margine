@@ -7,6 +7,12 @@
 import Combine
 import Foundation
 import FirebaseAuth
+import GoogleSignIn
+import UIKit
+
+enum FirebaseAuthRepositoryError: Error {
+    case missingGoogleIDToken
+}
 
 final class FirebaseAuthRepository: AuthRepository {
     private let authStateSubject: CurrentValueSubject<AuthUser?, Never>
@@ -36,6 +42,19 @@ final class FirebaseAuthRepository: AuthRepository {
     func signUp(email: String, password: String) async throws -> AuthUser {
         let result = try await Auth.auth().createUser(withEmail: email, password: password)
         return AuthUser(uid: result.user.uid, email: result.user.email)
+    }
+
+    func signInWithGoogle(presenting: UIViewController) async throws -> AuthUser {
+        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: presenting)
+        guard let idToken = result.user.idToken?.tokenString else {
+            throw FirebaseAuthRepositoryError.missingGoogleIDToken
+        }
+        let credential = GoogleAuthProvider.credential(
+            withIDToken: idToken,
+            accessToken: result.user.accessToken.tokenString
+        )
+        let authResult = try await Auth.auth().signIn(with: credential)
+        return AuthUser(uid: authResult.user.uid, email: authResult.user.email)
     }
 
     func signOut() throws {
