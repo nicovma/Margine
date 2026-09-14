@@ -26,7 +26,7 @@ final class LoginUITests: XCTestCase {
 
         app.buttons["loginSubmitButton"].tap()
 
-        let arbitrageToggle = app.buttons["arbitrageOnlyToggle"]
+        let arbitrageToggle = app.switches["arbitrageOnlyToggle"]
         XCTAssertTrue(arbitrageToggle.waitForExistence(timeout: 5))
     }
 
