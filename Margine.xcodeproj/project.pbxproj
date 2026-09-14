@@ -12,7 +12,6 @@
 		03823BC6305593EC00DE14DC /* LiveOddsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */; };
 		03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC730559A1700DE14DC /* MockLiveOddsService.swift */; };
 		03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */; };
-		03823BDC3056E09700DE14DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03823BDB3056E09700DE14DC /* GoogleService-Info.plist */; };
 		03823BDF3056E13100DE14DC /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BDE3056E13000DE14DC /* AuthUser.swift */; };
 		03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE03056E14F00DE14DC /* AuthRepository.swift */; };
 		03823BE53056E1FF00DE14DC /* FirebaseAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */; };
@@ -37,6 +36,7 @@
 		03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486F303CFB8900F49C45 /* OddsDetailView.swift */; };
 		03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */; };
 		03A748933040757000F49C45 /* MatchOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A748923040756F00F49C45 /* MatchOdds.swift */; };
+		03F9B84A30589FA100867ACC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03F9B84930589FA000867ACC /* GoogleService-Info.plist */; };
 		3275B54D8F06D1BE544CE61C /* MatchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA5262310997693E1BD2A1 /* MatchRowView.swift */; };
 		3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */; };
 		3B7940EAAEB67243CB90D2D3 /* AllowAllBookmakerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */; };
@@ -72,7 +72,6 @@
 		03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsServiceProtocol.swift; sourceTree = "<group>"; };
 		03823BC730559A1700DE14DC /* MockLiveOddsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLiveOddsService.swift; sourceTree = "<group>"; };
 		03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsCoordinator.swift; sourceTree = "<group>"; };
-		03823BDB3056E09700DE14DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03823BDE3056E13000DE14DC /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		03823BE03056E14F00DE14DC /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthRepository.swift; sourceTree = "<group>"; };
@@ -100,6 +99,9 @@
 		03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDetectArbitrageUseCase.swift; sourceTree = "<group>"; };
 		03A74879303CFEBF00F49C45 /* MargineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MargineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A748923040756F00F49C45 /* MatchOdds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchOdds.swift; sourceTree = "<group>"; };
+		03F9B84430588CD600867ACC /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
+		03F9B84630589F0E00867ACC /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
+		03F9B84930589FA000867ACC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BC4D0B42DC290A08AE19C4D /* BookmakerPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakerPreferences.swift; sourceTree = "<group>"; };
 		46EA5262310997693E1BD2A1 /* MatchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRowView.swift; sourceTree = "<group>"; };
 		4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowAllBookmakerPreferences.swift; sourceTree = "<group>"; };
@@ -297,7 +299,9 @@
 				03823BC2305593BB00DE14DC /* Services */,
 				03A74872303CFD3C00F49C45 /* Previews */,
 				03A74866303CF61900F49C45 /* Info.plist */,
-				03823BDB3056E09700DE14DC /* GoogleService-Info.plist */,
+				03F9B84930589FA000867ACC /* GoogleService-Info.plist */,
+				03F9B84430588CD600867ACC /* GoogleService-Info-Dev.plist */,
+				03F9B84630589F0E00867ACC /* GoogleService-Info-Prod.plist */,
 				03A7484A303CEBB300F49C45 /* Models */,
 				03A7484B303CEBB300F49C45 /* Networking */,
 				03A7484C303CEBB300F49C45 /* Repositories */,
@@ -370,6 +374,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03A7483C303CE9C800F49C45 /* Build configuration list for PBXNativeTarget "Margine" */;
 			buildPhases = (
+				03F9B84830589F6F00867ACC /* Select GoogleService-Info.plist */,
 				03A7482D303CE9C600F49C45 /* Sources */,
 				03A7482E303CE9C600F49C45 /* Frameworks */,
 				03A7482F303CE9C600F49C45 /* Resources */,
@@ -475,8 +480,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */,
-				03823BDC3056E09700DE14DC /* GoogleService-Info.plist in Resources */,
 				3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */,
+				03F9B84A30589FA100867ACC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +493,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03F9B84830589F6F00867ACC /* Select GoogleService-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Select GoogleService-Info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Margine/GoogleService-Info.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\n  SOURCE_PLIST=\"${SRCROOT}/Margine/GoogleService-Info-Prod.plist\"\nelse\n  SOURCE_PLIST=\"${SRCROOT}/Margine/GoogleService-Info-Dev.plist\"\nfi\n\nif [ ! -f \"$SOURCE_PLIST\" ]; then\n  echo \"error: no se encontró $SOURCE_PLIST\"\n  exit 1\nfi\n\ncp \"$SOURCE_PLIST\" \"${SRCROOT}/Margine/GoogleService-Info.plist\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		03823BFE3056ECDA00DE14DC /* Sources */ = {
@@ -729,6 +756,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9HY9G7NYSB;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Margine/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -760,6 +788,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9HY9G7NYSB;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Margine/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
