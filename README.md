@@ -1,6 +1,6 @@
-# OddsArbitrage
+# Margine
 
-[![CI](https://github.com/nicovma/OddsArbitrage/actions/workflows/ci.yml/badge.svg)](https://github.com/nicovma/OddsArbitrage/actions/workflows/ci.yml)
+[![CI](https://github.com/nicovma/Margine/actions/workflows/ci.yml/badge.svg)](https://github.com/nicovma/Margine/actions/workflows/ci.yml)
 
 An iOS app that tracks upcoming soccer matches and detects arbitrage ("surebet") opportunities across bookmakers, using live odds from [The Odds API](https://the-odds-api.com).
 
@@ -54,14 +54,14 @@ The app needs two files that are gitignored on purpose (never commit API keys or
    ```
    Get a free key at [the-odds-api.com](https://the-odds-api.com) (no card required, ~500 requests/month).
 
-2. `OddsArbitrage/GoogleService-Info.plist` — download it from your own Firebase project (Firebase Console → Project settings → your iOS app), with **Email/Password** and **Google** both enabled under Authentication → Sign-in method. The Google URL scheme and client ID in `Info.plist` are read straight from this file's `REVERSED_CLIENT_ID`/`CLIENT_ID`, so there's nothing else to configure beyond enabling the provider.
+2. `Margine/GoogleService-Info.plist` — download it from your own Firebase project (Firebase Console → Project settings → your iOS app), with **Email/Password** and **Google** both enabled under Authentication → Sign-in method. The Google URL scheme and client ID in `Info.plist` are read straight from this file's `REVERSED_CLIENT_ID`/`CLIENT_ID`, so there's nothing else to configure beyond enabling the provider.
 
-Then open `OddsArbitrage.xcodeproj` and run. Requires Xcode 16+, iOS 18.5+.
+Then open `Margine.xcodeproj` and run. Requires Xcode 16+, iOS 18.5+.
 
 ## Testing
 
 ```
-xcodebuild test -project OddsArbitrage.xcodeproj -scheme OddsArbitrage \
+xcodebuild test -project Margine.xcodeproj -scheme Margine \
   -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest'
 ```
 
