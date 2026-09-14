@@ -8,22 +8,30 @@ import Foundation
 
 final class DefaultDetectArbitrageUseCase: DetectArbitrageUseCase {
     private let repository: OddsRepository
+    private let preferences: BookmakerPreferences
 
-    init(repository: OddsRepository) {
+    init(repository: OddsRepository, preferences: BookmakerPreferences = AllowAllBookmakerPreferences()) {
         self.repository = repository
+        self.preferences = preferences
     }
 
     func execute(sport: String) async throws -> [MatchOdds] {
         let events = try await repository.fetchUpcomingOdds(sport: sport)
-        return events.map(analyze)
+        var results: [MatchOdds] = []
+        for event in events {
+            await preferences.recordSeen(event.bookmakers)
+            results.append(await analyze(event))
+        }
+        return results
     }
 
-    private func analyze(_ event: OddsEvent) -> MatchOdds {
+    private func analyze(_ event: OddsEvent) async -> MatchOdds {
         var bestOutcomes: [String: BestOutcome] = [:]
 
         for bookmaker in event.bookmakers {
+            guard await preferences.isEnabled(bookmaker.key) else { continue }
             guard let market = bookmaker.markets.first(where: { $0.key == "h2h" }) else { continue }
-            for outcome in market.outcomes {
+            for outcome in market.outcomes where outcome.price > 0 {
                 if let current = bestOutcomes[outcome.name], current.price >= outcome.price {
                     continue
                 }

@@ -9,6 +9,11 @@ import Foundation
 
 @MainActor
 final class LiveOddsService: LiveOddsServiceProtocol {
+    /// The Odds API's free tier is ~500 requests/month — nowhere near enough
+    /// for a short poll interval. 60s keeps the "live" feel (real sportsbooks
+    /// don't move odds much faster than that anyway) while staying sustainable.
+    static let pollingInterval: TimeInterval = 60
+
     let currentMatches = CurrentValueSubject<[MatchOdds]?, Never>(nil)
     let refreshErrors = PassthroughSubject<String, Never>()
 
@@ -21,7 +26,7 @@ final class LiveOddsService: LiveOddsServiceProtocol {
 
     func startPolling() {
         Task { await refreshNow() }
-        pollingCancellable = Timer.publish(every: 15, on: .main, in: .common)
+        pollingCancellable = Timer.publish(every: Self.pollingInterval, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 Task { await self?.refreshNow() }
