@@ -35,7 +35,8 @@ final class OddsListViewModel: ObservableObject {
 
         liveOddsService.currentMatches
             .combineLatest($showOnlyArbitrage, searchPublisher)
-            .map { matches, showOnlyArbitrage, searchText in
+            .compactMap { matches, showOnlyArbitrage, searchText -> [MatchOdds]? in
+                guard let matches else { return nil }
                 var filtered = showOnlyArbitrage ? matches.filter(\.hasArbitrage) : matches
                 if !searchText.isEmpty {
                     filtered = filtered.filter {
@@ -58,7 +59,9 @@ final class OddsListViewModel: ObservableObject {
     }
 
     func startLiveUpdates() {
-        state = .loading
+        if case .loaded = state {} else {
+            state = .loading
+        }
         liveOddsService.startPolling()
     }
 

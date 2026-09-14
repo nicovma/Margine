@@ -1,5 +1,5 @@
 //
-//  URLNetworkService.swift
+//  URLSessionNetworkService.swift
 //  OddsArbitrage
 //
 //  Created by Nicolas Valentini on 24/8/2026.
@@ -29,7 +29,7 @@ final class URLSessionNetworkService: NetworkService {
         do {
             return try decoder.decode(T.self, from: data)
         } catch {
-            throw NetworkError.decodingFailed
+            throw NetworkError.decodingFailed(underlying: error)
         }
     }
 }

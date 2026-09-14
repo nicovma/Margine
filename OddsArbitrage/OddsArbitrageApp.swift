@@ -10,6 +10,7 @@ import FirebaseCore
 @main
 struct OddsArbitrageApp: App {
     @StateObject private var authViewModel: AuthViewModel
+    private let oddsListViewModel: OddsListViewModel
 
     init() {
         FirebaseApp.configure()
@@ -19,24 +20,22 @@ struct OddsArbitrageApp: App {
         }
         let authUseCase = DefaultAuthUseCase(repository: authRepository)
         _authViewModel = StateObject(wrappedValue: AuthViewModel(authUseCase: authUseCase))
-    }
 
-    var body: some Scene {
-        WindowGroup {
-            if authViewModel.isAuthenticated {
-                OddsListView(viewModel: makeOddsListViewModel())
-            } else {
-                LoginView(viewModel: authViewModel)
-            }
-        }
-    }
-
-    private func makeOddsListViewModel() -> OddsListViewModel {
         let apiKey = Bundle.main.object(forInfoDictionaryKey: "ODDS_API_KEY") as? String ?? ""
         let networkService = URLSessionNetworkService()
         let repository = DefaultOddsRepository(networkService: networkService, apiKey: apiKey)
         let useCase = DefaultDetectArbitrageUseCase(repository: repository)
         let liveOddsService = LiveOddsService(useCase: useCase)
-        return OddsListViewModel(liveOddsService: liveOddsService)
+        oddsListViewModel = OddsListViewModel(liveOddsService: liveOddsService)
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            if authViewModel.isAuthenticated {
+                OddsListView(viewModel: oddsListViewModel)
+            } else {
+                LoginView(viewModel: authViewModel)
+            }
+        }
     }
 }

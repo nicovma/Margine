@@ -30,7 +30,19 @@ final class DefaultDetectArbitrageUseCase: DetectArbitrageUseCase {
                 bestOutcomes[outcome.name] = BestOutcome(bookmakerTitle: bookmaker.title, price: outcome.price)
             }
         }
-        
+
+        guard !bestOutcomes.isEmpty else {
+            return MatchOdds(
+                id: event.id,
+                homeTeam: event.homeTeam,
+                awayTeam: event.awayTeam,
+                commenceTime: event.commenceTime,
+                bestOutcomes: bestOutcomes,
+                hasArbitrage: false,
+                arbitrageMargin: nil
+            )
+        }
+
         let impliedProbabilitySum = bestOutcomes.values.reduce(0) { $0 + (1 / $1.price) }
         let hasArbitrage = impliedProbabilitySum < 1.0
         let margin = hasArbitrage ? (1 / impliedProbabilitySum - 1) * 100 : nil
@@ -45,4 +57,4 @@ final class DefaultDetectArbitrageUseCase: DetectArbitrageUseCase {
             arbitrageMargin: margin
         )
     }
-    }
+}

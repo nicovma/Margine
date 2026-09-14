@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 final class LiveOddsService: LiveOddsServiceProtocol {
-    let currentMatches = CurrentValueSubject<[MatchOdds], Never>([])
+    let currentMatches = CurrentValueSubject<[MatchOdds]?, Never>(nil)
     let refreshErrors = PassthroughSubject<String, Never>()
 
     private let coordinator: LiveOddsCoordinator
