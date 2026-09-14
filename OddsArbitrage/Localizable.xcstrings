@@ -85,10 +85,24 @@
       }
     },
     "Casas de apuestas para arbitraje" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bookmakers for arbitrage"
+          }
+        }
+      }
     },
     "Cerrar sesión" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign out"
+          }
+        }
+      }
     },
     "Cómo jugar" : {
       "localizations" : {
@@ -101,7 +115,14 @@
       }
     },
     "Continuar con Google" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue with Google"
+          }
+        }
+      }
     },
     "Contraseña" : {
       "localizations" : {
@@ -133,8 +154,18 @@
         }
       }
     },
-    "El detector solo compara cuotas entre las casas activadas." : {
+    "Demasiados intentos. Esperá un momento y probá de nuevo." : {
 
+    },
+    "El detector solo compara cuotas entre las casas activadas." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The detector only compares odds across enabled bookmakers."
+          }
+        }
+      }
     },
     "El email no es válido." : {
       "localizations" : {
@@ -156,12 +187,12 @@
         }
       }
     },
-    "Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado." : {
+    "Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado.\n\nPor ejemplo: con cuotas 2.00 / 4.00 / 5.00 para 1 / X / 2, apostando $100 en total repartís $52,63 al resultado 1, $26,32 al empate y $21,05 al resultado 2 (cada monto es proporcional a 1/cuota). Gane quien gane, cobrás $105,26 — quedan $5,26 de ganancia neta pase lo que pase." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We already picked the highest odds for each outcome. When the arbitrage badge shows up, split your stake across the bookmakers in inverse proportion to each outcome's odds — that way you win the same amount no matter what happens, and it's more than you staked."
+            "value" : "We already picked the highest odds for each outcome. When the arbitrage badge shows up, split your stake across the bookmakers in inverse proportion to each outcome's odds — that way you win the same amount no matter what happens, and it's more than you staked.\n\nFor example: with odds of 2.00 / 4.00 / 5.00 for 1 / X / 2, staking $100 total you'd split $52.63 on outcome 1, $26.32 on the draw and $21.05 on outcome 2 (each amount proportional to 1/odds). Whoever wins, you collect $105.26 — a net $5.26 profit no matter the result."
           }
         }
       }
@@ -196,6 +227,9 @@
         }
       }
     },
+    "Esta cuenta fue deshabilitada." : {
+
+    },
     "Ingresar" : {
       "localizations" : {
         "en" : {
@@ -205,6 +239,9 @@
           }
         }
       }
+    },
+    "La contraseña debe tener al menos %lld caracteres." : {
+
     },
     "La contraseña es muy débil (mínimo 6 caracteres)." : {
       "localizations" : {
@@ -222,6 +259,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Best odds by outcome"
+          }
+        }
+      }
+    },
+    "Ningún partido coincide con el filtro actual." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No matches match the current filter."
+          }
+        }
+      }
+    },
+    "No hay partidos disponibles en este momento." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No matches available right now."
           }
         }
       }
@@ -245,6 +302,9 @@
           }
         }
       }
+    },
+    "No se pudo cerrar la sesión. Intentá de nuevo." : {
+
     },
     "No se pudo construir la URL del pedido." : {
       "localizations" : {
@@ -317,10 +377,24 @@
       }
     },
     "Partidos" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matches"
+          }
+        }
+      }
     },
     "Perfil" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        }
+      }
     },
     "Próximos partidos" : {
       "localizations" : {
@@ -338,6 +412,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No connection. Try again."
+          }
+        }
+      }
+    },
+    "Sin resultados" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No results"
           }
         }
       }

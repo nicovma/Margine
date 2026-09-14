@@ -21,9 +21,7 @@ struct OddsListView: View {
                 .searchable(text: $viewModel.searchText, prompt: "Buscar equipo")
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        Toggle("Solo arbitraje", isOn: $viewModel.showOnlyArbitrage)
-                            .toggleStyle(.button)
-                            .accessibilityIdentifier("arbitrageOnlyToggle")
+                        arbitrageOnlyToggle
                     }
                 }
                 .alert("No se pudo actualizar", isPresented: Binding(
@@ -47,7 +45,9 @@ struct OddsListView: View {
                 .refreshable { await viewModel.manualRefresh() }
         case .loaded(let matches):
             List(matches) { match in
-                NavigationLink(value: match) {
+                ZStack {
+                    NavigationLink(value: match) { EmptyView() }
+                        .opacity(0)
                     MatchRowView(match: match)
                 }
                 .listRowSeparator(.hidden)
@@ -71,12 +71,17 @@ struct OddsListView: View {
             VStack(spacing: 8) {
                 Text("Sin resultados")
                     .font(.system(size: 16, weight: .semibold))
-                Text(isFiltering
-                     ? "Ningún partido coincide con el filtro actual."
-                     : "No hay partidos disponibles en este momento.")
-                    .font(.system(size: 13.5))
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
+                if isFiltering {
+                    Text("Ningún partido coincide con el filtro actual.")
+                        .font(.system(size: 13.5))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                } else {
+                    Text("No hay partidos disponibles en este momento.")
+                        .font(.system(size: 13.5))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
             }
             .padding(24)
             .frame(maxWidth: .infinity, minHeight: 300)
@@ -86,6 +91,21 @@ struct OddsListView: View {
 
     private var isFiltering: Bool {
         viewModel.showOnlyArbitrage || !viewModel.searchText.isEmpty
+    }
+
+    private var arbitrageOnlyToggle: some View {
+        Button {
+            viewModel.showOnlyArbitrage.toggle()
+        } label: {
+            BrandMarkIcon(color: viewModel.showOnlyArbitrage ? .white : .primary)
+                .frame(width: 18, height: 18)
+                .padding(9)
+                .background(viewModel.showOnlyArbitrage ? Color.accentColor : Color(.secondarySystemGroupedBackground))
+                .clipShape(Circle())
+        }
+        .accessibilityIdentifier("arbitrageOnlyToggle")
+        .accessibilityLabel("Solo arbitraje")
+        .accessibilityAddTraits(viewModel.showOnlyArbitrage ? .isSelected : [])
     }
 }
 

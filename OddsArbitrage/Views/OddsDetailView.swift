@@ -30,10 +30,10 @@ struct OddsDetailView: View {
     private func arbitrageBanner(margin: Double) -> some View {
         HStack(spacing: 12) {
             Circle()
-                .fill(Color.green)
+                .fill(Color("ArbitrageGreen"))
                 .frame(width: 38, height: 38)
                 .overlay(
-                    Image(systemName: "arrow.up.right.circle.fill")
+                    Image(systemName: "clock.fill")
                         .foregroundStyle(.white)
                         .font(.system(size: 18))
                 )
@@ -47,7 +47,7 @@ struct OddsDetailView: View {
             Spacer()
         }
         .padding(16)
-        .background(Color.green.opacity(0.15))
+        .background(Color("ArbitrageGreenBackground"))
         .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 
@@ -95,7 +95,7 @@ struct OddsDetailView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Cómo jugar")
                     .font(.system(size: 14, weight: .bold))
-                Text("Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado.")
+                Text("Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado.\n\nPor ejemplo: con cuotas 2.00 / 4.00 / 5.00 para 1 / X / 2, apostando $100 en total repartís $52,63 al resultado 1, $26,32 al empate y $21,05 al resultado 2 (cada monto es proporcional a 1/cuota). Gane quien gane, cobrás $105,26 — quedan $5,26 de ganancia neta pase lo que pase.")
                     .font(.system(size: 13))
                     .foregroundStyle(.secondary)
             }

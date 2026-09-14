@@ -85,7 +85,7 @@ struct LoginView: View {
                 .font(.system(size: 16))
         }
         .padding(14)
-        .background(Color(.systemBackground))
+        .background(Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -139,7 +139,7 @@ struct LoginView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 13)
-                .background(Color(.systemBackground))
+                .background(Color(.secondarySystemGroupedBackground))
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .strokeBorder(Color(.separator))

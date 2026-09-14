@@ -24,13 +24,13 @@ struct MatchRowView: View {
                 Label {
                     Text("Arbitraje: ") + Text(String(format: "%.1f", margin)) + Text("% de margen")
                 } icon: {
-                    Image(systemName: "arrow.up.right.circle.fill")
+                    Image(systemName: "clock.fill")
                 }
                 .font(.system(size: 12, weight: .bold))
-                .foregroundStyle(.green)
+                .foregroundStyle(Color("ArbitrageGreenText"))
                 .padding(.horizontal, 9)
                 .padding(.vertical, 5)
-                .background(Color.green.opacity(0.15))
+                .background(Color("ArbitrageGreenBackground"))
                 .clipShape(RoundedRectangle(cornerRadius: 7))
                 .accessibilityLabel("Oportunidad de arbitraje")
             }
@@ -42,7 +42,7 @@ struct MatchRowView: View {
         .clipShape(RoundedRectangle(cornerRadius: 14))
         .overlay(
             RoundedRectangle(cornerRadius: 14)
-                .strokeBorder(match.hasArbitrage ? Color.green.opacity(0.6) : .clear, lineWidth: 1.5)
+                .strokeBorder(match.hasArbitrage ? Color("ArbitrageGreen") : .clear, lineWidth: 1.5)
         )
     }
 
