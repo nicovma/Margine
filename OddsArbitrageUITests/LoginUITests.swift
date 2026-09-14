@@ -26,8 +26,8 @@ final class LoginUITests: XCTestCase {
 
         app.buttons["loginSubmitButton"].tap()
 
-        let navigationTitle = app.navigationBars["Próximos partidos"]
-        XCTAssertTrue(navigationTitle.waitForExistence(timeout: 5))
+        let arbitrageToggle = app.buttons["arbitrageOnlyToggle"]
+        XCTAssertTrue(arbitrageToggle.waitForExistence(timeout: 5))
     }
 
     func test_errorPath_invalidCredentials_showsErrorMessage() {
