@@ -7,7 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03A74856303CEBB300F49C45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74853303CEBB300F49C45 /* ContentView.swift */; };
+		032A5872F4EDF259206BFA34 /* BrandMarkIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB6FBC24E4D97918E1C91D2 /* BrandMarkIcon.swift */; };
+		03823BC4305593CC00DE14DC /* LiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC3305593CC00DE14DC /* LiveOddsService.swift */; };
+		03823BC6305593EC00DE14DC /* LiveOddsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */; };
+		03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC730559A1700DE14DC /* MockLiveOddsService.swift */; };
+		03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */; };
+		03823BDC3056E09700DE14DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03823BDB3056E09700DE14DC /* GoogleService-Info.plist */; };
+		03823BDF3056E13100DE14DC /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BDE3056E13000DE14DC /* AuthUser.swift */; };
+		03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE03056E14F00DE14DC /* AuthRepository.swift */; };
+		03823BE53056E1FF00DE14DC /* FirebaseAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */; };
+		03823BE73056E24100DE14DC /* MockAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE63056E24000DE14DC /* MockAuthRepository.swift */; };
+		03823BE93056E2B300DE14DC /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE83056E2B100DE14DC /* AuthUseCase.swift */; };
+		03823BEE3056E39800DE14DC /* DefaultAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */; };
+		03823BF03056E3CA00DE14DC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BEF3056E3C900DE14DC /* AuthViewModel.swift */; };
+		03823BF33056E42D00DE14DC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BF23056E42C00DE14DC /* LoginView.swift */; };
+		03823BF83056E71500DE14DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03823BF73056E71500DE14DC /* FirebaseAuth */; };
+		03823BFA3056E71500DE14DC /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03823BF93056E71500DE14DC /* FirebaseCore */; };
 		03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */; };
 		03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03A74852303CEBB300F49C45 /* Assets.xcassets */; };
 		03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74859303CEF5100F49C45 /* OddsEvent.swift */; };
@@ -15,12 +30,60 @@
 		03A7485E303CF04300F49C45 /* URLSessionNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7485D303CF03900F49C45 /* URLSessionNetworkService.swift */; };
 		03A74860303CF16600F49C45 /* OddsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7485F303CF16400F49C45 /* OddsRepository.swift */; };
 		03A74862303CF18300F49C45 /* DefaultOddsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74861303CF18200F49C45 /* DefaultOddsRepository.swift */; };
+		03A74868303CF81700F49C45 /* DetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */; };
+		03A7486A303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */; };
+		03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */; };
+		03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486D303CFB4A00F49C45 /* OddsListView.swift */; };
+		03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7486F303CFB8900F49C45 /* OddsDetailView.swift */; };
+		03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */; };
+		03A748933040757000F49C45 /* MatchOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A748923040756F00F49C45 /* MatchOdds.swift */; };
+		3275B54D8F06D1BE544CE61C /* MatchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA5262310997693E1BD2A1 /* MatchRowView.swift */; };
+		3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */; };
+		3B7940EAAEB67243CB90D2D3 /* AllowAllBookmakerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */; };
+		53DCF9028202D8A25455C983 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 3A4873DF6EC1E0F97F3D1E29 /* GoogleSignIn */; };
+		5D2F2F4F6A1995388A47CB80 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CAF0ABB3E6AC24FD49A7BE /* ProfileViewModel.swift */; };
+		62CAB6D2B3682A9D9D5A98A1 /* BookmakerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66510FDFB9F3640EF0EB620 /* BookmakerInfo.swift */; };
+		8CD7263D16446D312F567CD4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F3075CDE1C125C4D7B64A9 /* ProfileView.swift */; };
+		E9EC2031F08C9FAE84DB6BCD /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEE33F7F13BBCBF15E56876 /* MainTabView.swift */; };
+		EAB3258E7FD30D04290F6A1A /* BookmakerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC4D0B42DC290A08AE19C4D /* BookmakerPreferences.swift */; };
+		ECD6BE12FE5B028312F4ECBC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF80332325FD268F360EBC86 /* GoogleSignInSwift */; };
+		F21019DBCB56B987D3B4C9CD /* BookmakerPreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0935930F3222126434A6BAE /* BookmakerPreferencesStore.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		03823C083056ECDA00DE14DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03A74829303CE9C600F49C45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03A74830303CE9C600F49C45;
+			remoteInfo = OddsArbitrage;
+		};
+		03A7487D303CFEBF00F49C45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03A74829303CE9C600F49C45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03A74830303CE9C600F49C45;
+			remoteInfo = OddsArbitrage;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		03823BC3305593CC00DE14DC /* LiveOddsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsService.swift; sourceTree = "<group>"; };
+		03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsServiceProtocol.swift; sourceTree = "<group>"; };
+		03823BC730559A1700DE14DC /* MockLiveOddsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLiveOddsService.swift; sourceTree = "<group>"; };
+		03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsCoordinator.swift; sourceTree = "<group>"; };
+		03823BDB3056E09700DE14DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		03823BDE3056E13000DE14DC /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
+		03823BE03056E14F00DE14DC /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthRepository.swift; sourceTree = "<group>"; };
+		03823BE63056E24000DE14DC /* MockAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthRepository.swift; sourceTree = "<group>"; };
+		03823BE83056E2B100DE14DC /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthUseCase.swift; sourceTree = "<group>"; };
+		03823BEF3056E3C900DE14DC /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		03823BF23056E42C00DE14DC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		03823C023056ECDA00DE14DC /* OddsArbitrageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OddsArbitrageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A74831303CE9C600F49C45 /* OddsArbitrage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OddsArbitrage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A74852303CEBB300F49C45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		03A74853303CEBB300F49C45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsArbitrageApp.swift; sourceTree = "<group>"; };
 		03A74859303CEF5100F49C45 /* OddsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsEvent.swift; sourceTree = "<group>"; };
 		03A7485B303CEFD600F49C45 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -29,10 +92,59 @@
 		03A74861303CF18200F49C45 /* DefaultOddsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultOddsRepository.swift; sourceTree = "<group>"; };
 		03A74864303CF49B00F49C45 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		03A74866303CF61900F49C45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectArbitrageUseCase.swift; sourceTree = "<group>"; };
+		03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDetectArbitrageUseCase.swift; sourceTree = "<group>"; };
+		03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsListViewModel.swift; sourceTree = "<group>"; };
+		03A7486D303CFB4A00F49C45 /* OddsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsListView.swift; sourceTree = "<group>"; };
+		03A7486F303CFB8900F49C45 /* OddsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsDetailView.swift; sourceTree = "<group>"; };
+		03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDetectArbitrageUseCase.swift; sourceTree = "<group>"; };
+		03A74879303CFEBF00F49C45 /* OddsArbitrageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OddsArbitrageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03A748923040756F00F49C45 /* MatchOdds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchOdds.swift; sourceTree = "<group>"; };
+		1BC4D0B42DC290A08AE19C4D /* BookmakerPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakerPreferences.swift; sourceTree = "<group>"; };
+		46EA5262310997693E1BD2A1 /* MatchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRowView.swift; sourceTree = "<group>"; };
+		4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowAllBookmakerPreferences.swift; sourceTree = "<group>"; };
+		62CAF0ABB3E6AC24FD49A7BE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		90F3075CDE1C125C4D7B64A9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A0935930F3222126434A6BAE /* BookmakerPreferencesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakerPreferencesStore.swift; sourceTree = "<group>"; };
+		A66510FDFB9F3640EF0EB620 /* BookmakerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakerInfo.swift; sourceTree = "<group>"; };
+		BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BDEE33F7F13BBCBF15E56876 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CAB6FBC24E4D97918E1C91D2 /* BrandMarkIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandMarkIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		03823C033056ECDA00DE14DC /* OddsArbitrageUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = OddsArbitrageUITests;
+			sourceTree = "<group>";
+		};
+		03A7487A303CFEBF00F49C45 /* OddsArbitrageTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = OddsArbitrageTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		03823BFF3056ECDA00DE14DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03A7482E303CE9C600F49C45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03823BFA3056E71500DE14DC /* FirebaseCore in Frameworks */,
+				03823BF83056E71500DE14DC /* FirebaseAuth in Frameworks */,
+				53DCF9028202D8A25455C983 /* GoogleSignIn in Frameworks */,
+				ECD6BE12FE5B028312F4ECBC /* GoogleSignInSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03A74876303CFEBF00F49C45 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,11 +154,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03823BC2305593BB00DE14DC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */,
+				03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */,
+				03823BC3305593CC00DE14DC /* LiveOddsService.swift */,
+				04D8F564B67322138B123E50 /* Bookmakers */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		03823BE23056E16200DE14DC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */,
+				03823BE03056E14F00DE14DC /* AuthRepository.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		03823BE33056E16D00DE14DC /* Odds */ = {
+			isa = PBXGroup;
+			children = (
+				03A74861303CF18200F49C45 /* DefaultOddsRepository.swift */,
+				03A7485F303CF16400F49C45 /* OddsRepository.swift */,
+			);
+			path = Odds;
+			sourceTree = "<group>";
+		};
+		03823BEA3056E2B600DE14DC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */,
+				03823BE83056E2B100DE14DC /* AuthUseCase.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		03823BEB3056E2C300DE14DC /* DetectArbitrageUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */,
+				03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */,
+			);
+			path = DetectArbitrageUseCase;
+			sourceTree = "<group>";
+		};
 		03A74828303CE9C600F49C45 = {
 			isa = PBXGroup;
 			children = (
 				03A74865303CF49B00F49C45 /* Resources */,
 				03A74855303CEBB300F49C45 /* OddsArbitrage */,
+				03A7487A303CFEBF00F49C45 /* OddsArbitrageTests */,
+				03823C033056ECDA00DE14DC /* OddsArbitrageUITests */,
 				03A74832303CE9C600F49C45 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				03A74831303CE9C600F49C45 /* OddsArbitrage.app */,
+				03A74879303CFEBF00F49C45 /* OddsArbitrageTests.xctest */,
+				03823C023056ECDA00DE14DC /* OddsArbitrageUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,7 +225,10 @@
 		03A7484A303CEBB300F49C45 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				03823BDE3056E13000DE14DC /* AuthUser.swift */,
+				03A748923040756F00F49C45 /* MatchOdds.swift */,
 				03A74859303CEF5100F49C45 /* OddsEvent.swift */,
+				A66510FDFB9F3640EF0EB620 /* BookmakerInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -79,8 +245,8 @@
 		03A7484C303CEBB300F49C45 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				03A74861303CF18200F49C45 /* DefaultOddsRepository.swift */,
-				03A7485F303CF16400F49C45 /* OddsRepository.swift */,
+				03823BE33056E16D00DE14DC /* Odds */,
+				03823BE23056E16200DE14DC /* Auth */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -95,6 +261,8 @@
 		03A7484F303CEBB300F49C45 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				03823BEB3056E2C300DE14DC /* DetectArbitrageUseCase */,
+				03823BEA3056E2B600DE14DC /* Auth */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -102,6 +270,9 @@
 		03A74850303CEBB300F49C45 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				03823BEF3056E3C900DE14DC /* AuthViewModel.swift */,
+				03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */,
+				62CAF0ABB3E6AC24FD49A7BE /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -109,6 +280,13 @@
 		03A74851303CEBB300F49C45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				03823BF23056E42C00DE14DC /* LoginView.swift */,
+				03A7486F303CFB8900F49C45 /* OddsDetailView.swift */,
+				03A7486D303CFB4A00F49C45 /* OddsListView.swift */,
+				BDEE33F7F13BBCBF15E56876 /* MainTabView.swift */,
+				90F3075CDE1C125C4D7B64A9 /* ProfileView.swift */,
+				CAB6FBC24E4D97918E1C91D2 /* BrandMarkIcon.swift */,
+				46EA5262310997693E1BD2A1 /* MatchRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,7 +294,10 @@
 		03A74855303CEBB300F49C45 /* OddsArbitrage */ = {
 			isa = PBXGroup;
 			children = (
+				03823BC2305593BB00DE14DC /* Services */,
+				03A74872303CFD3C00F49C45 /* Previews */,
 				03A74866303CF61900F49C45 /* Info.plist */,
+				03823BDB3056E09700DE14DC /* GoogleService-Info.plist */,
 				03A7484A303CEBB300F49C45 /* Models */,
 				03A7484B303CEBB300F49C45 /* Networking */,
 				03A7484C303CEBB300F49C45 /* Repositories */,
@@ -125,7 +306,7 @@
 				03A74850303CEBB300F49C45 /* ViewModels */,
 				03A74851303CEBB300F49C45 /* Views */,
 				03A74852303CEBB300F49C45 /* Assets.xcassets */,
-				03A74853303CEBB300F49C45 /* ContentView.swift */,
+				BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */,
 				03A74854303CEBB300F49C45 /* OddsArbitrageApp.swift */,
 			);
 			path = OddsArbitrage;
@@ -139,9 +320,52 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		03A74872303CFD3C00F49C45 /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				03823BE63056E24000DE14DC /* MockAuthRepository.swift */,
+				03823BC730559A1700DE14DC /* MockLiveOddsService.swift */,
+				03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */,
+			);
+			path = Previews;
+			sourceTree = "<group>";
+		};
+		04D8F564B67322138B123E50 /* Bookmakers */ = {
+			isa = PBXGroup;
+			children = (
+				1BC4D0B42DC290A08AE19C4D /* BookmakerPreferences.swift */,
+				4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */,
+				A0935930F3222126434A6BAE /* BookmakerPreferencesStore.swift */,
+			);
+			path = Bookmakers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		03823C013056ECDA00DE14DC /* OddsArbitrageUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03823C0A3056ECDA00DE14DC /* Build configuration list for PBXNativeTarget "OddsArbitrageUITests" */;
+			buildPhases = (
+				03823BFE3056ECDA00DE14DC /* Sources */,
+				03823BFF3056ECDA00DE14DC /* Frameworks */,
+				03823C003056ECDA00DE14DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03823C093056ECDA00DE14DC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				03823C033056ECDA00DE14DC /* OddsArbitrageUITests */,
+			);
+			name = OddsArbitrageUITests;
+			packageProductDependencies = (
+			);
+			productName = OddsArbitrageUITests;
+			productReference = 03823C023056ECDA00DE14DC /* OddsArbitrageUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		03A74830303CE9C600F49C45 /* OddsArbitrage */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03A7483C303CE9C800F49C45 /* Build configuration list for PBXNativeTarget "OddsArbitrage" */;
@@ -156,10 +380,37 @@
 			);
 			name = OddsArbitrage;
 			packageProductDependencies = (
+				03823BF73056E71500DE14DC /* FirebaseAuth */,
+				03823BF93056E71500DE14DC /* FirebaseCore */,
+				3A4873DF6EC1E0F97F3D1E29 /* GoogleSignIn */,
+				DF80332325FD268F360EBC86 /* GoogleSignInSwift */,
 			);
 			productName = OddsArbitrage;
 			productReference = 03A74831303CE9C600F49C45 /* OddsArbitrage.app */;
 			productType = "com.apple.product-type.application";
+		};
+		03A74878303CFEBF00F49C45 /* OddsArbitrageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03A7487F303CFEBF00F49C45 /* Build configuration list for PBXNativeTarget "OddsArbitrageTests" */;
+			buildPhases = (
+				03A74875303CFEBF00F49C45 /* Sources */,
+				03A74876303CFEBF00F49C45 /* Frameworks */,
+				03A74877303CFEBF00F49C45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03A7487E303CFEBF00F49C45 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				03A7487A303CFEBF00F49C45 /* OddsArbitrageTests */,
+			);
+			name = OddsArbitrageTests;
+			packageProductDependencies = (
+			);
+			productName = OddsArbitrageTests;
+			productReference = 03A74879303CFEBF00F49C45 /* OddsArbitrageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -171,59 +422,179 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					03823C013056ECDA00DE14DC = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 03A74830303CE9C600F49C45;
+					};
 					03A74830303CE9C600F49C45 = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					03A74878303CFEBF00F49C45 = {
+						CreatedOnToolsVersion = 16.4;
+						LastSwiftMigration = 1640;
+						TestTargetID = 03A74830303CE9C600F49C45;
 					};
 				};
 			};
 			buildConfigurationList = 03A7482C303CE9C600F49C45 /* Build configuration list for PBXProject "OddsArbitrage" */;
-			developmentRegion = en;
+			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 				Base,
 			);
 			mainGroup = 03A74828303CE9C600F49C45;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3B8EBE4DD4B7C37A8BC2EF7A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 03A74832303CE9C600F49C45 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				03A74830303CE9C600F49C45 /* OddsArbitrage */,
+				03A74878303CFEBF00F49C45 /* OddsArbitrageTests */,
+				03823C013056ECDA00DE14DC /* OddsArbitrageUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		03823C003056ECDA00DE14DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03A7482F303CE9C600F49C45 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */,
+				03823BDC3056E09700DE14DC /* GoogleService-Info.plist in Resources */,
+				3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03A74877303CFEBF00F49C45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		03823BFE3056ECDA00DE14DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03A7482D303CE9C600F49C45 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				03A7485E303CF04300F49C45 /* URLSessionNetworkService.swift in Sources */,
+				03A7486A303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift in Sources */,
+				03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */,
 				03A74862303CF18300F49C45 /* DefaultOddsRepository.swift in Sources */,
+				03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */,
+				03823BC4305593CC00DE14DC /* LiveOddsService.swift in Sources */,
+				03A74868303CF81700F49C45 /* DetectArbitrageUseCase.swift in Sources */,
 				03A74860303CF16600F49C45 /* OddsRepository.swift in Sources */,
-				03A74856303CEBB300F49C45 /* ContentView.swift in Sources */,
+				03A7486E303CFB4B00F49C45 /* OddsListView.swift in Sources */,
+				03A748933040757000F49C45 /* MatchOdds.swift in Sources */,
+				03823BE53056E1FF00DE14DC /* FirebaseAuthRepository.swift in Sources */,
+				03823BE93056E2B300DE14DC /* AuthUseCase.swift in Sources */,
+				03A74870303CFB8A00F49C45 /* OddsDetailView.swift in Sources */,
+				03823BF33056E42D00DE14DC /* LoginView.swift in Sources */,
+				03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */,
+				03823BEE3056E39800DE14DC /* DefaultAuthUseCase.swift in Sources */,
+				03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */,
 				03A74857303CEBB300F49C45 /* OddsArbitrageApp.swift in Sources */,
 				03A7485C303CEFE500F49C45 /* NetworkService.swift in Sources */,
+				03A7486C303CF9D100F49C45 /* OddsListViewModel.swift in Sources */,
+				03823BC6305593EC00DE14DC /* LiveOddsServiceProtocol.swift in Sources */,
+				03823BF03056E3CA00DE14DC /* AuthViewModel.swift in Sources */,
+				03823BDF3056E13100DE14DC /* AuthUser.swift in Sources */,
+				03823BE73056E24100DE14DC /* MockAuthRepository.swift in Sources */,
 				03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */,
+				E9EC2031F08C9FAE84DB6BCD /* MainTabView.swift in Sources */,
+				8CD7263D16446D312F567CD4 /* ProfileView.swift in Sources */,
+				5D2F2F4F6A1995388A47CB80 /* ProfileViewModel.swift in Sources */,
+				62CAB6D2B3682A9D9D5A98A1 /* BookmakerInfo.swift in Sources */,
+				EAB3258E7FD30D04290F6A1A /* BookmakerPreferences.swift in Sources */,
+				3B7940EAAEB67243CB90D2D3 /* AllowAllBookmakerPreferences.swift in Sources */,
+				F21019DBCB56B987D3B4C9CD /* BookmakerPreferencesStore.swift in Sources */,
+				032A5872F4EDF259206BFA34 /* BrandMarkIcon.swift in Sources */,
+				3275B54D8F06D1BE544CE61C /* MatchRowView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03A74875303CFEBF00F49C45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		03823C093056ECDA00DE14DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03A74830303CE9C600F49C45 /* OddsArbitrage */;
+			targetProxy = 03823C083056ECDA00DE14DC /* PBXContainerItemProxy */;
+		};
+		03A7487E303CFEBF00F49C45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03A74830303CE9C600F49C45 /* OddsArbitrage */;
+			targetProxy = 03A7487D303CFEBF00F49C45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		03823C0B3056ECDA00DE14DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9HY9G7NYSB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nicovma.OddsArbitrageUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OddsArbitrage;
+			};
+			name = Debug;
+		};
+		03823C0C3056ECDA00DE14DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9HY9G7NYSB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nicovma.OddsArbitrageUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OddsArbitrage;
+			};
+			name = Release;
+		};
 		03A7483A303CE9C800F49C45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03A74864303CF49B00F49C45 /* Config.xcconfig */;
@@ -353,6 +724,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OddsArbitrage/OddsArbitrage.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9HY9G7NYSB;
@@ -383,6 +755,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OddsArbitrage/OddsArbitrage.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9HY9G7NYSB;
@@ -407,9 +780,57 @@
 			};
 			name = Release;
 		};
+		03A74880303CFEBF00F49C45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9HY9G7NYSB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nicovma.OddsArbitrageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OddsArbitrage.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OddsArbitrage";
+			};
+			name = Debug;
+		};
+		03A74881303CFEBF00F49C45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9HY9G7NYSB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nicovma.OddsArbitrageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OddsArbitrage.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OddsArbitrage";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		03823C0A3056ECDA00DE14DC /* Build configuration list for PBXNativeTarget "OddsArbitrageUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03823C0B3056ECDA00DE14DC /* Debug */,
+				03823C0C3056ECDA00DE14DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		03A7482C303CE9C600F49C45 /* Build configuration list for PBXProject "OddsArbitrage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -428,7 +849,58 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		03A7487F303CFEBF00F49C45 /* Build configuration list for PBXNativeTarget "OddsArbitrageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03A74880303CFEBF00F49C45 /* Debug */,
+				03A74881303CFEBF00F49C45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.19.1;
+			};
+		};
+		3B8EBE4DD4B7C37A8BC2EF7A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		03823BF73056E71500DE14DC /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		03823BF93056E71500DE14DC /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		3A4873DF6EC1E0F97F3D1E29 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B8EBE4DD4B7C37A8BC2EF7A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		DF80332325FD268F360EBC86 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B8EBE4DD4B7C37A8BC2EF7A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 03A74829303CE9C600F49C45 /* Project object */;
 }
