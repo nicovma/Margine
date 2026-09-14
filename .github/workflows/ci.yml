@@ -14,10 +14,10 @@ jobs:
           mkdir -p Resources
           echo "API_KEY = ${{ secrets.ODDS_API_KEY }}" > Resources/Config.xcconfig
       - name: Create GoogleService-Info.plist from secret
-        run: echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }}" | base64 --decode > OddsArbitrage/GoogleService-Info.plist
+        run: echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }}" | base64 --decode > Margine/GoogleService-Info.plist
       - name: Create TestCredentials.swift from secrets
         run: |
-          cat > OddsArbitrageUITests/TestCredentials.swift << EOF
+          cat > MargineUITests/TestCredentials.swift << EOF
           enum TestCredentials {
               static let email = "${{ secrets.UITEST_EMAIL }}"
               static let password = "${{ secrets.UITEST_PASSWORD }}"
@@ -36,7 +36,7 @@ jobs:
           # Actions arranca el simulador en inglés por defecto, así que
           # String(localized:) resolvía a la traducción en inglés y rompía
           # AuthViewModelTests. Fijamos es_ES para no depender del locale del runner.
-          xcodebuild test -project OddsArbitrage.xcodeproj -scheme OddsArbitrage \
+          xcodebuild test -project Margine.xcodeproj -scheme Margine \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
             -resultBundlePath TestResults.xcresult \
             -skipMacroValidation \
