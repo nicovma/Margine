@@ -79,6 +79,7 @@ struct ProfileView: View {
                             get: { row.isEnabled },
                             set: { viewModel.setBookmakerEnabled($0, key: row.key) }
                         ))
+                        .tint(.accentColor)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                         .accessibilityIdentifier("bookmakerToggle_\(row.key)")
