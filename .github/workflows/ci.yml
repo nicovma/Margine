@@ -31,10 +31,16 @@ jobs:
           # an unsigned build can't do that and every Firebase sign-in fails with
           # "SecItemAdd (-34018)". Ad-hoc signing embeds entitlements without
           # needing a real certificate/team, which Simulator doesn't require anyway.
+          # -testLanguage/-testRegion: los tests assertan contra los literales en
+          # español del string catalog (source language). El runner de GitHub
+          # Actions arranca el simulador en inglés por defecto, así que
+          # String(localized:) resolvía a la traducción en inglés y rompía
+          # AuthViewModelTests. Fijamos es_ES para no depender del locale del runner.
           xcodebuild test -project OddsArbitrage.xcodeproj -scheme OddsArbitrage \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
             -resultBundlePath TestResults.xcresult \
             -skipMacroValidation \
+            -testLanguage es -testRegion ES \
             CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGN_STYLE=Manual \
             DEVELOPMENT_TEAM="" PROVISIONING_PROFILE_SPECIFIER=""
       - name: DEBUG - dump failure details from xcresult
