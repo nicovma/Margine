@@ -29,6 +29,23 @@ struct URLSessionNetworkServiceTests {
         #expect(statusCode == 500)
     }
 
+    @Test("Status code 429 lanza rateLimited en vez de httpError genérico")
+    func rateLimitedOnTooManyRequests() async throws {
+        URLProtocolStub.stubResponse = HTTPURLResponse(url: url, statusCode: 429, httpVersion: nil, headerFields: nil)
+        URLProtocolStub.stubResponseData = Data()
+        defer { URLProtocolStub.reset() }
+
+        let sut = URLSessionNetworkService(session: URLProtocolStub.makeSession())
+
+        let error = try await #require(throws: NetworkError.self) {
+            let _: [OddsEvent] = try await sut.fetch(url)
+        }
+        guard case .rateLimited = error else {
+            Issue.record("Se esperaba .rateLimited, se obtuvo \(error)")
+            return
+        }
+    }
+
     @Test("JSON inválido lanza decodingFailed preservando el DecodingError original")
     func decodingFailurePreservesUnderlyingError() async throws {
         URLProtocolStub.stubResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)

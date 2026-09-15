@@ -22,10 +22,12 @@ final class OddsListViewModel: ObservableObject {
     @Published var bannerErrorMessage: String?
 
     private let liveOddsService: LiveOddsServiceProtocol
+    private let analytics: AnalyticsLogging
     private var cancellables = Set<AnyCancellable>()
 
-    init(liveOddsService: LiveOddsServiceProtocol) {
+    init(liveOddsService: LiveOddsServiceProtocol, analytics: AnalyticsLogging = NoOpAnalyticsLogger()) {
         self.liveOddsService = liveOddsService
+        self.analytics = analytics
 
         let immediateSearch = Just(searchText)
         let debouncedSearch = $searchText
@@ -56,6 +58,16 @@ final class OddsListViewModel: ObservableObject {
                 self?.handleRefreshError(message)
             }
             .store(in: &cancellables)
+
+        liveOddsService.currentMatches
+            .compactMap { $0 }
+            .removeDuplicates()
+            .sink { [weak self] matches in
+                let arbitrageCount = matches.filter(\.hasArbitrage).count
+                guard arbitrageCount > 0 else { return }
+                self?.analytics.logArbitrageDetected(count: arbitrageCount)
+            }
+            .store(in: &cancellables)
     }
 
     func startLiveUpdates() {
@@ -70,6 +82,7 @@ final class OddsListViewModel: ObservableObject {
     }
 
     func manualRefresh() async {
+        analytics.logManualRefresh()
         await liveOddsService.refreshNow()
     }
     
