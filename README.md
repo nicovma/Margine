@@ -14,6 +14,7 @@ For each match, the app compares the best available price per outcome across boo
 - A **Partidos / Perfil** tab bar. Profile shows the signed-in account, lets the user pick which bookmakers count toward arbitrage detection (a house they don't have an account with shouldn't factor into the calculation), and sign out.
 - Email/password **and** Sign in with Google (Firebase Auth), with the session gate reacting to real auth state changes, not just local view state.
 - Spanish and English UI (String Catalog).
+- A public [privacy policy](https://nicovma.github.io/Margine/privacy-policy.html), linked from the Profile tab.
 
 ## Architecture
 
@@ -41,20 +42,25 @@ Live odds use a small reactive pipeline: `LiveOddsService` exposes a `CurrentVal
 
 - Swift 5, SwiftUI, Swift Concurrency (async/await, actors)
 - Combine (live odds pipeline, search debounce, auth state, bookmaker preferences)
-- Firebase Auth (email/password + Google)
+- Firebase Auth (email/password + Google), Crashlytics, and Analytics — separate Firebase projects for dev and prod, switched automatically per build configuration
 - Unit tests in both **Swift Testing** and **XCTest** (used deliberately side by side across the suite), plus an XCUITest target for the login flow
 
 ## Setup
 
-The app needs two files that are gitignored on purpose (never commit API keys or Firebase config):
+The app needs a few files that are gitignored on purpose (never commit API keys or Firebase config):
 
-1. `Resources/Config.xcconfig`:
+1. `Resources/Config.xcconfig`, keyed per build configuration so Debug and Release can point at separate backends:
    ```
-   API_KEY = <your-the-odds-api-key>
+   API_KEY[config=Debug] = <your-the-odds-api-key>
+   API_KEY[config=Release] = <your-the-odds-api-key>
+   GID_CLIENT_ID[config=Debug] = <your-dev-google-client-id>
+   GID_CLIENT_ID[config=Release] = <your-prod-google-client-id>
+   GID_URL_SCHEME[config=Debug] = <your-dev-google-url-scheme>
+   GID_URL_SCHEME[config=Release] = <your-prod-google-url-scheme>
    ```
-   Get a free key at [the-odds-api.com](https://the-odds-api.com) (no card required, ~500 requests/month).
+   Get a free Odds API key at [the-odds-api.com](https://the-odds-api.com) (no card required, ~500 requests/month). One key is enough for both configs if you don't need separate dev/prod quotas.
 
-2. `Margine/GoogleService-Info.plist` — download it from your own Firebase project (Firebase Console → Project settings → your iOS app), with **Email/Password** and **Google** both enabled under Authentication → Sign-in method. The Google URL scheme and client ID in `Info.plist` are read straight from this file's `REVERSED_CLIENT_ID`/`CLIENT_ID`, so there's nothing else to configure beyond enabling the provider.
+2. `Margine/GoogleService-Info-Dev.plist` and `Margine/GoogleService-Info-Prod.plist` — download each from its own Firebase project (Firebase Console → Project settings → your iOS app), with **Email/Password** and **Google** both enabled under Authentication → Sign-in method. A Run Script build phase copies the right one to `Margine/GoogleService-Info.plist` based on the active configuration (Debug → Dev, Release → Prod); that generated file is also gitignored. The Google client ID/URL scheme above come straight from each plist's `CLIENT_ID`/`REVERSED_CLIENT_ID`. One Firebase project reused for both configs works too — just point both plists at it.
 
 Then open `Margine.xcodeproj` and run. Requires Xcode 16+, iOS 18.5+.
 
@@ -65,9 +71,17 @@ xcodebuild test -project Margine.xcodeproj -scheme Margine \
   -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest'
 ```
 
-Unit tests cover the arbitrage use case (including bookmaker filtering), the bookmaker preferences store, all four ViewModels, the live-odds actor/Combine pipeline, and the networking layer (status codes, decoding failures, URL construction) via a stubbed `URLProtocol`. The UI test target exercises the real login flow (happy and error paths) against a dedicated test Firebase account.
+Unit tests cover the arbitrage use case (including bookmaker filtering), the bookmaker preferences store, all four ViewModels, the live-odds actor/Combine pipeline, and the networking layer (status codes, decoding failures, rate-limit handling, URL construction) via a stubbed `URLProtocol`. They don't need any of the Setup files above.
 
-CI (GitHub Actions) builds and runs the full suite on every push and pull request against `main`/`develop`/`feature/**`.
+The UI test target exercises the real login flow (happy and error paths) against a dedicated test Firebase account, and needs one more gitignored file, `MargineUITests/TestCredentials.swift`:
+```swift
+enum TestCredentials {
+    static let email = "<test-account-email>"
+    static let password = "<test-account-password>"
+}
+```
+
+CI (GitHub Actions) builds and runs the full suite on every push and pull request against `main`/`develop`, generating the Debug-only versions of the files above (Config.xcconfig, `GoogleService-Info-Dev.plist`, `TestCredentials.swift`) from repository secrets — it never needs the Prod plist.
 
 ## Localization
 
