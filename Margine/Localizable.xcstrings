@@ -396,6 +396,16 @@
         }
       }
     },
+    "Política de privacidad" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
     "Próximos partidos" : {
       "localizations" : {
         "en" : {
