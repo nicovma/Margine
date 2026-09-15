@@ -9,6 +9,14 @@ import SwiftUI
 struct ProfileView: View {
     @StateObject private var viewModel: ProfileViewModel
 
+    @ScaledMetric private var avatarInitialSize: CGFloat = 18
+    @ScaledMetric private var emailSize: CGFloat = 16
+    @ScaledMetric private var bookmakerTitleSize: CGFloat = 13
+    @ScaledMetric private var bookmakerSubtitleSize: CGFloat = 12.5
+    @ScaledMetric private var bookmakerEmptySize: CGFloat = 13.5
+    @ScaledMetric private var signOutSize: CGFloat = 16
+    @ScaledMetric private var privacyLinkSize: CGFloat = 14
+
     init(viewModel: ProfileViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -36,11 +44,12 @@ struct ProfileView: View {
                 .frame(width: 50, height: 50)
                 .overlay(
                     Text(initial)
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: avatarInitialSize, weight: .bold))
                         .foregroundStyle(.white)
                 )
+                .accessibilityHidden(true)
             Text(viewModel.userEmail ?? String(localized: "Usuario"))
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: emailSize, weight: .semibold))
             Spacer()
         }
         .padding(16)
@@ -52,18 +61,18 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: 8) {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Casas de apuestas para arbitraje")
-                    .font(.system(size: 13, weight: .bold))
+                    .font(.system(size: bookmakerTitleSize, weight: .bold))
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                 Text("El detector solo compara cuotas entre las casas activadas.")
-                    .font(.system(size: 12.5))
+                    .font(.system(size: bookmakerSubtitleSize))
                     .foregroundStyle(.secondary)
             }
             .padding(.horizontal, 4)
 
             if viewModel.bookmakerRows.isEmpty {
                 Text("Todavía no vimos casas de apuestas. Abrí la lista de partidos para que se detecten.")
-                    .font(.system(size: 13.5))
+                    .font(.system(size: bookmakerEmptySize))
                     .foregroundStyle(.secondary)
                     .padding(16)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -97,7 +106,7 @@ struct ProfileView: View {
             viewModel.signOut()
         } label: {
             Text("Cerrar sesión")
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: signOutSize, weight: .semibold))
                 .frame(maxWidth: .infinity)
         }
         .padding(14)
@@ -109,7 +118,7 @@ struct ProfileView: View {
     private var privacyPolicyLink: some View {
         Link(destination: URL(string: "https://nicovma.github.io/Margine/privacy-policy.html")!) {
             Text("Política de privacidad")
-                .font(.system(size: 14))
+                .font(.system(size: privacyLinkSize))
                 .foregroundStyle(.secondary)
         }
         .padding(.top, 4)

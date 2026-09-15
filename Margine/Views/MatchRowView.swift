@@ -9,6 +9,11 @@ import SwiftUI
 struct MatchRowView: View {
     let match: MatchOdds
 
+    @ScaledMetric private var headerSize: CGFloat = 16
+    @ScaledMetric private var arbitrageBadgeSize: CGFloat = 12
+    @ScaledMetric private var oddsLabelSize: CGFloat = 10.5
+    @ScaledMetric private var oddsValueSize: CGFloat = 14.5
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top) {
@@ -18,7 +23,7 @@ struct MatchRowView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-            .font(.system(size: 16, weight: .semibold))
+            .font(.system(size: headerSize, weight: .semibold))
 
             if match.hasArbitrage, let margin = match.arbitrageMargin {
                 Label {
@@ -26,7 +31,7 @@ struct MatchRowView: View {
                 } icon: {
                     Image(systemName: "clock.fill")
                 }
-                .font(.system(size: 12, weight: .bold))
+                .font(.system(size: arbitrageBadgeSize, weight: .bold))
                 .foregroundStyle(Color("ArbitrageGreenText"))
                 .padding(.horizontal, 9)
                 .padding(.vertical, 5)
@@ -44,6 +49,7 @@ struct MatchRowView: View {
             RoundedRectangle(cornerRadius: 14)
                 .strokeBorder(match.hasArbitrage ? Color("ArbitrageGreen") : .clear, lineWidth: 1.5)
         )
+        .accessibilityElement(children: .combine)
     }
 
     private var oddsRow: some View {
@@ -57,16 +63,27 @@ struct MatchRowView: View {
     private func oddsChip(label: String, outcome: BestOutcome?) -> some View {
         VStack(spacing: 2) {
             Text(label)
-                .font(.system(size: 10.5, weight: .bold))
+                .font(.system(size: oddsLabelSize, weight: .bold))
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
             Text(outcome.map { String(format: "%.2f", $0.price) } ?? "—")
-                .font(.system(size: 14.5, weight: .bold))
+                .font(.system(size: oddsValueSize, weight: .bold))
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 7)
         .background(Color(.tertiarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 9))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(oddsChipAccessibilityLabel(label))
+        .accessibilityValue(outcome.map { String(format: "%.2f", $0.price) } ?? "Sin cuota")
+    }
+
+    private func oddsChipAccessibilityLabel(_ label: String) -> String {
+        switch label {
+        case "1": return "Cuota local"
+        case "2": return "Cuota visitante"
+        default: return "Cuota empate"
+        }
     }
 }
 

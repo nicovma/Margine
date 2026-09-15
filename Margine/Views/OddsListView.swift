@@ -10,6 +10,9 @@ import SwiftUI
 struct OddsListView: View {
     @StateObject private var viewModel: OddsListViewModel
 
+    @ScaledMetric private var emptyTitleSize: CGFloat = 16
+    @ScaledMetric private var emptySubtitleSize: CGFloat = 13.5
+
     init(viewModel: OddsListViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -63,6 +66,10 @@ struct OddsListView: View {
         case .error(let message):
             Text(message)
                 .foregroundStyle(.red)
+                .accessibilityAddTraits(.updatesFrequently)
+                .onAppear {
+                    AccessibilityNotification.Announcement(message).post()
+                }
         }
     }
 
@@ -70,15 +77,15 @@ struct OddsListView: View {
         ScrollView {
             VStack(spacing: 8) {
                 Text("Sin resultados")
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: emptyTitleSize, weight: .semibold))
                 if isFiltering {
                     Text("Ningún partido coincide con el filtro actual.")
-                        .font(.system(size: 13.5))
+                        .font(.system(size: emptySubtitleSize))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                 } else {
                     Text("No hay partidos disponibles en este momento.")
-                        .font(.system(size: 13.5))
+                        .font(.system(size: emptySubtitleSize))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                 }

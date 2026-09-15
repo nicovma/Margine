@@ -11,6 +11,16 @@ struct LoginView: View {
     @State private var isSignUpMode = false
     @FocusState private var focusedField: Field?
 
+    @ScaledMetric private var titleSize: CGFloat = 24
+    @ScaledMetric private var subtitleSize: CGFloat = 14
+    @ScaledMetric private var fieldLabelSize: CGFloat = 11.5
+    @ScaledMetric private var fieldValueSize: CGFloat = 16
+    @ScaledMetric private var submitLabelSize: CGFloat = 16
+    @ScaledMetric private var errorMessageSize: CGFloat = 13.5
+    @ScaledMetric private var googleButtonSize: CGFloat = 15
+    @ScaledMetric private var modeToggleSize: CGFloat = 14
+    @ScaledMetric private var dividerLabelSize: CGFloat = 12.5
+
     private enum Field {
         case email, password
     }
@@ -43,13 +53,14 @@ struct LoginView: View {
                     BrandMarkIcon()
                         .frame(width: 32, height: 32)
                 )
+                .accessibilityHidden(true)
 
             VStack(spacing: 3) {
                 Text(isSignUpMode ? "Crear cuenta" : "Ingresar")
-                    .font(.system(size: 24, weight: .heavy))
+                    .font(.system(size: titleSize, weight: .heavy))
                     .foregroundStyle(.primary)
                 Text(isSignUpMode ? "Creá tu cuenta para empezar" : "Accedé para ver tus partidos")
-                    .font(.system(size: 14))
+                    .font(.system(size: subtitleSize))
                     .foregroundStyle(.secondary)
             }
         }
@@ -64,6 +75,7 @@ struct LoginView: View {
                     .autocapitalization(.none)
                     .focused($focusedField, equals: .email)
                     .accessibilityIdentifier("loginEmailField")
+                    .accessibilityLabel("Email")
             }
 
             fieldCard(label: "Contraseña") {
@@ -71,6 +83,7 @@ struct LoginView: View {
                     .textContentType(isSignUpMode ? .newPassword : .password)
                     .focused($focusedField, equals: .password)
                     .accessibilityIdentifier("loginPasswordField")
+                    .accessibilityLabel("Contraseña")
             }
         }
     }
@@ -78,11 +91,12 @@ struct LoginView: View {
     private func fieldCard(label: LocalizedStringKey, @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(label)
-                .font(.system(size: 11.5, weight: .semibold))
+                .font(.system(size: fieldLabelSize, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
+                .accessibilityHidden(true)
             content()
-                .font(.system(size: 16))
+                .font(.system(size: fieldValueSize))
         }
         .padding(14)
         .background(Color(.secondarySystemGroupedBackground))
@@ -102,7 +116,7 @@ struct LoginView: View {
                 }
             } label: {
                 Text(isSignUpMode ? "Crear cuenta" : "Ingresar")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: submitLabelSize, weight: .bold))
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 15)
@@ -118,9 +132,13 @@ struct LoginView: View {
 
             if case .error(let message) = viewModel.state {
                 Text(message)
-                    .font(.system(size: 13.5))
+                    .font(.system(size: errorMessageSize))
                     .foregroundStyle(.red)
                     .accessibilityIdentifier("loginErrorMessage")
+                    .accessibilityAddTraits(.updatesFrequently)
+                    .onAppear {
+                        AccessibilityNotification.Announcement(message).post()
+                    }
             }
 
             divider
@@ -133,8 +151,9 @@ struct LoginView: View {
                     Image("GoogleLogo")
                         .resizable()
                         .frame(width: 18, height: 18)
+                        .accessibilityHidden(true)
                     Text("Continuar con Google")
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.system(size: googleButtonSize, weight: .semibold))
                         .foregroundStyle(.primary)
                 }
                 .frame(maxWidth: .infinity)
@@ -152,7 +171,7 @@ struct LoginView: View {
                 isSignUpMode.toggle()
             } label: {
                 Text(isSignUpMode ? "¿Ya tenés cuenta? Ingresá" : "¿No tenés cuenta? Registrate")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: modeToggleSize, weight: .semibold))
             }
             .accessibilityIdentifier("loginModeToggle")
         }
@@ -160,12 +179,12 @@ struct LoginView: View {
 
     private var divider: some View {
         HStack(spacing: 10) {
-            Rectangle().fill(Color(.separator)).frame(height: 1)
+            Rectangle().fill(Color(.separator)).frame(height: 1).accessibilityHidden(true)
             Text("o continuá con")
-                .font(.system(size: 12.5, weight: .semibold))
+                .font(.system(size: dividerLabelSize, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .fixedSize()
-            Rectangle().fill(Color(.separator)).frame(height: 1)
+            Rectangle().fill(Color(.separator)).frame(height: 1).accessibilityHidden(true)
         }
     }
 }
