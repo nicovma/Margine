@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import FirebaseCore
+import FirebaseCrashlytics
 import GoogleSignIn
 
 @main
@@ -18,13 +19,16 @@ struct MargineApp: App {
     init() {
         FirebaseApp.configure()
         let isUITestingSignedOut = ProcessInfo.processInfo.arguments.contains("--uitesting-signed-out")
+        // No mandar crashes ni eventos de las corridas de UI tests a Firebase.
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(!isUITestingSignedOut)
+        let analytics: AnalyticsLogging = isUITestingSignedOut ? NoOpAnalyticsLogger() : FirebaseAnalyticsLogger()
 
         let authRepository = FirebaseAuthRepository()
         if isUITestingSignedOut {
             try? authRepository.signOut()
         }
         let authUseCase = DefaultAuthUseCase(repository: authRepository)
-        let authViewModel = AuthViewModel(authUseCase: authUseCase)
+        let authViewModel = AuthViewModel(authUseCase: authUseCase, analytics: analytics)
         _authViewModel = StateObject(wrappedValue: authViewModel)
 
         let bookmakerPreferencesStore = BookmakerPreferencesStore()
@@ -43,7 +47,7 @@ struct MargineApp: App {
             useCase = DefaultDetectArbitrageUseCase(repository: repository, preferences: bookmakerPreferencesStore)
         }
         let liveOddsService = LiveOddsService(useCase: useCase)
-        let oddsListViewModel = OddsListViewModel(liveOddsService: liveOddsService)
+        let oddsListViewModel = OddsListViewModel(liveOddsService: liveOddsService, analytics: analytics)
         self.oddsListViewModel = oddsListViewModel
 
         profileViewModel = ProfileViewModel(
