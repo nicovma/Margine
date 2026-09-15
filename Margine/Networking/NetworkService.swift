@@ -14,6 +14,7 @@ enum NetworkError: Error {
     case invalidResponse
     case invalidURL
     case httpError(statusCode: Int)
+    case rateLimited
     case decodingFailed(underlying: Error)
 }
 
@@ -28,6 +29,8 @@ extension NetworkError: LocalizedError {
             let prefix = String(localized: "El servidor respondió con un error (código ")
             let suffix = String(localized: ").")
             return "\(prefix)\(statusCode)\(suffix)"
+        case .rateLimited:
+            return String(localized: "Se alcanzó el límite de pedidos a la API. Probá de nuevo en unos minutos.")
         case .decodingFailed:
             return String(localized: "No se pudo interpretar la respuesta del servidor.")
         }
