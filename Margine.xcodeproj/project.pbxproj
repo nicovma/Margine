@@ -37,6 +37,7 @@
 		03A74874303CFD4900F49C45 /* MockDetectArbitrageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */; };
 		03A748933040757000F49C45 /* MatchOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A748923040756F00F49C45 /* MatchOdds.swift */; };
 		03F9B84A30589FA100867ACC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03F9B84930589FA000867ACC /* GoogleService-Info.plist */; };
+		03F9B84C30589FB100867ACC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 03F9B84B30589FB000867ACC /* PrivacyInfo.xcprivacy */; };
 		3275B54D8F06D1BE544CE61C /* MatchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA5262310997693E1BD2A1 /* MatchRowView.swift */; };
 		3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */; };
 		3B7940EAAEB67243CB90D2D3 /* AllowAllBookmakerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */; };
@@ -102,6 +103,7 @@
 		03F9B84430588CD600867ACC /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		03F9B84630589F0E00867ACC /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
 		03F9B84930589FA000867ACC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		03F9B84B30589FB000867ACC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1BC4D0B42DC290A08AE19C4D /* BookmakerPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakerPreferences.swift; sourceTree = "<group>"; };
 		46EA5262310997693E1BD2A1 /* MatchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRowView.swift; sourceTree = "<group>"; };
 		4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowAllBookmakerPreferences.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				03823BC2305593BB00DE14DC /* Services */,
 				03A74872303CFD3C00F49C45 /* Previews */,
 				03A74866303CF61900F49C45 /* Info.plist */,
+				03F9B84B30589FB000867ACC /* PrivacyInfo.xcprivacy */,
 				03F9B84930589FA000867ACC /* GoogleService-Info.plist */,
 				03F9B84430588CD600867ACC /* GoogleService-Info-Dev.plist */,
 				03F9B84630589F0E00867ACC /* GoogleService-Info-Prod.plist */,
@@ -482,6 +485,7 @@
 				03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */,
 				3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */,
 				03F9B84A30589FA100867ACC /* GoogleService-Info.plist in Resources */,
+				03F9B84C30589FB100867ACC /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
