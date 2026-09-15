@@ -41,9 +41,11 @@ struct MargineApp: App {
             // (very tight) free-tier quota for no benefit.
             useCase = MockDetectArbitrageUseCase()
         } else {
-            let apiKey = Bundle.main.object(forInfoDictionaryKey: "ODDS_API_KEY") as? String ?? ""
             let networkService = URLSessionNetworkService()
-            let repository = DefaultOddsRepository(networkService: networkService, apiKey: apiKey)
+            let repository = DefaultOddsRepository(
+                networkService: networkService,
+                baseURL: "https://margine-odds-worker.margine-app.workers.dev"
+            )
             useCase = DefaultDetectArbitrageUseCase(repository: repository, preferences: bookmakerPreferencesStore)
         }
         let liveOddsService = LiveOddsService(useCase: useCase)

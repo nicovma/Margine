@@ -9,27 +9,21 @@ import Testing
 
 struct DefaultOddsRepositoryTests {
 
-    @Test("Construye la URL con el path y los query items correctos")
+    @Test("Construye la URL contra el baseURL configurado, con el sport en el path")
     func buildsExpectedURL() async throws {
         let networkService = SpyNetworkService()
-        let sut = DefaultOddsRepository(networkService: networkService, apiKey: "test-key")
+        let sut = DefaultOddsRepository(networkService: networkService, baseURL: "https://worker.example.com")
 
-        _ = try? await sut.fetchUpcomingOdds(sport: "soccer_epl")
+        _ = try? await sut.fetchUpcomingOdds(sport: "top-leagues")
 
         let url = try #require(networkService.capturedURL)
-        let components = try #require(URLComponents(url: url, resolvingAgainstBaseURL: false))
-        #expect(components.path == "/v4/sports/soccer_epl/odds")
-
-        let queryItems = try #require(components.queryItems)
-        #expect(queryItems.contains(URLQueryItem(name: "apiKey", value: "test-key")))
-        #expect(queryItems.contains(URLQueryItem(name: "markets", value: "h2h")))
-        #expect(queryItems.contains(URLQueryItem(name: "regions", value: "eu")))
+        #expect(url.absoluteString == "https://worker.example.com/sports/top-leagues/odds")
     }
 
     @Test("Un sport con caracteres inválidos lanza invalidURL en vez de crashear")
     func invalidSportThrowsInsteadOfCrashing() async throws {
         let networkService = SpyNetworkService()
-        let sut = DefaultOddsRepository(networkService: networkService, apiKey: "test-key")
+        let sut = DefaultOddsRepository(networkService: networkService, baseURL: "https://worker.example.com")
 
         await #expect(throws: NetworkError.self) {
             _ = try await sut.fetchUpcomingOdds(sport: "soccer epl")

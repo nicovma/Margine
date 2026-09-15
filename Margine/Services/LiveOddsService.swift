@@ -9,9 +9,9 @@ import Foundation
 
 @MainActor
 final class LiveOddsService: LiveOddsServiceProtocol {
-    /// The Odds API's free tier is ~500 requests/month — nowhere near enough
-    /// for a short poll interval. 60s keeps the "live" feel (real sportsbooks
-    /// don't move odds much faster than that anyway) while staying sustainable.
+    /// Pega contra el cache del backend propio (margine-odds-worker), no
+    /// directo contra The Odds API — un poll de 60s del cliente solo repite
+    /// el mismo cache hasta que el backend lo refresque, no gasta cuota real.
     static let pollingInterval: TimeInterval = 60
 
     let currentMatches = CurrentValueSubject<[MatchOdds]?, Never>(nil)
@@ -20,7 +20,7 @@ final class LiveOddsService: LiveOddsServiceProtocol {
     private let coordinator: LiveOddsCoordinator
     private var pollingCancellable: AnyCancellable?
 
-    init(useCase: DetectArbitrageUseCase, sport: String = "soccer_epl") {
+    init(useCase: DetectArbitrageUseCase, sport: String = "top-leagues") {
         self.coordinator = LiveOddsCoordinator(useCase: useCase, sport: sport)
     }
 
