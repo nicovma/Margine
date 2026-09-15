@@ -253,6 +253,16 @@
         }
       }
     },
+    "Margine es solo informativa: no es asesoramiento financiero ni una casa de apuestas. Las cuotas pueden cambiar en la casa de apuestas antes de que confirmes tu apuesta, y apostar puede estar restringido según tu jurisdicción — verificá la normativa local antes de usar cualquier casa de apuestas." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Margine is for informational purposes only — it's not financial advice or a bookmaker. Odds shown may change at the bookmaker before your bet is confirmed, and betting may be restricted depending on your jurisdiction — check local regulations before using any bookmaker."
+          }
+        }
+      }
+    },
     "Mejor cuota por resultado" : {
       "localizations" : {
         "en" : {

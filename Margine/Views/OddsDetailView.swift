@@ -19,6 +19,7 @@ struct OddsDetailView: View {
 
                 bestOutcomesSection
                 howToPlaySection
+                disclaimerSection
             }
             .padding(16)
         }
@@ -103,6 +104,13 @@ struct OddsDetailView: View {
         .padding(14)
         .background(Color.blue.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 14))
+    }
+
+    private var disclaimerSection: some View {
+        Text("Margine es solo informativa: no es asesoramiento financiero ni una casa de apuestas. Las cuotas pueden cambiar en la casa de apuestas antes de que confirmes tu apuesta, y apostar puede estar restringido según tu jurisdicción — verificá la normativa local antes de usar cualquier casa de apuestas.")
+            .font(.system(size: 11))
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 4)
     }
 }
 
