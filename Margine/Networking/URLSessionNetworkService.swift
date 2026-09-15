@@ -22,6 +22,9 @@ final class URLSessionNetworkService: NetworkService {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidResponse
         }
+        if httpResponse.statusCode == 429 {
+            throw NetworkError.rateLimited
+        }
         guard 200..<300 ~= httpResponse.statusCode else {
             throw NetworkError.httpError(statusCode: httpResponse.statusCode)
         }
