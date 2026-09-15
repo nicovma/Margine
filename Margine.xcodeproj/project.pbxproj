@@ -381,6 +381,7 @@
 				03A7482D303CE9C600F49C45 /* Sources */,
 				03A7482E303CE9C600F49C45 /* Frameworks */,
 				03A7482F303CE9C600F49C45 /* Resources */,
+				EF1D0D43DE454C3FAFE3F34C /* Set build number from git */,
 			);
 			buildRules = (
 			);
@@ -517,6 +518,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\n  SOURCE_PLIST=\"${SRCROOT}/Margine/GoogleService-Info-Prod.plist\"\nelse\n  SOURCE_PLIST=\"${SRCROOT}/Margine/GoogleService-Info-Dev.plist\"\nfi\n\nif [ ! -f \"$SOURCE_PLIST\" ]; then\n  echo \"error: no se encontró $SOURCE_PLIST\"\n  exit 1\nfi\n\ncp \"$SOURCE_PLIST\" \"${SRCROOT}/Margine/GoogleService-Info.plist\"\n";
+		};
+		EF1D0D43DE454C3FAFE3F34C /* Set build number from git */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set build number from git";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_NUMBER=$(git -C \"${SRCROOT}\" rev-list --count HEAD 2>/dev/null)\nif [ -z \"$BUILD_NUMBER\" ]; then\n  BUILD_NUMBER=1\nfi\nPLIST=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"$PLIST\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -772,7 +792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nicovma.Margine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -804,7 +824,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nicovma.Margine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
