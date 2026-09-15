@@ -10,3 +10,4 @@ GoogleService-Info-Dev.plist
 GoogleService-Info-Prod.plist
 MargineUITests/TestCredentials.swift
 PRODUCTION_READINESS.md
+ARCH_PROPOSAL.md
