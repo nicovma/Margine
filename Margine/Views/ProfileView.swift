@@ -20,6 +20,7 @@ struct ProfileView: View {
                     accountCard
                     bookmakerSection
                     signOutButton
+                    privacyPolicyLink
                 }
                 .padding(16)
             }
@@ -103,6 +104,16 @@ struct ProfileView: View {
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 14))
         .accessibilityIdentifier("profileSignOutButton")
+    }
+
+    private var privacyPolicyLink: some View {
+        Link(destination: URL(string: "https://nicovma.github.io/Margine/privacy-policy.html")!) {
+            Text("Política de privacidad")
+                .font(.system(size: 14))
+                .foregroundStyle(.secondary)
+        }
+        .padding(.top, 4)
+        .accessibilityIdentifier("privacyPolicyLink")
     }
 
     private var initial: String {

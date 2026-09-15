@@ -15,6 +15,9 @@
 		03823BDF3056E13100DE14DC /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BDE3056E13000DE14DC /* AuthUser.swift */; };
 		03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE03056E14F00DE14DC /* AuthRepository.swift */; };
 		03823BE53056E1FF00DE14DC /* FirebaseAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */; };
+		F802CA3651E046A28D8DD7C0 /* AnalyticsLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */; };
+		4D8235DFBC5142F6B83A3285 /* FirebaseAnalyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */; };
+		C720A0EB82414DB0A4E87463 /* NoOpAnalyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319B4607C8A94003A8C560F8 /* NoOpAnalyticsLogger.swift */; };
 		03823BE73056E24100DE14DC /* MockAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE63056E24000DE14DC /* MockAuthRepository.swift */; };
 		03823BE93056E2B300DE14DC /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE83056E2B100DE14DC /* AuthUseCase.swift */; };
 		03823BEE3056E39800DE14DC /* DefaultAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */; };
@@ -22,6 +25,8 @@
 		03823BF33056E42D00DE14DC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BF23056E42C00DE14DC /* LoginView.swift */; };
 		03823BF83056E71500DE14DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03823BF73056E71500DE14DC /* FirebaseAuth */; };
 		03823BFA3056E71500DE14DC /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03823BF93056E71500DE14DC /* FirebaseCore */; };
+		088AD8A353004810989496E6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1262A92717DB49749DC2697A /* FirebaseCrashlytics */; };
+		CBF9D161CB774531A1B3844B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3600349B2A924B6CBC02CEA9 /* FirebaseAnalytics */; };
 		03A74857303CEBB300F49C45 /* MargineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74854303CEBB300F49C45 /* MargineApp.swift */; };
 		03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03A74852303CEBB300F49C45 /* Assets.xcassets */; };
 		03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74859303CEF5100F49C45 /* OddsEvent.swift */; };
@@ -76,6 +81,9 @@
 		03823BDE3056E13000DE14DC /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		03823BE03056E14F00DE14DC /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthRepository.swift; sourceTree = "<group>"; };
+		09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLogging.swift; sourceTree = "<group>"; };
+		1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsLogger.swift; sourceTree = "<group>"; };
+		319B4607C8A94003A8C560F8 /* NoOpAnalyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOpAnalyticsLogger.swift; sourceTree = "<group>"; };
 		03823BE63056E24000DE14DC /* MockAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthRepository.swift; sourceTree = "<group>"; };
 		03823BE83056E2B100DE14DC /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
 		03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthUseCase.swift; sourceTree = "<group>"; };
@@ -145,6 +153,8 @@
 				03823BF83056E71500DE14DC /* FirebaseAuth in Frameworks */,
 				53DCF9028202D8A25455C983 /* GoogleSignIn in Frameworks */,
 				ECD6BE12FE5B028312F4ECBC /* GoogleSignInSwift in Frameworks */,
+				088AD8A353004810989496E6 /* FirebaseCrashlytics in Frameworks */,
+				CBF9D161CB774531A1B3844B /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,8 +175,18 @@
 				03823BC5305593E900DE14DC /* LiveOddsServiceProtocol.swift */,
 				03823BC3305593CC00DE14DC /* LiveOddsService.swift */,
 				04D8F564B67322138B123E50 /* Bookmakers */,
+				4E26D5C40B294F6E891FA503 /* Analytics */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		4E26D5C40B294F6E891FA503 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */,
+				1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		03823BE23056E16200DE14DC /* Auth */ = {
@@ -333,6 +353,7 @@
 				03823BE63056E24000DE14DC /* MockAuthRepository.swift */,
 				03823BC730559A1700DE14DC /* MockLiveOddsService.swift */,
 				03A74873303CFD4800F49C45 /* MockDetectArbitrageUseCase.swift */,
+				319B4607C8A94003A8C560F8 /* NoOpAnalyticsLogger.swift */,
 			);
 			path = Previews;
 			sourceTree = "<group>";
@@ -381,6 +402,7 @@
 				03A7482D303CE9C600F49C45 /* Sources */,
 				03A7482E303CE9C600F49C45 /* Frameworks */,
 				03A7482F303CE9C600F49C45 /* Resources */,
+				EF1D0D43DE454C3FAFE3F34C /* Set build number from git */,
 			);
 			buildRules = (
 			);
@@ -392,6 +414,8 @@
 				03823BF93056E71500DE14DC /* FirebaseCore */,
 				3A4873DF6EC1E0F97F3D1E29 /* GoogleSignIn */,
 				DF80332325FD268F360EBC86 /* GoogleSignInSwift */,
+				1262A92717DB49749DC2697A /* FirebaseCrashlytics */,
+				3600349B2A924B6CBC02CEA9 /* FirebaseAnalytics */,
 			);
 			productName = Margine;
 			productReference = 03A74831303CE9C600F49C45 /* Margine.app */;
@@ -428,7 +452,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					03823C013056ECDA00DE14DC = {
 						CreatedOnToolsVersion = 16.4;
@@ -518,6 +542,25 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\n  SOURCE_PLIST=\"${SRCROOT}/Margine/GoogleService-Info-Prod.plist\"\nelse\n  SOURCE_PLIST=\"${SRCROOT}/Margine/GoogleService-Info-Dev.plist\"\nfi\n\nif [ ! -f \"$SOURCE_PLIST\" ]; then\n  echo \"error: no se encontró $SOURCE_PLIST\"\n  exit 1\nfi\n\ncp \"$SOURCE_PLIST\" \"${SRCROOT}/Margine/GoogleService-Info.plist\"\n";
 		};
+		EF1D0D43DE454C3FAFE3F34C /* Set build number from git */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set build number from git";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_NUMBER=$(git -C \"${SRCROOT}\" rev-list --count HEAD 2>/dev/null)\nif [ -z \"$BUILD_NUMBER\" ]; then\n  BUILD_NUMBER=1\nfi\nPLIST=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"$PLIST\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -535,6 +578,9 @@
 				03A7485E303CF04300F49C45 /* URLSessionNetworkService.swift in Sources */,
 				03A7486A303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift in Sources */,
 				03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */,
+				F802CA3651E046A28D8DD7C0 /* AnalyticsLogging.swift in Sources */,
+				4D8235DFBC5142F6B83A3285 /* FirebaseAnalyticsLogger.swift in Sources */,
+				C720A0EB82414DB0A4E87463 /* NoOpAnalyticsLogger.swift in Sources */,
 				03A74862303CF18300F49C45 /* DefaultOddsRepository.swift in Sources */,
 				03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */,
 				03823BC4305593CC00DE14DC /* LiveOddsService.swift in Sources */,
@@ -632,6 +678,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -686,6 +733,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -697,6 +745,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -744,6 +793,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -772,7 +822,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nicovma.Margine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -804,7 +854,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nicovma.Margine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -922,6 +972,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCore;
+		};
+		1262A92717DB49749DC2697A /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		3600349B2A924B6CBC02CEA9 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03823BDD3056E0DB00DE14DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 		3A4873DF6EC1E0F97F3D1E29 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

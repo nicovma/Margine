@@ -17,12 +17,14 @@ final class AuthViewModel: ObservableObject {
     @Published private(set) var isAuthenticated: Bool
 
     private let authUseCase: AuthUseCase
+    private let analytics: AnalyticsLogging
     private var cancellables = Set<AnyCancellable>()
 
     var currentUserEmail: String? { authUseCase.currentUser?.email }
 
-    init(authUseCase: AuthUseCase) {
+    init(authUseCase: AuthUseCase, analytics: AnalyticsLogging = NoOpAnalyticsLogger()) {
         self.authUseCase = authUseCase
+        self.analytics = analytics
         self.isAuthenticated = authUseCase.currentUser != nil
 
         authUseCase.authStateChanges
@@ -37,6 +39,7 @@ final class AuthViewModel: ObservableObject {
         do {
             let user = try await authUseCase.signIn(email: email, password: password)
             state = .loaded(user)
+            analytics.logLogin(method: "password")
         } catch {
             state = .error(mapError(error))
         }
@@ -47,6 +50,7 @@ final class AuthViewModel: ObservableObject {
         do {
             let user = try await authUseCase.signUp(email: email, password: password)
             state = .loaded(user)
+            analytics.logLogin(method: "password_signup")
         } catch {
             state = .error(mapError(error))
         }
@@ -61,6 +65,7 @@ final class AuthViewModel: ObservableObject {
         do {
             let user = try await authUseCase.signInWithGoogle(presenting: presenter)
             state = .loaded(user)
+            analytics.logLogin(method: "google")
         } catch {
             state = .error(mapError(error))
         }
