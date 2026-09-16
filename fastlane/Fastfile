@@ -1,0 +1,47 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build a signed Release archive and upload it to TestFlight"
+  lane :beta do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY_CONTENT"],
+      is_key_content_base64: true
+    )
+
+    keychain_password = SecureRandom.uuid
+    create_keychain(
+      name: "release_keychain",
+      password: keychain_password,
+      default_keychain: true,
+      unlock: true,
+      timeout: 1800
+    )
+
+    import_certificate(
+      certificate_path: ENV["CERTIFICATE_PATH"],
+      certificate_password: ENV["CERTIFICATE_PASSWORD"],
+      keychain_name: "release_keychain",
+      keychain_password: keychain_password
+    )
+
+    install_provisioning_profile(path: ENV["PROVISIONING_PROFILE_PATH"])
+
+    build_app(
+      scheme: "Margine",
+      export_method: "app-store",
+      export_options: {
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "nicovma.Margine" => ENV["PROVISIONING_PROFILE_NAME"]
+        }
+      }
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true
+    )
+  end
+end

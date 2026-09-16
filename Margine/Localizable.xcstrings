@@ -51,6 +51,16 @@
         }
       }
     },
+    "%@, %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
     "••••••••" : {
 
     },
@@ -346,16 +356,6 @@
         }
       }
     },
-    "Se alcanzó el límite de pedidos a la API. Probá de nuevo en unos minutos." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You've hit the API's request limit. Try again in a few minutes."
-          }
-        }
-      }
-    },
     "o continuá con" : {
       "localizations" : {
         "en" : {
@@ -432,6 +432,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Upcoming Matches"
+          }
+        }
+      }
+    },
+    "Se alcanzó el límite de pedidos a la API. Probá de nuevo en unos minutos." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You've hit the API's request limit. Try again in a few minutes."
           }
         }
       }
