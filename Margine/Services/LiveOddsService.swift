@@ -9,9 +9,9 @@ import Foundation
 
 @MainActor
 final class LiveOddsService: LiveOddsServiceProtocol {
-    /// Pega contra el cache del backend propio (margine-odds-worker), no
-    /// directo contra The Odds API — un poll de 60s del cliente solo repite
-    /// el mismo cache hasta que el backend lo refresque, no gasta cuota real.
+    /// Hits our own backend's cache (margine-odds-worker), not The Odds API
+    /// directly — a 60s client poll just repeats the same cache until the
+    /// backend refreshes it, so it doesn't burn real quota.
     static let pollingInterval: TimeInterval = 60
 
     let currentMatches = CurrentValueSubject<[MatchOdds]?, Never>(nil)

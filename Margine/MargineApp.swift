@@ -19,7 +19,7 @@ struct MargineApp: App {
     init() {
         FirebaseApp.configure()
         let isUITestingSignedOut = ProcessInfo.processInfo.arguments.contains("--uitesting-signed-out")
-        // No mandar crashes ni eventos de las corridas de UI tests a Firebase.
+        // Don't send crashes or events from UI test runs to Firebase.
         Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(!isUITestingSignedOut)
         let analytics: AnalyticsLogging = isUITestingSignedOut ? NoOpAnalyticsLogger() : FirebaseAnalyticsLogger()
 
