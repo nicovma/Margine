@@ -13,11 +13,12 @@ struct MainTabView: View {
 
     let oddsListViewModel: OddsListViewModel
     let profileViewModel: ProfileViewModel
+    let makeExecutionWizardViewModel: (MatchOdds) -> ExecutionWizardViewModel
     @State private var selection: Tab = .matches
 
     var body: some View {
         TabView(selection: $selection) {
-            OddsListView(viewModel: oddsListViewModel)
+            OddsListView(viewModel: oddsListViewModel, makeExecutionWizardViewModel: makeExecutionWizardViewModel)
                 .tabItem {
                     Label("Partidos", systemImage: "soccerball")
                 }
@@ -56,6 +57,19 @@ struct MainTabView: View {
             authViewModel: AuthViewModel(authUseCase: DefaultAuthUseCase(repository: MockAuthRepository(currentUser: AuthUser(uid: "preview", email: "nico@ejemplo.com")))),
             bookmakerStore: BookmakerPreferencesStore(defaults: UserDefaults(suiteName: "MainTabView.preview")!),
             refreshOdds: {}
-        )
+        ),
+        makeExecutionWizardViewModel: { match in
+            ExecutionWizardViewModel(match: match, oddsRepository: PreviewMainTabRepository())
+        }
     )
+}
+
+private final class PreviewMainTabRepository: OddsRepository {
+    func fetchUpcomingOdds(sport: String) async throws -> [OddsEvent] { [] }
+    func refreshEvent(eventId: String) async throws -> EventRefreshResponse {
+        EventRefreshResponse(
+            event: OddsEvent(id: eventId, sportKey: "soccer_epl", commenceTime: .now, homeTeam: "Home", awayTeam: "Away", bookmakers: []),
+            refreshedJustNow: true
+        )
+    }
 }

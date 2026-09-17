@@ -9,12 +9,14 @@ import SwiftUI
 
 struct OddsListView: View {
     @StateObject private var viewModel: OddsListViewModel
+    let makeExecutionWizardViewModel: (MatchOdds) -> ExecutionWizardViewModel
 
     @ScaledMetric private var emptyTitleSize: CGFloat = 16
     @ScaledMetric private var emptySubtitleSize: CGFloat = 13.5
 
-    init(viewModel: OddsListViewModel) {
+    init(viewModel: OddsListViewModel, makeExecutionWizardViewModel: @escaping (MatchOdds) -> ExecutionWizardViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.makeExecutionWizardViewModel = makeExecutionWizardViewModel
     }
 
     var body: some View {
@@ -61,7 +63,7 @@ struct OddsListView: View {
             .background(Color(.systemGroupedBackground))
             .refreshable { await viewModel.manualRefresh() }
             .navigationDestination(for: MatchOdds.self) { match in
-                OddsDetailView(match: match)
+                OddsDetailView(match: match, makeExecutionWizardViewModel: makeExecutionWizardViewModel)
             }
         case .error(let message):
             Text(message)
@@ -117,5 +119,20 @@ struct OddsListView: View {
 }
 
 #Preview {
-    OddsListView(viewModel: OddsListViewModel(liveOddsService: MockLiveOddsService()))
+    OddsListView(
+        viewModel: OddsListViewModel(liveOddsService: MockLiveOddsService()),
+        makeExecutionWizardViewModel: { match in
+            ExecutionWizardViewModel(match: match, oddsRepository: PreviewOddsListRepository())
+        }
+    )
+}
+
+private final class PreviewOddsListRepository: OddsRepository {
+    func fetchUpcomingOdds(sport: String) async throws -> [OddsEvent] { [] }
+    func refreshEvent(eventId: String) async throws -> EventRefreshResponse {
+        EventRefreshResponse(
+            event: OddsEvent(id: eventId, sportKey: "soccer_epl", commenceTime: .now, homeTeam: "Home", awayTeam: "Away", bookmakers: []),
+            refreshedJustNow: true
+        )
+    }
 }

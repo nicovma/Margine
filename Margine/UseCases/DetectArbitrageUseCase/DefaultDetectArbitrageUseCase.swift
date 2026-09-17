@@ -9,10 +9,16 @@ import Foundation
 final class DefaultDetectArbitrageUseCase: DetectArbitrageUseCase {
     private let repository: OddsRepository
     private let preferences: BookmakerPreferences
+    private let bestOutcomesCalculator: BestOutcomesCalculating
 
-    init(repository: OddsRepository, preferences: BookmakerPreferences = AllowAllBookmakerPreferences()) {
+    init(
+        repository: OddsRepository,
+        preferences: BookmakerPreferences = AllowAllBookmakerPreferences(),
+        bestOutcomesCalculator: BestOutcomesCalculating = BestOutcomesCalculator()
+    ) {
         self.repository = repository
         self.preferences = preferences
+        self.bestOutcomesCalculator = bestOutcomesCalculator
     }
 
     func execute(sport: String) async throws -> [MatchOdds] {
@@ -26,18 +32,7 @@ final class DefaultDetectArbitrageUseCase: DetectArbitrageUseCase {
     }
 
     private func analyze(_ event: OddsEvent) async -> MatchOdds {
-        var bestOutcomes: [String: BestOutcome] = [:]
-
-        for bookmaker in event.bookmakers {
-            guard await preferences.isEnabled(bookmaker.key) else { continue }
-            guard let market = bookmaker.markets.first(where: { $0.key == "h2h" }) else { continue }
-            for outcome in market.outcomes where outcome.price > 0 {
-                if let current = bestOutcomes[outcome.name], current.price >= outcome.price {
-                    continue
-                }
-                bestOutcomes[outcome.name] = BestOutcome(bookmakerTitle: bookmaker.title, price: outcome.price)
-            }
-        }
+        let bestOutcomes = await bestOutcomesCalculator.bestOutcomes(for: event, preferences: preferences)
 
         guard !bestOutcomes.isEmpty else {
             return MatchOdds(

@@ -26,4 +26,13 @@ final class DefaultOddsRepository: OddsRepository {
         }
         return try await networkService.fetch(url)
     }
+
+    func refreshEvent(eventId: String) async throws -> EventRefreshResponse {
+        guard let url = URL(string: "\(baseURL)/events/\(eventId)/refresh") else {
+            throw NetworkError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        return try await networkService.fetch(request)
+    }
 }
