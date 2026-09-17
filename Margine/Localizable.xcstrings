@@ -53,6 +53,12 @@
     },
     "%@, %@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "new",
@@ -62,7 +68,14 @@
       }
     },
     "••••••••" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "••••••••"
+          }
+        }
+      }
     },
     "Accedé para ver tus partidos" : {
       "localizations" : {
@@ -165,7 +178,14 @@
       }
     },
     "Demasiados intentos. Esperá un momento y probá de nuevo." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Too many attempts. Wait a moment and try again."
+          }
+        }
+      }
     },
     "El detector solo compara cuotas entre las casas activadas." : {
       "localizations" : {
@@ -238,7 +258,14 @@
       }
     },
     "Esta cuenta fue deshabilitada." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This account has been disabled."
+          }
+        }
+      }
     },
     "Ingresar" : {
       "localizations" : {
@@ -251,7 +278,14 @@
       }
     },
     "La contraseña debe tener al menos %lld caracteres." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password must be at least %lld characters."
+          }
+        }
+      }
     },
     "La contraseña es muy débil (mínimo 6 caracteres)." : {
       "localizations" : {
@@ -324,7 +358,14 @@
       }
     },
     "No se pudo cerrar la sesión. Intentá de nuevo." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't sign out. Try again."
+          }
+        }
+      }
     },
     "No se pudo construir la URL del pedido." : {
       "localizations" : {

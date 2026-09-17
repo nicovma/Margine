@@ -13,7 +13,6 @@ jobs:
         run: |
           mkdir -p Resources
           cat > Resources/Config.xcconfig << EOF
-          API_KEY = ${{ secrets.ODDS_API_KEY }}
           GID_CLIENT_ID = 690908505728-h54rb0rtk0f2urn0h849cbulvd0040f3.apps.googleusercontent.com
           GID_URL_SCHEME = com.googleusercontent.apps.690908505728-h54rb0rtk0f2urn0h849cbulvd0040f3
           EOF
