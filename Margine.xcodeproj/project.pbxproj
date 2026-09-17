@@ -15,9 +15,6 @@
 		03823BDF3056E13100DE14DC /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BDE3056E13000DE14DC /* AuthUser.swift */; };
 		03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE03056E14F00DE14DC /* AuthRepository.swift */; };
 		03823BE53056E1FF00DE14DC /* FirebaseAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */; };
-		F802CA3651E046A28D8DD7C0 /* AnalyticsLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */; };
-		4D8235DFBC5142F6B83A3285 /* FirebaseAnalyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */; };
-		C720A0EB82414DB0A4E87463 /* NoOpAnalyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319B4607C8A94003A8C560F8 /* NoOpAnalyticsLogger.swift */; };
 		03823BE73056E24100DE14DC /* MockAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE63056E24000DE14DC /* MockAuthRepository.swift */; };
 		03823BE93056E2B300DE14DC /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE83056E2B100DE14DC /* AuthUseCase.swift */; };
 		03823BEE3056E39800DE14DC /* DefaultAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */; };
@@ -25,8 +22,6 @@
 		03823BF33056E42D00DE14DC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BF23056E42C00DE14DC /* LoginView.swift */; };
 		03823BF83056E71500DE14DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03823BF73056E71500DE14DC /* FirebaseAuth */; };
 		03823BFA3056E71500DE14DC /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03823BF93056E71500DE14DC /* FirebaseCore */; };
-		088AD8A353004810989496E6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1262A92717DB49749DC2697A /* FirebaseCrashlytics */; };
-		CBF9D161CB774531A1B3844B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3600349B2A924B6CBC02CEA9 /* FirebaseAnalytics */; };
 		03A74857303CEBB300F49C45 /* MargineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74854303CEBB300F49C45 /* MargineApp.swift */; };
 		03A74858303CEBB300F49C45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03A74852303CEBB300F49C45 /* Assets.xcassets */; };
 		03A7485A303CEF5300F49C45 /* OddsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A74859303CEF5100F49C45 /* OddsEvent.swift */; };
@@ -43,17 +38,34 @@
 		03A748933040757000F49C45 /* MatchOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A748923040756F00F49C45 /* MatchOdds.swift */; };
 		03F9B84A30589FA100867ACC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03F9B84930589FA000867ACC /* GoogleService-Info.plist */; };
 		03F9B84C30589FB100867ACC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 03F9B84B30589FB000867ACC /* PrivacyInfo.xcprivacy */; };
+		088AD8A353004810989496E6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1262A92717DB49749DC2697A /* FirebaseCrashlytics */; };
+		08F46244DBD5CCD64E32584F /* ExecutionSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A5F891B662975C9A8F2F1E /* ExecutionSession.swift */; };
+		09B25C83E1FB866E09919711 /* DefaultCalculateStakeAllocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69482CA8522BCDB3AACF40D /* DefaultCalculateStakeAllocationUseCase.swift */; };
+		28BAB8A63550676CD7DC5E16 /* EventRefreshResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD52F1EC7926DF98DD6ED37 /* EventRefreshResponse.swift */; };
 		3275B54D8F06D1BE544CE61C /* MatchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA5262310997693E1BD2A1 /* MatchRowView.swift */; };
 		3AE64BC8CFDF5FF902CF93F9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */; };
 		3B7940EAAEB67243CB90D2D3 /* AllowAllBookmakerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */; };
+		4D8235DFBC5142F6B83A3285 /* FirebaseAnalyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */; };
+		4D8846EDC86591CE9C7076AD /* BookmakerDeepLinkResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7F487EB507870EFFD7E383 /* BookmakerDeepLinkResolver.swift */; };
+		5378A580B77303D288957FC9 /* StakeAllocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06EC490C4CA2295D2CE258F /* StakeAllocation.swift */; };
 		53DCF9028202D8A25455C983 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 3A4873DF6EC1E0F97F3D1E29 /* GoogleSignIn */; };
 		5D2F2F4F6A1995388A47CB80 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CAF0ABB3E6AC24FD49A7BE /* ProfileViewModel.swift */; };
+		62671D1B6AC025601980F642 /* ExecutionWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9D081FDC57F5272903364 /* ExecutionWizardView.swift */; };
 		62CAB6D2B3682A9D9D5A98A1 /* BookmakerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66510FDFB9F3640EF0EB620 /* BookmakerInfo.swift */; };
+		834CEF621C9285B630D8F0C0 /* DefaultRecalculatePartialCoverageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E4E5435E93E7A30A7C440 /* DefaultRecalculatePartialCoverageUseCase.swift */; };
+		87CC349A1B5C5C159E28CA03 /* CalculateStakeAllocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD807E63036285B204C0B1E3 /* CalculateStakeAllocationUseCase.swift */; };
 		8CD7263D16446D312F567CD4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F3075CDE1C125C4D7B64A9 /* ProfileView.swift */; };
+		B28D4AAB5CFEC4BC75DD7AB5 /* BestOutcomesCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976E61C9BCE8FCD2C68358F /* BestOutcomesCalculator.swift */; };
+		C720A0EB82414DB0A4E87463 /* NoOpAnalyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319B4607C8A94003A8C560F8 /* NoOpAnalyticsLogger.swift */; };
+		CBB13A2E638481FF4879B951 /* RecalculatePartialCoverageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5681C3635AE8B91A058D3 /* RecalculatePartialCoverageUseCase.swift */; };
+		CBF9D161CB774531A1B3844B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3600349B2A924B6CBC02CEA9 /* FirebaseAnalytics */; };
 		E9EC2031F08C9FAE84DB6BCD /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEE33F7F13BBCBF15E56876 /* MainTabView.swift */; };
 		EAB3258E7FD30D04290F6A1A /* BookmakerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC4D0B42DC290A08AE19C4D /* BookmakerPreferences.swift */; };
 		ECD6BE12FE5B028312F4ECBC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF80332325FD268F360EBC86 /* GoogleSignInSwift */; };
 		F21019DBCB56B987D3B4C9CD /* BookmakerPreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0935930F3222126434A6BAE /* BookmakerPreferencesStore.swift */; };
+		F3A27DE98F9A839A3FF2B679 /* ExecutionWizardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC062A9E73CD7430AE3C4E95 /* ExecutionWizardViewModel.swift */; };
+		F487996D1579658B8C86BC33 /* BankrollStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5148E166B5D5447FB7476267 /* BankrollStoring.swift */; };
+		F802CA3651E046A28D8DD7C0 /* AnalyticsLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,9 +93,6 @@
 		03823BDE3056E13000DE14DC /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		03823BE03056E14F00DE14DC /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthRepository.swift; sourceTree = "<group>"; };
-		09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLogging.swift; sourceTree = "<group>"; };
-		1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsLogger.swift; sourceTree = "<group>"; };
-		319B4607C8A94003A8C560F8 /* NoOpAnalyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOpAnalyticsLogger.swift; sourceTree = "<group>"; };
 		03823BE63056E24000DE14DC /* MockAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthRepository.swift; sourceTree = "<group>"; };
 		03823BE83056E2B100DE14DC /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
 		03823BED3056E39500DE14DC /* DefaultAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthUseCase.swift; sourceTree = "<group>"; };
@@ -112,16 +121,31 @@
 		03F9B84630589F0E00867ACC /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
 		03F9B84930589FA000867ACC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03F9B84B30589FB000867ACC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLogging.swift; sourceTree = "<group>"; };
+		1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsLogger.swift; sourceTree = "<group>"; };
 		1BC4D0B42DC290A08AE19C4D /* BookmakerPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakerPreferences.swift; sourceTree = "<group>"; };
+		2976E61C9BCE8FCD2C68358F /* BestOutcomesCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BestOutcomesCalculator.swift; sourceTree = "<group>"; };
+		319B4607C8A94003A8C560F8 /* NoOpAnalyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOpAnalyticsLogger.swift; sourceTree = "<group>"; };
+		38E5681C3635AE8B91A058D3 /* RecalculatePartialCoverageUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecalculatePartialCoverageUseCase.swift; sourceTree = "<group>"; };
 		46EA5262310997693E1BD2A1 /* MatchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRowView.swift; sourceTree = "<group>"; };
 		4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowAllBookmakerPreferences.swift; sourceTree = "<group>"; };
+		4AF9D081FDC57F5272903364 /* ExecutionWizardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExecutionWizardView.swift; sourceTree = "<group>"; };
+		5148E166B5D5447FB7476267 /* BankrollStoring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BankrollStoring.swift; sourceTree = "<group>"; };
 		62CAF0ABB3E6AC24FD49A7BE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		715E4E5435E93E7A30A7C440 /* DefaultRecalculatePartialCoverageUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultRecalculatePartialCoverageUseCase.swift; sourceTree = "<group>"; };
 		90F3075CDE1C125C4D7B64A9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A0935930F3222126434A6BAE /* BookmakerPreferencesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakerPreferencesStore.swift; sourceTree = "<group>"; };
 		A66510FDFB9F3640EF0EB620 /* BookmakerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakerInfo.swift; sourceTree = "<group>"; };
 		BCCF6E044F6F57975978D8C8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BDEE33F7F13BBCBF15E56876 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		C06EC490C4CA2295D2CE258F /* StakeAllocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StakeAllocation.swift; sourceTree = "<group>"; };
 		CAB6FBC24E4D97918E1C91D2 /* BrandMarkIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandMarkIcon.swift; sourceTree = "<group>"; };
+		CAD52F1EC7926DF98DD6ED37 /* EventRefreshResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventRefreshResponse.swift; sourceTree = "<group>"; };
+		CC062A9E73CD7430AE3C4E95 /* ExecutionWizardViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExecutionWizardViewModel.swift; sourceTree = "<group>"; };
+		CF7F487EB507870EFFD7E383 /* BookmakerDeepLinkResolver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BookmakerDeepLinkResolver.swift; sourceTree = "<group>"; };
+		DD807E63036285B204C0B1E3 /* CalculateStakeAllocationUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CalculateStakeAllocationUseCase.swift; sourceTree = "<group>"; };
+		E69482CA8522BCDB3AACF40D /* DefaultCalculateStakeAllocationUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultCalculateStakeAllocationUseCase.swift; sourceTree = "<group>"; };
+		E7A5F891B662975C9A8F2F1E /* ExecutionSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExecutionSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -176,17 +200,9 @@
 				03823BC3305593CC00DE14DC /* LiveOddsService.swift */,
 				04D8F564B67322138B123E50 /* Bookmakers */,
 				4E26D5C40B294F6E891FA503 /* Analytics */,
+				8A60E81ED5863EBF4E64E02E /* Bankroll */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		4E26D5C40B294F6E891FA503 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */,
-				1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */,
-			);
-			path = Analytics;
 			sourceTree = "<group>";
 		};
 		03823BE23056E16200DE14DC /* Auth */ = {
@@ -221,6 +237,7 @@
 			children = (
 				03A74869303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift */,
 				03A74867303CF81600F49C45 /* DetectArbitrageUseCase.swift */,
+				2976E61C9BCE8FCD2C68358F /* BestOutcomesCalculator.swift */,
 			);
 			path = DetectArbitrageUseCase;
 			sourceTree = "<group>";
@@ -253,6 +270,9 @@
 				03A748923040756F00F49C45 /* MatchOdds.swift */,
 				03A74859303CEF5100F49C45 /* OddsEvent.swift */,
 				A66510FDFB9F3640EF0EB620 /* BookmakerInfo.swift */,
+				C06EC490C4CA2295D2CE258F /* StakeAllocation.swift */,
+				E7A5F891B662975C9A8F2F1E /* ExecutionSession.swift */,
+				CAD52F1EC7926DF98DD6ED37 /* EventRefreshResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,6 +307,8 @@
 			children = (
 				03823BEB3056E2C300DE14DC /* DetectArbitrageUseCase */,
 				03823BEA3056E2B600DE14DC /* Auth */,
+				BF1D404E29527C20675B2D52 /* CalculateStakeAllocation */,
+				B370D8FF02D9F44E016BF44A /* RecalculatePartialCoverage */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -297,6 +319,7 @@
 				03823BEF3056E3C900DE14DC /* AuthViewModel.swift */,
 				03A7486B303CF9D000F49C45 /* OddsListViewModel.swift */,
 				62CAF0ABB3E6AC24FD49A7BE /* ProfileViewModel.swift */,
+				CC062A9E73CD7430AE3C4E95 /* ExecutionWizardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -311,6 +334,7 @@
 				90F3075CDE1C125C4D7B64A9 /* ProfileView.swift */,
 				CAB6FBC24E4D97918E1C91D2 /* BrandMarkIcon.swift */,
 				46EA5262310997693E1BD2A1 /* MatchRowView.swift */,
+				4AF9D081FDC57F5272903364 /* ExecutionWizardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,8 +388,44 @@
 				1BC4D0B42DC290A08AE19C4D /* BookmakerPreferences.swift */,
 				4A02E46C618365759525A171 /* AllowAllBookmakerPreferences.swift */,
 				A0935930F3222126434A6BAE /* BookmakerPreferencesStore.swift */,
+				CF7F487EB507870EFFD7E383 /* BookmakerDeepLinkResolver.swift */,
 			);
 			path = Bookmakers;
+			sourceTree = "<group>";
+		};
+		4E26D5C40B294F6E891FA503 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */,
+				1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		8A60E81ED5863EBF4E64E02E /* Bankroll */ = {
+			isa = PBXGroup;
+			children = (
+				5148E166B5D5447FB7476267 /* BankrollStoring.swift */,
+			);
+			path = Bankroll;
+			sourceTree = "<group>";
+		};
+		B370D8FF02D9F44E016BF44A /* RecalculatePartialCoverage */ = {
+			isa = PBXGroup;
+			children = (
+				38E5681C3635AE8B91A058D3 /* RecalculatePartialCoverageUseCase.swift */,
+				715E4E5435E93E7A30A7C440 /* DefaultRecalculatePartialCoverageUseCase.swift */,
+			);
+			path = RecalculatePartialCoverage;
+			sourceTree = "<group>";
+		};
+		BF1D404E29527C20675B2D52 /* CalculateStakeAllocation */ = {
+			isa = PBXGroup;
+			children = (
+				DD807E63036285B204C0B1E3 /* CalculateStakeAllocationUseCase.swift */,
+				E69482CA8522BCDB3AACF40D /* DefaultCalculateStakeAllocationUseCase.swift */,
+			);
+			path = CalculateStakeAllocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,8 +448,6 @@
 				03823C033056ECDA00DE14DC /* MargineUITests */,
 			);
 			name = MargineUITests;
-			packageProductDependencies = (
-			);
 			productName = MargineUITests;
 			productReference = 03823C023056ECDA00DE14DC /* MargineUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -438,8 +496,6 @@
 				03A7487A303CFEBF00F49C45 /* MargineTests */,
 			);
 			name = MargineTests;
-			packageProductDependencies = (
-			);
 			productName = MargineTests;
 			productReference = 03A74879303CFEBF00F49C45 /* MargineTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -612,6 +668,18 @@
 				F21019DBCB56B987D3B4C9CD /* BookmakerPreferencesStore.swift in Sources */,
 				032A5872F4EDF259206BFA34 /* BrandMarkIcon.swift in Sources */,
 				3275B54D8F06D1BE544CE61C /* MatchRowView.swift in Sources */,
+				B28D4AAB5CFEC4BC75DD7AB5 /* BestOutcomesCalculator.swift in Sources */,
+				5378A580B77303D288957FC9 /* StakeAllocation.swift in Sources */,
+				08F46244DBD5CCD64E32584F /* ExecutionSession.swift in Sources */,
+				28BAB8A63550676CD7DC5E16 /* EventRefreshResponse.swift in Sources */,
+				87CC349A1B5C5C159E28CA03 /* CalculateStakeAllocationUseCase.swift in Sources */,
+				09B25C83E1FB866E09919711 /* DefaultCalculateStakeAllocationUseCase.swift in Sources */,
+				CBB13A2E638481FF4879B951 /* RecalculatePartialCoverageUseCase.swift in Sources */,
+				834CEF621C9285B630D8F0C0 /* DefaultRecalculatePartialCoverageUseCase.swift in Sources */,
+				4D8846EDC86591CE9C7076AD /* BookmakerDeepLinkResolver.swift in Sources */,
+				F487996D1579658B8C86BC33 /* BankrollStoring.swift in Sources */,
+				F3A27DE98F9A839A3FF2B679 /* ExecutionWizardViewModel.swift in Sources */,
+				62671D1B6AC025601980F642 /* ExecutionWizardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

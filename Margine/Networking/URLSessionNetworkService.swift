@@ -16,8 +16,8 @@ final class URLSessionNetworkService: NetworkService {
         self.decoder.dateDecodingStrategy = .iso8601
     }
 
-    func fetch<T: Decodable>(_ url: URL) async throws -> T {
-        let (data, response) = try await session.data(from: url)
+    func fetch<T: Decodable>(_ request: URLRequest) async throws -> T {
+        let (data, response) = try await session.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidResponse

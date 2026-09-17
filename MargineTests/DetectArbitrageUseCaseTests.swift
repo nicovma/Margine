@@ -109,6 +109,9 @@ private final class StubOddsRepository: OddsRepository {
     let events: [OddsEvent]
     init(events: [OddsEvent]) { self.events = events }
     func fetchUpcomingOdds(sport: String) async throws -> [OddsEvent] { events }
+    func refreshEvent(eventId: String) async throws -> EventRefreshResponse {
+        throw NetworkError.invalidResponse
+    }
 }
 
 private final class StubBookmakerPreferences: BookmakerPreferences {

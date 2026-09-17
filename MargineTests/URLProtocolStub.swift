@@ -9,6 +9,7 @@ final class URLProtocolStub: URLProtocol {
     static var stubResponseData: Data?
     static var stubResponse: URLResponse?
     static var stubError: Error?
+    static var capturedRequest: URLRequest?
 
     static func makeSession() -> URLSession {
         let configuration = URLSessionConfiguration.ephemeral
@@ -20,12 +21,14 @@ final class URLProtocolStub: URLProtocol {
         stubResponseData = nil
         stubResponse = nil
         stubError = nil
+        capturedRequest = nil
     }
 
     override class func canInit(with request: URLRequest) -> Bool { true }
     override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
 
     override func startLoading() {
+        Self.capturedRequest = request
         if let error = Self.stubError {
             client?.urlProtocol(self, didFailWithError: error)
             return
