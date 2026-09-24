@@ -6,4 +6,8 @@ xcuserdata/
 Resources/Config.xcconfig
 DEFENSA_TECNICA.md
 GoogleService-Info.plist
-OddsArbitrageUITests/TestCredentials.swift
+GoogleService-Info-Dev.plist
+GoogleService-Info-Prod.plist
+MargineUITests/TestCredentials.swift
+PRODUCTION_READINESS.md
+ARCH_PROPOSAL.md

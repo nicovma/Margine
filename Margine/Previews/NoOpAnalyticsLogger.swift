@@ -1,0 +1,13 @@
+//
+//  NoOpAnalyticsLogger.swift
+//  Margine
+//
+//  Created by Nicolas Valentini on 15/9/2026.
+//
+import Foundation
+
+struct NoOpAnalyticsLogger: AnalyticsLogging {
+    func logLogin(method: String) {}
+    func logArbitrageDetected(count: Int) {}
+    func logManualRefresh() {}
+}
