@@ -6,11 +6,11 @@
 //
 import Foundation
 
-/// El `sport` que pide siempre devuelve el mismo combinado de ligas top
-/// configurado del lado del backend (ver `margine-odds-worker`) — no hay
-/// forma de pedir una liga puntual todavía. El parámetro queda como parte
-/// del contrato para no romper nada si en el futuro se agrega un selector
-/// real de deporte (backlog: S3.2c).
+/// The `sport` it requests always returns the same top-leagues combo
+/// configured on the backend side (see `margine-odds-worker`) — there's no
+/// way to request a specific league yet. The parameter stays part of the
+/// contract so nothing breaks if a real sport selector gets added in the
+/// future (backlog: S3.2c).
 final class DefaultOddsRepository: OddsRepository {
     private let networkService: NetworkService
     private let baseURL: String

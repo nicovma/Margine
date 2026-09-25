@@ -89,9 +89,9 @@ final class OddsListViewModel: ObservableObject {
     private func handleRefreshError(_ message: String) {
         switch state {
         case .loaded:
-            bannerErrorMessage = message // ya hay datos en pantalla, no los pisamos
+            bannerErrorMessage = message // there's already data on screen, don't replace it
         case .idle, .loading, .error:
-            state = .error(message) // no hay nada que mostrar todavía
+            state = .error(message) // there's nothing to show yet
         }
     }
 }

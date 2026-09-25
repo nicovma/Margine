@@ -13,6 +13,7 @@ For each match, the app compares the best available price per outcome across boo
 - Search by team name and a toggle to show arbitrage-only matches.
 - A **Partidos / Perfil** tab bar. Profile shows the signed-in account, lets the user pick which bookmakers count toward arbitrage detection (a house they don't have an account with shouldn't factor into the calculation), and sign out.
 - Email/password **and** Sign in with Google (Firebase Auth), with the session gate reacting to real auth state changes, not just local view state.
+- A legal disclaimer shown on each match's detail screen: Margine is informational only, not financial advice or a bookmaker, and odds/betting availability can change or be restricted by jurisdiction.
 - Spanish and English UI (String Catalog).
 - A public [privacy policy](https://nicovma.github.io/Margine/privacy-policy.html), linked from the Profile tab.
 
@@ -21,7 +22,8 @@ For each match, the app compares the best available price per outcome across boo
 MVVM + UseCase + Repository, each layer behind a protocol so it can be swapped or mocked independently:
 
 ```
-View ── ViewModel ── UseCase ── Repository ── NetworkService ── The Odds API
+View ── ViewModel ── UseCase ── Repository ── NetworkService ── margine-odds-worker ── The Odds API
+                         │                 │              (Cloudflare, caches The Odds API)
                          │                 └─ FirebaseAuthRepository ── Firebase Auth / Google Sign-In
                     (business logic:
                   arbitrage detection,
@@ -29,7 +31,7 @@ View ── ViewModel ── UseCase ── Repository ── NetworkService ─
                    auth error mapping)
 ```
 
-- **Repository** (`OddsRepository`, `AuthRepository`) — the only layer that knows about network requests or the Firebase/GoogleSignIn SDKs. `OddsRepository` talks to [The Odds API](https://the-odds-api.com) over plain HTTP via `NetworkService`; `AuthRepository` talks to Firebase Auth (email/password and Google) via the Firebase/GoogleSignIn SDKs.
+- **Repository** (`OddsRepository`, `AuthRepository`) — the only layer that knows about network requests or the Firebase/GoogleSignIn SDKs. `OddsRepository` talks to a Cloudflare Worker (`margine-odds-worker`) over plain HTTP via `NetworkService`; the worker itself caches [The Odds API](https://the-odds-api.com), so the client never holds an API key or hits the external API directly. `AuthRepository` talks to Firebase Auth (email/password and Google) via the Firebase/GoogleSignIn SDKs.
 - **UseCase** (`DetectArbitrageUseCase`, `AuthUseCase`) — pure business logic, no I/O. This is where the arbitrage math lives, independently testable from networking.
 - **ViewModel** — exposes a `ViewState<T>` enum (`idle` / `loading` / `loaded` / `error`) to each View, and owns Combine wiring (live odds pipeline, search debounce, auth state subscription).
 - **View** — SwiftUI, no business logic.
@@ -37,6 +39,8 @@ View ── ViewModel ── UseCase ── Repository ── NetworkService ─
 Live odds use a small reactive pipeline: `LiveOddsService` exposes a `CurrentValueSubject` polled every 60s via `Timer.publish`, bridged to an `actor LiveOddsCoordinator` that guards against overlapping refreshes (manual pull-to-refresh vs. the automatic poll never race).
 
 **Bookmaker filtering** (`Services/Bookmakers/`) is its own small piece, same protocol-first pattern: `BookmakerPreferencesStore` (backed by `UserDefaults`) records every bookmaker the app has ever seen in a response and tracks which ones are disabled — new bookmakers are opt-out, so existing behavior never silently changes. It's injected straight into `DefaultDetectArbitrageUseCase`, the only layer that already needs to look at each bookmaker's odds to compute `bestOutcomes` — filtering there means the Repository and ViewModel don't need to know it exists. The Profile tab reads and writes the same store, and triggers a manual refresh after a toggle so the change is reflected without waiting for the next poll.
+
+For a deeper dive into design decisions, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Tech stack
 
@@ -49,16 +53,13 @@ Live odds use a small reactive pipeline: `LiveOddsService` exposes a `CurrentVal
 
 The app needs a few files that are gitignored on purpose (never commit API keys or Firebase config):
 
-1. `Resources/Config.xcconfig`, keyed per build configuration so Debug and Release can point at separate backends:
+1. `Resources/Config.xcconfig`, keyed per build configuration, for Google Sign-In only — the client no longer talks to The Odds API directly (see Architecture), so there's no client-side API key to set up here:
    ```
-   API_KEY[config=Debug] = <your-the-odds-api-key>
-   API_KEY[config=Release] = <your-the-odds-api-key>
    GID_CLIENT_ID[config=Debug] = <your-dev-google-client-id>
    GID_CLIENT_ID[config=Release] = <your-prod-google-client-id>
    GID_URL_SCHEME[config=Debug] = <your-dev-google-url-scheme>
    GID_URL_SCHEME[config=Release] = <your-prod-google-url-scheme>
    ```
-   Get a free Odds API key at [the-odds-api.com](https://the-odds-api.com) (no card required, ~500 requests/month). One key is enough for both configs if you don't need separate dev/prod quotas.
 
 2. `Margine/GoogleService-Info-Dev.plist` and `Margine/GoogleService-Info-Prod.plist` — download each from its own Firebase project (Firebase Console → Project settings → your iOS app), with **Email/Password** and **Google** both enabled under Authentication → Sign-in method. A Run Script build phase copies the right one to `Margine/GoogleService-Info.plist` based on the active configuration (Debug → Dev, Release → Prod); that generated file is also gitignored. The Google client ID/URL scheme above come straight from each plist's `CLIENT_ID`/`REVERSED_CLIENT_ID`. One Firebase project reused for both configs works too — just point both plists at it.
 
