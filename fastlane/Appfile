@@ -1,0 +1,2 @@
+app_identifier("nicovma.Margine")
+team_id(ENV["TEAM_ID"])
