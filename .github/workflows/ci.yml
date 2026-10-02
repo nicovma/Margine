@@ -4,12 +4,15 @@ on:
   pull_request: { branches: [ main, develop ] }
 jobs:
   build-and-test:
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
       - uses: maxim-lobanov/setup-xcode@v1
-        with: { xcode-version: '16.4' }
-      - name: Create Config.xcconfig from secret
+        with: { xcode-version: '26.6' }
+      # The Debug Google Sign-In client ID is a public identifier (it ships inside
+      # every build), not a credential, so it's inlined here instead of read from
+      # a secret. Release builds get their own config from a secret in release.yml.
+      - name: Create Config.xcconfig (public Debug Google client ID)
         run: |
           mkdir -p Resources
           cat > Resources/Config.xcconfig << EOF
@@ -34,18 +37,35 @@ jobs:
           # an unsigned build can't do that and every Firebase sign-in fails with
           # "SecItemAdd (-34018)". Ad-hoc signing embeds entitlements without
           # needing a real certificate/team, which Simulator doesn't require anyway.
-          # -testLanguage/-testRegion: los tests assertan contra los literales en
-          # español del string catalog (source language). El runner de GitHub
-          # Actions arranca el simulador en inglés por defecto, así que
-          # String(localized:) resolvía a la traducción en inglés y rompía
-          # AuthViewModelTests. Fijamos es_ES para no depender del locale del runner.
-          xcodebuild test -project Margine.xcodeproj -scheme Margine \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
-            -resultBundlePath TestResults.xcresult \
-            -skipMacroValidation \
-            -testLanguage es -testRegion ES \
-            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGN_STYLE=Manual \
-            DEVELOPMENT_TEAM="" PROVISIONING_PROFILE_SPECIFIER=""
+          # -testLanguage/-testRegion: the tests assert against the Spanish
+          # literals of the String Catalog (source language). GitHub Actions boots
+          # the simulator in English by default, so String(localized:) resolved to
+          # the English translation and broke AuthViewModelTests. Pinning es_ES
+          # keeps the suite independent from the runner's locale.
+          set -o pipefail
+          attempts=3
+          for i in $(seq 1 "$attempts"); do
+            rm -rf TestResults.xcresult
+            if xcodebuild test -project Margine.xcodeproj -scheme Margine \
+                -destination 'platform=iOS Simulator,name=iPhone 17,OS=latest' \
+                -resultBundlePath TestResults.xcresult \
+                -skipMacroValidation \
+                -testLanguage es -testRegion ES \
+                CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGN_STYLE=Manual \
+                DEVELOPMENT_TEAM="" PROVISIONING_PROFILE_SPECIFIER="" 2>&1 | tee /tmp/xcodebuild.log; then
+              exit 0
+            fi
+            # Runner images sometimes come up with no iOS simulator runtime
+            # registered for the pinned Xcode (actions/runner-images#12948).
+            # Retry only that transient failure; real compile/test failures
+            # fail immediately.
+            if [ "$i" -lt "$attempts" ] && grep -q "Unable to find a device matching the provided destination specifier" /tmp/xcodebuild.log; then
+              echo "::warning::Simulator not available on this runner image (attempt $i/$attempts), retrying in 30s..."
+              sleep 30
+              continue
+            fi
+            exit 1
+          done
       - name: DEBUG - dump failure details from xcresult
         if: failure()
         run: xcrun xcresulttool get test-results summary --path TestResults.xcresult
