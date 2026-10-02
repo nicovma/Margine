@@ -9,6 +9,9 @@ import SwiftUI
 
 struct OddsDetailView: View {
     let match: MatchOdds
+    let makeExecutionWizardViewModel: (MatchOdds) -> ExecutionWizardViewModel
+
+    @State private var isShowingWizard = false
 
     @ScaledMetric private var bannerIconSize: CGFloat = 18
     @ScaledMetric private var bannerTitleSize: CGFloat = 15
@@ -30,6 +33,9 @@ struct OddsDetailView: View {
                 }
 
                 bestOutcomesSection
+                if match.hasArbitrage {
+                    calculateBetButton
+                }
                 howToPlaySection
                 disclaimerSection
             }
@@ -38,6 +44,19 @@ struct OddsDetailView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle(Text(match.homeTeam) + Text(" vs ") + Text(match.awayTeam))
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isShowingWizard) {
+            ExecutionWizardView(viewModel: makeExecutionWizardViewModel(match))
+        }
+    }
+
+    private var calculateBetButton: some View {
+        Button {
+            isShowingWizard = true
+        } label: {
+            Label("Calcular mi apuesta", systemImage: "function")
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.borderedProminent)
     }
 
     private func arbitrageBanner(margin: Double) -> some View {
@@ -114,7 +133,7 @@ struct OddsDetailView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Cómo jugar")
                     .font(.system(size: howToPlayTitleSize, weight: .bold))
-                Text("Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado.\n\nPor ejemplo: con cuotas 2.00 / 4.00 / 5.00 para 1 / X / 2, apostando $100 en total repartís $52,63 al resultado 1, $26,32 al empate y $21,05 al resultado 2 (cada monto es proporcional a 1/cuota). Gane quien gane, cobrás $105,26 — quedan $5,26 de ganancia neta pase lo que pase.")
+                Text("Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado. Tocá \"Calcular mi apuesta\" para que te calculemos el monto exacto por casa con la cuota más fresca que consigamos.")
                     .font(.system(size: howToPlayBodySize))
                     .foregroundStyle(.secondary)
             }
@@ -125,7 +144,7 @@ struct OddsDetailView: View {
     }
 
     private var disclaimerSection: some View {
-        Text("Margine es solo informativa: no es asesoramiento financiero ni una casa de apuestas. Las cuotas pueden cambiar en la casa de apuestas antes de que confirmes tu apuesta, y apostar puede estar restringido según tu jurisdicción — verificá la normativa local antes de usar cualquier casa de apuestas.")
+        Text("Margine es solo informativa: no es asesoramiento financiero ni una casa de apuestas, y nunca coloca una apuesta por vos — vos apostás a mano en cada casa. Las cuotas vienen de un agregador de terceros y pueden diferir de lo que muestre la casa antes de que confirmes tu apuesta, y apostar puede estar restringido según tu jurisdicción — verificá la normativa local antes de usar cualquier casa de apuestas.")
             .font(.system(size: disclaimerSize))
             .foregroundStyle(.secondary)
             .padding(.horizontal, 4)
@@ -134,6 +153,26 @@ struct OddsDetailView: View {
 
 #Preview {
     NavigationStack {
-        OddsDetailView(match: MockDetectArbitrageUseCase.sampleMatches[1])
+        OddsDetailView(
+            match: MockDetectArbitrageUseCase.sampleMatches[1],
+            makeExecutionWizardViewModel: { match in
+                ExecutionWizardViewModel(match: match, oddsRepository: PreviewOddsDetailRepository())
+            }
+        )
+    }
+}
+
+private final class PreviewOddsDetailRepository: OddsRepository {
+    func fetchUpcomingOdds(sport: String) async throws -> [OddsEvent] { [] }
+    func refreshEvent(eventId: String) async throws -> EventRefreshResponse {
+        EventRefreshResponse(
+            event: OddsEvent(
+                id: eventId, sportKey: "soccer_epl", commenceTime: .now, homeTeam: "Real Madrid", awayTeam: "Barcelona",
+                bookmakers: [
+                    Bookmaker(key: "bet365", title: "Bet365", markets: [Market(key: "h2h", outcomes: [Outcome(name: "Real Madrid", price: 2.60), Outcome(name: "Draw", price: 3.40), Outcome(name: "Barcelona", price: 2.90)])])
+                ]
+            ),
+            refreshedJustNow: true
+        )
     }
 }

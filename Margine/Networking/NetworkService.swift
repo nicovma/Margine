@@ -7,7 +7,13 @@
 import Foundation
 
 protocol NetworkService {
-    func fetch<T: Decodable>(_ url: URL) async throws -> T
+    func fetch<T: Decodable>(_ request: URLRequest) async throws -> T
+}
+
+extension NetworkService {
+    func fetch<T: Decodable>(_ url: URL) async throws -> T {
+        try await fetch(URLRequest(url: url))
+    }
 }
 
 enum NetworkError: Error {

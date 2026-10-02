@@ -76,4 +76,21 @@ struct URLSessionNetworkServiceTests {
             let _: [OddsEvent] = try await sut.fetch(url)
         }
     }
+
+    @Test("Un URLRequest con httpMethod POST se envía tal cual, sin degradarlo a GET")
+    func sendsRequestMethodAsIs() async throws {
+        URLProtocolStub.stubResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        URLProtocolStub.stubResponseData = Data("{}".utf8)
+        defer { URLProtocolStub.reset() }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let sut = URLSessionNetworkService(session: URLProtocolStub.makeSession())
+
+        let _: EventRefreshResponseStub = try await sut.fetch(request)
+
+        #expect(URLProtocolStub.capturedRequest?.httpMethod == "POST")
+    }
 }
+
+private struct EventRefreshResponseStub: Decodable {}

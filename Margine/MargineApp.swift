@@ -15,6 +15,7 @@ struct MargineApp: App {
     private let oddsListViewModel: OddsListViewModel
     private let profileViewModel: ProfileViewModel
     private let bookmakerPreferencesStore: BookmakerPreferencesStore
+    private let makeExecutionWizardViewModel: (MatchOdds) -> ExecutionWizardViewModel
 
     init() {
         FirebaseApp.configure()
@@ -34,6 +35,12 @@ struct MargineApp: App {
         let bookmakerPreferencesStore = BookmakerPreferencesStore()
         self.bookmakerPreferencesStore = bookmakerPreferencesStore
 
+        let networkService = URLSessionNetworkService()
+        let oddsRepository = DefaultOddsRepository(
+            networkService: networkService,
+            baseURL: "https://margine-odds-worker.margine-app.workers.dev"
+        )
+
         let useCase: DetectArbitrageUseCase
         if isUITestingSignedOut {
             // UI tests only need the screen to have *some* matches on it, not real
@@ -41,12 +48,7 @@ struct MargineApp: App {
             // (very tight) free-tier quota for no benefit.
             useCase = MockDetectArbitrageUseCase()
         } else {
-            let networkService = URLSessionNetworkService()
-            let repository = DefaultOddsRepository(
-                networkService: networkService,
-                baseURL: "https://margine-odds-worker.margine-app.workers.dev"
-            )
-            useCase = DefaultDetectArbitrageUseCase(repository: repository, preferences: bookmakerPreferencesStore)
+            useCase = DefaultDetectArbitrageUseCase(repository: oddsRepository, preferences: bookmakerPreferencesStore)
         }
         let liveOddsService = LiveOddsService(useCase: useCase)
         let oddsListViewModel = OddsListViewModel(liveOddsService: liveOddsService, analytics: analytics)
@@ -57,13 +59,26 @@ struct MargineApp: App {
             bookmakerStore: bookmakerPreferencesStore,
             refreshOdds: { await oddsListViewModel.manualRefresh() }
         )
+
+        makeExecutionWizardViewModel = { match in
+            ExecutionWizardViewModel(
+                match: match,
+                oddsRepository: oddsRepository,
+                preferences: bookmakerPreferencesStore,
+                analytics: analytics
+            )
+        }
     }
 
     var body: some Scene {
         WindowGroup {
             Group {
                 if authViewModel.isAuthenticated {
-                    MainTabView(oddsListViewModel: oddsListViewModel, profileViewModel: profileViewModel)
+                    MainTabView(
+                        oddsListViewModel: oddsListViewModel,
+                        profileViewModel: profileViewModel,
+                        makeExecutionWizardViewModel: makeExecutionWizardViewModel
+                    )
                 } else {
                     LoginView(viewModel: authViewModel)
                 }

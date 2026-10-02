@@ -11,6 +11,12 @@
         }
       }
     },
+    ", no cobrás nada por esa pata: tu cobertura quedó incompleta." : {
+
+    },
+    "¿Cuánto querés apostar en total?" : {
+
+    },
     "¿No tenés cuenta? Registrate" : {
       "localizations" : {
         "en" : {
@@ -30,6 +36,9 @@
           }
         }
       }
+    },
+    ". Reparto ajustado a lo que queda de presupuesto." : {
+
     },
     ")." : {
       "localizations" : {
@@ -77,6 +86,9 @@
         }
       }
     },
+    "Abrir %@" : {
+
+    },
     "Accedé para ver tus partidos" : {
       "localizations" : {
         "en" : {
@@ -97,6 +109,9 @@
         }
       }
     },
+    "Buscando la cuota más reciente…" : {
+
+    },
     "Buscar equipo" : {
       "localizations" : {
         "en" : {
@@ -106,6 +121,18 @@
           }
         }
       }
+    },
+    "Calculá tu apuesta" : {
+
+    },
+    "Calcular mi apuesta" : {
+
+    },
+    "Calcular reparto" : {
+
+    },
+    "Cancelar" : {
+
     },
     "Casas de apuestas para arbitraje" : {
       "localizations" : {
@@ -117,6 +144,9 @@
         }
       }
     },
+    "Cerrar" : {
+
+    },
     "Cerrar sesión" : {
       "localizations" : {
         "en" : {
@@ -126,6 +156,15 @@
           }
         }
       }
+    },
+    "Cobrás %@" : {
+
+    },
+    "Colocá cada pata en su casa" : {
+
+    },
+    "Colocada" : {
+
     },
     "Cómo jugar" : {
       "localizations" : {
@@ -177,6 +216,9 @@
         }
       }
     },
+    "Cuota %@" : {
+
+    },
     "Demasiados intentos. Esperá un momento y probá de nuevo." : {
       "localizations" : {
         "en" : {
@@ -207,6 +249,9 @@
         }
       }
     },
+    "el resultado que falló" : {
+
+    },
     "El servidor respondió con un error (código " : {
       "localizations" : {
         "en" : {
@@ -218,6 +263,7 @@
       }
     },
     "Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado.\n\nPor ejemplo: con cuotas 2.00 / 4.00 / 5.00 para 1 / X / 2, apostando $100 en total repartís $52,63 al resultado 1, $26,32 al empate y $21,05 al resultado 2 (cada monto es proporcional a 1/cuota). Gane quien gane, cobrás $105,26 — quedan $5,26 de ganancia neta pase lo que pase." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -226,6 +272,9 @@
           }
         }
       }
+    },
+    "Elegimos la cuota más alta de cada resultado por vos. Cuando aparece el arbitraje, repartí tu apuesta entre las casas en proporción inversa a la cuota de cada resultado: así ganás lo mismo pase lo que pase, y ese monto supera lo apostado. Tocá \"Calcular mi apuesta\" para que te calculemos el monto exacto por casa con la cuota más fresca que consigamos." : {
+
     },
     "Email" : {
       "localizations" : {
@@ -257,6 +306,9 @@
         }
       }
     },
+    "Empezar a apostar" : {
+
+    },
     "Esta cuenta fue deshabilitada." : {
       "localizations" : {
         "en" : {
@@ -266,6 +318,21 @@
           }
         }
       }
+    },
+    "Este partido ya no tiene una oportunidad de arbitraje real para repartir." : {
+
+    },
+    "Esto usa la cuota más fresca que pudimos conseguir, pero sigue viniendo de un agregador de terceros — puede diferir un poco de lo que veas al entrar a cada casa. Revisá el monto antes de confirmar en cada una." : {
+
+    },
+    "Ganancia garantizada si sale cualquiera de estos resultados: %@." : {
+
+    },
+    "Ingresá un monto mayor a cero para calcular el reparto." : {
+
+    },
+    "Ingresá un monto válido para calcular el reparto." : {
+
     },
     "Ingresar" : {
       "localizations" : {
@@ -297,7 +364,11 @@
         }
       }
     },
+    "Margine es solo informativa: no es asesoramiento financiero ni una casa de apuestas, y nunca coloca una apuesta por vos — vos apostás a mano en cada casa. Las cuotas vienen de un agregador de terceros y pueden diferir de lo que muestre la casa antes de que confirmes tu apuesta, y apostar puede estar restringido según tu jurisdicción — verificá la normativa local antes de usar cualquier casa de apuestas." : {
+
+    },
     "Margine es solo informativa: no es asesoramiento financiero ni una casa de apuestas. Las cuotas pueden cambiar en la casa de apuestas antes de que confirmes tu apuesta, y apostar puede estar restringido según tu jurisdicción — verificá la normativa local antes de usar cualquier casa de apuestas." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -317,6 +388,9 @@
         }
       }
     },
+    "Monto total a apostar" : {
+
+    },
     "Ningún partido coincide con el filtro actual." : {
       "localizations" : {
         "en" : {
@@ -327,6 +401,9 @@
         }
       }
     },
+    "No alcanza para cubrir el peor caso con lo que queda: si sale el resultado más caro podés perder hasta " : {
+
+    },
     "No hay partidos disponibles en este momento." : {
       "localizations" : {
         "en" : {
@@ -336,6 +413,12 @@
           }
         }
       }
+    },
+    "No pude apostar" : {
+
+    },
+    "No quedan patas pendientes para reasignar. Si gana " : {
+
     },
     "No se pudo abrir el selector de cuentas de Google." : {
       "localizations" : {
@@ -366,6 +449,9 @@
           }
         }
       }
+    },
+    "No se pudo colocar" : {
+
     },
     "No se pudo construir la URL del pedido." : {
       "localizations" : {
@@ -477,6 +563,15 @@
         }
       }
     },
+    "Repartimos este monto entre las casas en proporción inversa a cada cuota, para que ganes lo mismo pase lo que pase." : {
+
+    },
+    "Reparto calculado" : {
+
+    },
+    "Salteada" : {
+
+    },
     "Se alcanzó el límite de pedidos a la API. Probá de nuevo en unos minutos." : {
       "localizations" : {
         "en" : {
@@ -517,6 +612,9 @@
         }
       }
     },
+    "Todavía no colocaste ninguna pata: podés cancelar sin pérdida, no hay nada que recalcular." : {
+
+    },
     "Todavía no vimos casas de apuestas. Abrí la lista de partidos para que se detecten." : {
       "localizations" : {
         "en" : {
@@ -526,6 +624,9 @@
           }
         }
       }
+    },
+    "Todavía se puede cubrir por completo: ajustá las patas pendientes a estos montos nuevos." : {
+
     },
     "tu@email.com" : {
       "localizations" : {
@@ -546,6 +647,9 @@
           }
         }
       }
+    },
+    "Ya aposté" : {
+
     },
     "Ya existe una cuenta con ese email." : {
       "localizations" : {

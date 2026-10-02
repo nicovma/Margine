@@ -29,13 +29,27 @@ struct DefaultOddsRepositoryTests {
             _ = try await sut.fetchUpcomingOdds(sport: "soccer epl")
         }
     }
+
+    @Test("refreshEvent hace POST contra /events/:eventId/refresh")
+    func refreshEventPostsToExpectedURL() async throws {
+        let networkService = SpyNetworkService()
+        let sut = DefaultOddsRepository(networkService: networkService, baseURL: "https://worker.example.com")
+
+        _ = try? await sut.refreshEvent(eventId: "event-1")
+
+        let request = try #require(networkService.capturedRequest)
+        #expect(request.url?.absoluteString == "https://worker.example.com/events/event-1/refresh")
+        #expect(request.httpMethod == "POST")
+    }
 }
 
 private final class SpyNetworkService: NetworkService {
     private(set) var capturedURL: URL?
+    private(set) var capturedRequest: URLRequest?
 
-    func fetch<T: Decodable>(_ url: URL) async throws -> T {
-        capturedURL = url
+    func fetch<T: Decodable>(_ request: URLRequest) async throws -> T {
+        capturedURL = request.url
+        capturedRequest = request
         throw NetworkError.invalidResponse
     }
 }

@@ -21,6 +21,7 @@ struct MatchOdds: Identifiable, Hashable {
 }
 
 struct BestOutcome: Hashable {
+    let bookmakerKey: String
     let bookmakerTitle: String
     let price: Double
 }
