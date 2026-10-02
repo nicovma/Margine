@@ -27,6 +27,13 @@ final class DefaultDetectArbitrageUseCase: DetectArbitrageUseCase {
 
     private func analyze(_ event: OddsEvent) async -> MatchOdds {
         var bestOutcomes: [String: BestOutcome] = [:]
+        // Every outcome any bookmaker lists for this match, enabled or not: an
+        // arbitrage only exists if *all* of them are covered by a valid price.
+        let expectedOutcomes = Set(
+            event.bookmakers
+                .compactMap { $0.markets.first(where: { $0.key == "h2h" }) }
+                .flatMap { $0.outcomes.map(\.name) }
+        )
 
         for bookmaker in event.bookmakers {
             guard await preferences.isEnabled(bookmaker.key) else { continue }
@@ -51,8 +58,11 @@ final class DefaultDetectArbitrageUseCase: DetectArbitrageUseCase {
             )
         }
 
+        // Summing only the outcomes we do have prices for would understate the
+        // implied probability and flag a false arbitrage (e.g. a missing "Draw").
+        let coversAllOutcomes = Set(bestOutcomes.keys) == expectedOutcomes
         let impliedProbabilitySum = bestOutcomes.values.reduce(0) { $0 + (1 / $1.price) }
-        let hasArbitrage = impliedProbabilitySum < 1.0
+        let hasArbitrage = coversAllOutcomes && impliedProbabilitySum < 1.0
         let margin = hasArbitrage ? (1 / impliedProbabilitySum - 1) * 100 : nil
 
         return MatchOdds(

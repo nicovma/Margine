@@ -27,7 +27,7 @@ struct LiveOddsCoordinatorTests {
         let sut = LiveOddsCoordinator(useCase: mock, sport: "soccer_epl")
 
         async let first = sut.refreshIfNeeded()
-        await mock.waitUntilStarted() // esperamos la señal real, no un tiempo fijo
+        await mock.waitUntilStarted() // wait for the real signal, not a fixed delay
 
         let second = try await sut.refreshIfNeeded()
         #expect(second == nil)
@@ -37,7 +37,7 @@ struct LiveOddsCoordinatorTests {
 
         #expect(firstResult?.count == MockDetectArbitrageUseCase.sampleMatches.count)
         let callCount = await mock.executeCallCount
-        #expect(callCount == 1) // la prueba real del guard
+        #expect(callCount == 1) // the actual proof of the guard
     }
 }
 

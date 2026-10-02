@@ -53,7 +53,7 @@ struct MargineApp: App {
         self.oddsListViewModel = oddsListViewModel
 
         profileViewModel = ProfileViewModel(
-            authViewModel: authViewModel,
+            authUseCase: authUseCase,
             bookmakerStore: bookmakerPreferencesStore,
             refreshOdds: { await oddsListViewModel.manualRefresh() }
         )

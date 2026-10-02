@@ -13,6 +13,7 @@ final class MockAuthRepository: AuthRepository {
     var signInResult: Result<AuthUser, Error> = .success(AuthUser(uid: "mock-uid", email: "test@test.com"))
     var signUpResult: Result<AuthUser, Error> = .success(AuthUser(uid: "mock-uid", email: "test@test.com"))
     var signInWithGoogleResult: Result<AuthUser, Error> = .success(AuthUser(uid: "mock-google-uid", email: "test@gmail.com"))
+    var signOutError: Error?
     private(set) var signOutCallCount = 0
 
     var currentUser: AuthUser? {
@@ -45,6 +46,7 @@ final class MockAuthRepository: AuthRepository {
 
     func signOut() throws {
         signOutCallCount += 1
+        if let signOutError { throw signOutError }
         currentUser = nil
     }
 }

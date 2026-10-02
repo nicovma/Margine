@@ -26,48 +26,67 @@ final class ProfileViewModelTests: XCTestCase {
     }
 
     private func makeSUT(
-        authViewModel: AuthViewModel,
+        repository: MockAuthRepository = MockAuthRepository(),
+        store: BookmakerPreferencesStore? = nil,
         refreshOdds: @escaping () async -> Void = {}
     ) -> ProfileViewModel {
         ProfileViewModel(
-            authViewModel: authViewModel,
-            bookmakerStore: BookmakerPreferencesStore(defaults: defaults),
+            authUseCase: DefaultAuthUseCase(repository: repository),
+            bookmakerStore: store ?? BookmakerPreferencesStore(defaults: defaults),
             refreshOdds: refreshOdds
         )
     }
 
-    func test_userEmail_reflectsCurrentAuthenticatedUser() async {
-        let repository = MockAuthRepository()
-        let authViewModel = AuthViewModel(authUseCase: DefaultAuthUseCase(repository: repository))
-        authViewModel.email = "test@test.com"
-        authViewModel.password = "123456"
-        await authViewModel.signIn()
-        let sut = makeSUT(authViewModel: authViewModel)
+    func test_userEmail_reflectsCurrentAuthenticatedUser() {
+        let repository = MockAuthRepository(currentUser: AuthUser(uid: "uid", email: "test@test.com"))
+        let sut = makeSUT(repository: repository)
 
         XCTAssertEqual(sut.userEmail, "test@test.com")
     }
 
     func test_userEmail_isNil_whenNotAuthenticated() {
-        let repository = MockAuthRepository()
-        let authViewModel = AuthViewModel(authUseCase: DefaultAuthUseCase(repository: repository))
-        let sut = makeSUT(authViewModel: authViewModel)
+        let sut = makeSUT()
 
         XCTAssertNil(sut.userEmail)
     }
 
-    func test_signOut_delegatesToAuthViewModel() async {
+    func test_signOut_endsSessionThroughUseCase() {
+        let repository = MockAuthRepository(currentUser: AuthUser(uid: "uid", email: "test@test.com"))
+        let sut = makeSUT(repository: repository)
+
+        sut.signOut()
+
+        XCTAssertEqual(repository.signOutCallCount, 1)
+        XCTAssertNil(repository.currentUser)
+        XCTAssertNil(sut.errorMessage)
+    }
+
+    func test_signOut_failure_setsErrorMessage_andKeepsSession() {
+        let repository = MockAuthRepository(currentUser: AuthUser(uid: "uid", email: "test@test.com"))
+        repository.signOutError = SignOutStubError()
+        let sut = makeSUT(repository: repository)
+
+        sut.signOut()
+
+        XCTAssertEqual(sut.errorMessage, "No se pudo cerrar la sesión. Intentá de nuevo.")
+        XCTAssertEqual(sut.userEmail, "test@test.com")
+    }
+
+    func test_signOut_switchesSessionGateBackToLogin() async {
         let repository = MockAuthRepository()
         let authViewModel = AuthViewModel(authUseCase: DefaultAuthUseCase(repository: repository))
         authViewModel.email = "test@test.com"
         authViewModel.password = "123456"
         await authViewModel.signIn()
         XCTAssertTrue(authViewModel.isAuthenticated, "precondition: sign-in should have succeeded")
-        let sut = makeSUT(authViewModel: authViewModel)
+        let sut = makeSUT(repository: repository)
 
         sut.signOut()
 
         XCTAssertFalse(authViewModel.isAuthenticated)
-        XCTAssertEqual(repository.signOutCallCount, 1)
+        guard case .idle = authViewModel.state else {
+            return XCTFail("expected AuthViewModel to drop its stale .loaded state")
+        }
     }
 
     func test_bookmakerRows_reflectsKnownBookmakersAndEnabledState() {
@@ -77,8 +96,7 @@ final class ProfileViewModelTests: XCTestCase {
             Bookmaker(key: "betfair", title: "Betfair", markets: [])
         ])
         store.setEnabled(false, for: "betfair")
-        let authViewModel = AuthViewModel(authUseCase: DefaultAuthUseCase(repository: MockAuthRepository()))
-        let sut = ProfileViewModel(authViewModel: authViewModel, bookmakerStore: store, refreshOdds: {})
+        let sut = makeSUT(store: store)
 
         XCTAssertEqual(
             Set(sut.bookmakerRows),
@@ -92,9 +110,8 @@ final class ProfileViewModelTests: XCTestCase {
     func test_setBookmakerEnabled_updatesStore_andTriggersRefresh() async {
         let store = BookmakerPreferencesStore(defaults: defaults)
         store.recordSeen([Bookmaker(key: "bet365", title: "Bet365", markets: [])])
-        let authViewModel = AuthViewModel(authUseCase: DefaultAuthUseCase(repository: MockAuthRepository()))
         let refreshCalled = expectation(description: "refreshOdds called")
-        let sut = ProfileViewModel(authViewModel: authViewModel, bookmakerStore: store, refreshOdds: {
+        let sut = makeSUT(store: store, refreshOdds: {
             refreshCalled.fulfill()
         })
 
@@ -105,3 +122,5 @@ final class ProfileViewModelTests: XCTestCase {
         await fulfillment(of: [refreshCalled], timeout: 1)
     }
 }
+
+private struct SignOutStubError: Error {}

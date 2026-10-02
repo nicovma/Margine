@@ -9,7 +9,7 @@ import Testing
 
 struct DefaultOddsRepositoryTests {
 
-    @Test("Construye la URL contra el baseURL configurado, con el sport en el path")
+    @Test("Builds the URL against the configured baseURL, with the sport in the path")
     func buildsExpectedURL() async throws {
         let networkService = SpyNetworkService()
         let sut = DefaultOddsRepository(networkService: networkService, baseURL: "https://worker.example.com")
@@ -20,7 +20,7 @@ struct DefaultOddsRepositoryTests {
         #expect(url.absoluteString == "https://worker.example.com/sports/top-leagues/odds")
     }
 
-    @Test("Un sport con caracteres inválidos lanza invalidURL en vez de crashear")
+    @Test("A sport with invalid characters throws invalidURL instead of crashing")
     func invalidSportThrowsInsteadOfCrashing() async throws {
         let networkService = SpyNetworkService()
         let sut = DefaultOddsRepository(networkService: networkService, baseURL: "https://worker.example.com")

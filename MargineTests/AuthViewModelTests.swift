@@ -114,19 +114,18 @@ final class AuthViewModelTests: XCTestCase {
         XCTAssertFalse(sut.isAuthenticated)
     }
 
-    func test_signOut_clearsSessionAndResetsState() async {
+    func test_sessionEndedElsewhere_resetsLoadedStateToIdle() async {
         let repository = MockAuthRepository()
         let sut = AuthViewModel(authUseCase: DefaultAuthUseCase(repository: repository))
         sut.email = "test@test.com"
         sut.password = "123456"
         await sut.signIn()
-        XCTAssertTrue(sut.isAuthenticated, "precondition: sign-in should have succeeded")
 
-        sut.signOut()
+        repository.currentUser = nil
 
         XCTAssertFalse(sut.isAuthenticated)
         guard case .idle = sut.state else {
-            return XCTFail("expected .idle state")
+            return XCTFail("expected .idle state after the session ended outside the ViewModel")
         }
     }
 }
