@@ -31,14 +31,14 @@ View ── ViewModel ── UseCase ── Repository ── NetworkService ─
                    auth error mapping)
 ```
 
-- **Repository** (`OddsRepository`, `AuthRepository`) — the only layer that knows about network requests or the Firebase/GoogleSignIn SDKs. `OddsRepository` talks to a Cloudflare Worker (`margine-odds-worker`) over plain HTTP via `NetworkService`; the worker itself caches [The Odds API](https://the-odds-api.com), so the client never holds an API key or hits the external API directly. `AuthRepository` talks to Firebase Auth (email/password and Google) via the Firebase/GoogleSignIn SDKs.
+- **Repository** (`OddsRepository`, `AuthRepository`) — the only layer that knows about network requests or the Firebase/GoogleSignIn SDKs. `OddsRepository` talks to a Cloudflare Worker (`margine-odds-worker`) over plain HTTP via `NetworkService`; the worker itself caches [The Odds API](https://the-odds-api.com), so the client never holds an API key or hits the external API directly. `AuthRepository` talks to Firebase Auth (email/password and Google) via the Firebase/GoogleSignIn SDKs. SDK errors are translated into a domain `AuthError` inside `FirebaseAuthRepository`, so ViewModels and their tests never import FirebaseAuth.
 - **UseCase** (`DetectArbitrageUseCase`, `AuthUseCase`) — pure business logic, no I/O. This is where the arbitrage math lives, independently testable from networking.
 - **ViewModel** — exposes a `ViewState<T>` enum (`idle` / `loading` / `loaded` / `error`) to each View, and owns Combine wiring (live odds pipeline, search debounce, auth state subscription).
 - **View** — SwiftUI, no business logic.
 
 Live odds use a small reactive pipeline: `LiveOddsService` exposes a `CurrentValueSubject` polled every 60s via `Timer.publish`, bridged to an `actor LiveOddsCoordinator` that guards against overlapping refreshes (manual pull-to-refresh vs. the automatic poll never race).
 
-**Bookmaker filtering** (`Services/Bookmakers/`) is its own small piece, same protocol-first pattern: `BookmakerPreferencesStore` (backed by `UserDefaults`) records every bookmaker the app has ever seen in a response and tracks which ones are disabled — new bookmakers are opt-out, so existing behavior never silently changes. It's injected straight into `DefaultDetectArbitrageUseCase`, the only layer that already needs to look at each bookmaker's odds to compute `bestOutcomes` — filtering there means the Repository and ViewModel don't need to know it exists. The Profile tab reads and writes the same store, and triggers a manual refresh after a toggle so the change is reflected without waiting for the next poll.
+**Bookmaker filtering** (`Services/Bookmakers/`) is its own small piece, same protocol-first pattern: `BookmakerPreferencesStore` (backed by `UserDefaults`) records every bookmaker the app has ever seen in a response and tracks which ones are disabled — new bookmakers are opt-out, so existing behavior never silently changes. It's injected straight into `DefaultDetectArbitrageUseCase`, the only layer that already needs to look at each bookmaker's odds to compute `bestOutcomes` — filtering there means the Repository and ViewModel don't need to know it exists. The Profile tab reads and writes the same store through a separate `BookmakerPreferencesManaging` protocol (observe + toggle, nothing else), and triggers a manual refresh after a toggle so the change is reflected without waiting for the next poll.
 
 For a deeper dive into design decisions, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
@@ -63,16 +63,16 @@ The app needs a few files that are gitignored on purpose (never commit API keys 
 
 2. `Margine/GoogleService-Info-Dev.plist` and `Margine/GoogleService-Info-Prod.plist` — download each from its own Firebase project (Firebase Console → Project settings → your iOS app), with **Email/Password** and **Google** both enabled under Authentication → Sign-in method. A Run Script build phase copies the right one to `Margine/GoogleService-Info.plist` based on the active configuration (Debug → Dev, Release → Prod); that generated file is also gitignored. The Google client ID/URL scheme above come straight from each plist's `CLIENT_ID`/`REVERSED_CLIENT_ID`. One Firebase project reused for both configs works too — just point both plists at it.
 
-Then open `Margine.xcodeproj` and run. Requires Xcode 16+, iOS 18.5+.
+Then open `Margine.xcodeproj` and run. Requires Xcode 26+, iOS 18.5+ (iPhone only).
 
 ## Testing
 
 ```
 xcodebuild test -project Margine.xcodeproj -scheme Margine \
-  -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest'
+  -destination 'platform=iOS Simulator,name=iPhone 17,OS=latest'
 ```
 
-Unit tests cover the arbitrage use case (including bookmaker filtering), the bookmaker preferences store, all four ViewModels, the live-odds actor/Combine pipeline, and the networking layer (status codes, decoding failures, rate-limit handling, URL construction) via a stubbed `URLProtocol`. They don't need any of the Setup files above.
+Unit tests cover the arbitrage use case (including bookmaker filtering), the bookmaker preferences store, all three ViewModels, the live-odds actor/Combine pipeline, and the networking layer (status codes, decoding failures, rate-limit handling, URL construction) via a stubbed `URLProtocol`. They don't need any of the Setup files above.
 
 The UI test target exercises the real login flow (happy and error paths) against a dedicated test Firebase account, and needs one more gitignored file, `MargineUITests/TestCredentials.swift`:
 ```swift

@@ -53,7 +53,7 @@ struct MainTabView: View {
     MainTabView(
         oddsListViewModel: OddsListViewModel(liveOddsService: MockLiveOddsService()),
         profileViewModel: ProfileViewModel(
-            authViewModel: AuthViewModel(authUseCase: DefaultAuthUseCase(repository: MockAuthRepository(currentUser: AuthUser(uid: "preview", email: "nico@ejemplo.com")))),
+            authUseCase: DefaultAuthUseCase(repository: MockAuthRepository(currentUser: AuthUser(uid: "preview", email: "nico@ejemplo.com"))),
             bookmakerStore: BookmakerPreferencesStore(defaults: UserDefaults(suiteName: "MainTabView.preview")!),
             refreshOdds: {}
         )

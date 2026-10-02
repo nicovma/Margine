@@ -11,3 +11,12 @@ GoogleService-Info-Prod.plist
 MargineUITests/TestCredentials.swift
 PRODUCTION_READINESS.md
 ARCH_PROPOSAL.md
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+*.p12
+*.mobileprovision
+AuthKey_*.p8

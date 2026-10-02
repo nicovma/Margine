@@ -9,7 +9,7 @@ import Testing
 
 struct DefaultAuthUseCaseTests {
 
-    @Test("Sign in exitoso devuelve el usuario del repository")
+    @Test("Successful sign in returns the repository user")
     func signInSuccessReturnsUser() async throws {
         let repository = MockAuthRepository()
         repository.signInResult = .success(AuthUser(uid: "mock-uid", email: "test@test.com"))
@@ -20,7 +20,7 @@ struct DefaultAuthUseCaseTests {
         #expect(user.email == "test@test.com")
     }
 
-    @Test("Email inválido lanza invalidEmailFormat sin llegar al repository")
+    @Test("Invalid email throws invalidEmailFormat without reaching the repository")
     func signInInvalidEmailThrowsValidationError() async throws {
         let repository = MockAuthRepository()
         repository.signInResult = .failure(NSError(domain: "should-not-be-called", code: 0))
@@ -30,12 +30,12 @@ struct DefaultAuthUseCaseTests {
             try await sut.signIn(email: "not-an-email", password: "123456")
         }
         guard case .invalidEmailFormat = error else {
-            Issue.record("Se esperaba .invalidEmailFormat, se obtuvo \(error)")
+            Issue.record("Expected .invalidEmailFormat, got \(error)")
             return
         }
     }
 
-    @Test("Contraseña corta en sign up lanza passwordTooShort sin llegar al repository")
+    @Test("Short password on sign up throws passwordTooShort without reaching the repository")
     func signUpPasswordTooShortThrowsValidationError() async throws {
         let repository = MockAuthRepository()
         repository.signUpResult = .failure(NSError(domain: "should-not-be-called", code: 0))
@@ -45,13 +45,13 @@ struct DefaultAuthUseCaseTests {
             try await sut.signUp(email: "test@test.com", password: "123")
         }
         guard case .passwordTooShort(let minimumLength) = error else {
-            Issue.record("Se esperaba .passwordTooShort, se obtuvo \(error)")
+            Issue.record("Expected .passwordTooShort, got \(error)")
             return
         }
         #expect(minimumLength == 6)
     }
 
-    @Test("Error del repository en sign in se propaga sin modificarse")
+    @Test("A repository error on sign in propagates unchanged")
     func signInPropagatesRepositoryError() async throws {
         let repository = MockAuthRepository()
         let repositoryError = NSError(domain: "FIRAuthErrorDomain", code: 17009)

@@ -17,28 +17,36 @@ final class ProfileViewModel: ObservableObject {
         var id: String { key }
     }
 
-    private let authViewModel: AuthViewModel
-    private let bookmakerStore: BookmakerPreferencesStore
+    private let authUseCase: AuthUseCase
+    private let bookmakerStore: BookmakerPreferencesManaging
     private let refreshOdds: () async -> Void
 
     @Published private(set) var bookmakerRows: [BookmakerRow] = []
+    @Published var errorMessage: String?
 
-    init(authViewModel: AuthViewModel, bookmakerStore: BookmakerPreferencesStore, refreshOdds: @escaping () async -> Void) {
-        self.authViewModel = authViewModel
+    init(authUseCase: AuthUseCase, bookmakerStore: BookmakerPreferencesManaging, refreshOdds: @escaping () async -> Void) {
+        self.authUseCase = authUseCase
         self.bookmakerStore = bookmakerStore
         self.refreshOdds = refreshOdds
 
-        Publishers.CombineLatest(bookmakerStore.$knownBookmakers, bookmakerStore.$disabledKeys)
+        Publishers.CombineLatest(bookmakerStore.knownBookmakersPublisher, bookmakerStore.disabledKeysPublisher)
             .map { known, disabled in
                 known.map { BookmakerRow(key: $0.key, title: $0.title, isEnabled: !disabled.contains($0.key)) }
             }
             .assign(to: &$bookmakerRows)
     }
 
-    var userEmail: String? { authViewModel.currentUserEmail }
+    var userEmail: String? { authUseCase.currentUser?.email }
 
+    /// The session gate (`AuthViewModel.isAuthenticated`) observes the same
+    /// auth state stream, so a successful sign-out swaps back to the login
+    /// screen on its own — this only has to surface a failure.
     func signOut() {
-        authViewModel.signOut()
+        do {
+            try authUseCase.signOut()
+        } catch {
+            errorMessage = String(localized: "No se pudo cerrar la sesión. Intentá de nuevo.")
+        }
     }
 
     func setBookmakerEnabled(_ isEnabled: Bool, key: String) {

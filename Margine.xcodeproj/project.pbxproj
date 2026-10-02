@@ -13,6 +13,7 @@
 		03823BC830559A1800DE14DC /* MockLiveOddsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC730559A1700DE14DC /* MockLiveOddsService.swift */; };
 		03823BCA30559ED400DE14DC /* LiveOddsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */; };
 		03823BDF3056E13100DE14DC /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BDE3056E13000DE14DC /* AuthUser.swift */; };
+		FF41ACCFE7DF54C80C8FFFCA /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330B25D3E37FC2BED5F8EDE2 /* AuthError.swift */; };
 		03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE03056E14F00DE14DC /* AuthRepository.swift */; };
 		03823BE53056E1FF00DE14DC /* FirebaseAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */; };
 		F802CA3651E046A28D8DD7C0 /* AnalyticsLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */; };
@@ -80,6 +81,7 @@
 		03823BC930559ED300DE14DC /* LiveOddsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveOddsCoordinator.swift; sourceTree = "<group>"; };
 		03823BDE3056E13000DE14DC /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		03823BE03056E14F00DE14DC /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		330B25D3E37FC2BED5F8EDE2 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthRepository.swift; sourceTree = "<group>"; };
 		09F5BADD09F541EBAF73664B /* AnalyticsLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLogging.swift; sourceTree = "<group>"; };
 		1075FB7B484B4019967E2E3F /* FirebaseAnalyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsLogger.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				03823BE43056E1FD00DE14DC /* FirebaseAuthRepository.swift */,
 				03823BE03056E14F00DE14DC /* AuthRepository.swift */,
+				330B25D3E37FC2BED5F8EDE2 /* AuthError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				03A7485E303CF04300F49C45 /* URLSessionNetworkService.swift in Sources */,
 				03A7486A303CF84D00F49C45 /* DefaultDetectArbitrageUseCase.swift in Sources */,
 				03823BE13056E15000DE14DC /* AuthRepository.swift in Sources */,
+				FF41ACCFE7DF54C80C8FFFCA /* AuthError.swift in Sources */,
 				F802CA3651E046A28D8DD7C0 /* AnalyticsLogging.swift in Sources */,
 				4D8235DFBC5142F6B83A3285 /* FirebaseAnalyticsLogger.swift in Sources */,
 				C720A0EB82414DB0A4E87463 /* NoOpAnalyticsLogger.swift in Sources */,
@@ -816,7 +820,6 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -827,7 +830,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -838,9 +841,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Margine/Margine.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9HY9G7NYSB;
+				DEVELOPMENT_TEAM = "$(SIGNING_TEAM)";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -848,7 +852,6 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -857,9 +860,10 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nicovma.Margine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "$(SIGNING_PROFILE_SPECIFIER)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

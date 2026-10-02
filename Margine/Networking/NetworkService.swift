@@ -26,9 +26,7 @@ extension NetworkError: LocalizedError {
         case .invalidURL:
             return String(localized: "No se pudo construir la URL del pedido.")
         case .httpError(let statusCode):
-            let prefix = String(localized: "El servidor respondió con un error (código ")
-            let suffix = String(localized: ").")
-            return "\(prefix)\(statusCode)\(suffix)"
+            return String(localized: "El servidor respondió con un error (código \(statusCode)).")
         case .rateLimited:
             return String(localized: "Se alcanzó el límite de pedidos a la API. Probá de nuevo en unos minutos.")
         case .decodingFailed:

@@ -6,7 +6,6 @@
 //
 import Combine
 import Foundation
-import FirebaseAuth
 import UIKit
 
 @MainActor
@@ -20,8 +19,6 @@ final class AuthViewModel: ObservableObject {
     private let analytics: AnalyticsLogging
     private var cancellables = Set<AnyCancellable>()
 
-    var currentUserEmail: String? { authUseCase.currentUser?.email }
-
     init(authUseCase: AuthUseCase, analytics: AnalyticsLogging = NoOpAnalyticsLogger()) {
         self.authUseCase = authUseCase
         self.analytics = analytics
@@ -30,7 +27,12 @@ final class AuthViewModel: ObservableObject {
         authUseCase.authStateChanges
             .map { $0 != nil }
             .removeDuplicates()
-            .sink { [weak self] in self?.isAuthenticated = $0 }
+            .sink { [weak self] isAuthenticated in
+                self?.isAuthenticated = isAuthenticated
+                // Signing out can happen outside this ViewModel (Profile tab),
+                // so a stale `.loaded` session state must not survive it.
+                if !isAuthenticated { self?.state = .idle }
+            }
             .store(in: &cancellables)
     }
 
@@ -66,6 +68,8 @@ final class AuthViewModel: ObservableObject {
             let user = try await authUseCase.signInWithGoogle(presenting: presenter)
             state = .loaded(user)
             analytics.logLogin(method: "google")
+        } catch AuthError.cancelled {
+            state = .idle
         } catch {
             state = .error(mapError(error))
         }
@@ -79,27 +83,16 @@ final class AuthViewModel: ObservableObject {
             .rootViewController
     }
 
-    func signOut() {
-        do {
-            try authUseCase.signOut()
-            state = .idle
-        } catch {
-            state = .error(String(localized: "No se pudo cerrar la sesión. Intentá de nuevo."))
-        }
-    }
-
     private func mapError(_ error: Error) -> String {
         if let validationError = error as? AuthValidationError {
             return validationError.errorDescription ?? String(localized: "Ocurrió un error. Intentá de nuevo.")
         }
-        let nsError = error as NSError
-        switch AuthErrorCode(rawValue: nsError.code) {
+        switch error as? AuthError {
         case .invalidEmail: return String(localized: "El email no es válido.")
-        case .wrongPassword, .invalidCredential: return String(localized: "Email o contraseña incorrectos.")
+        case .wrongCredentials: return String(localized: "Email o contraseña incorrectos.")
         case .emailAlreadyInUse: return String(localized: "Ya existe una cuenta con ese email.")
         case .weakPassword: return String(localized: "La contraseña es muy débil (mínimo 6 caracteres).")
         case .networkError: return String(localized: "Sin conexión. Probá de nuevo.")
-        case .userNotFound: return String(localized: "Email o contraseña incorrectos.")
         case .userDisabled: return String(localized: "Esta cuenta fue deshabilitada.")
         case .tooManyRequests: return String(localized: "Demasiados intentos. Esperá un momento y probá de nuevo.")
         default: return String(localized: "Ocurrió un error. Intentá de nuevo.")
