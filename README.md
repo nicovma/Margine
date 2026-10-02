@@ -31,7 +31,7 @@ View ── ViewModel ── UseCase ── Repository ── NetworkService ─
                    auth error mapping)
 ```
 
-- **Repository** (`OddsRepository`, `AuthRepository`) — the only layer that knows about network requests or the Firebase/GoogleSignIn SDKs. `OddsRepository` talks to a Cloudflare Worker (`margine-odds-worker`) over plain HTTP via `NetworkService`; the worker itself caches [The Odds API](https://the-odds-api.com), so the client never holds an API key or hits the external API directly. `AuthRepository` talks to Firebase Auth (email/password and Google) via the Firebase/GoogleSignIn SDKs.
+- **Repository** (`OddsRepository`, `AuthRepository`) — the only layer that knows about network requests or the Firebase/GoogleSignIn SDKs. `OddsRepository` talks to a Cloudflare Worker (`margine-odds-worker`) over plain HTTP via `NetworkService`; the worker itself caches [The Odds API](https://the-odds-api.com), so the client never holds an API key or hits the external API directly. `AuthRepository` talks to Firebase Auth (email/password and Google) via the Firebase/GoogleSignIn SDKs. SDK errors are translated into a domain `AuthError` inside `FirebaseAuthRepository`, so ViewModels and their tests never import FirebaseAuth.
 - **UseCase** (`DetectArbitrageUseCase`, `AuthUseCase`) — pure business logic, no I/O. This is where the arbitrage math lives, independently testable from networking.
 - **ViewModel** — exposes a `ViewState<T>` enum (`idle` / `loading` / `loaded` / `error`) to each View, and owns Combine wiring (live odds pipeline, search debounce, auth state subscription).
 - **View** — SwiftUI, no business logic.
