@@ -63,13 +63,13 @@ The app needs a few files that are gitignored on purpose (never commit API keys 
 
 2. `Margine/GoogleService-Info-Dev.plist` and `Margine/GoogleService-Info-Prod.plist` — download each from its own Firebase project (Firebase Console → Project settings → your iOS app), with **Email/Password** and **Google** both enabled under Authentication → Sign-in method. A Run Script build phase copies the right one to `Margine/GoogleService-Info.plist` based on the active configuration (Debug → Dev, Release → Prod); that generated file is also gitignored. The Google client ID/URL scheme above come straight from each plist's `CLIENT_ID`/`REVERSED_CLIENT_ID`. One Firebase project reused for both configs works too — just point both plists at it.
 
-Then open `Margine.xcodeproj` and run. Requires Xcode 16+, iOS 18.5+.
+Then open `Margine.xcodeproj` and run. Requires Xcode 26+, iOS 18.5+ (iPhone only).
 
 ## Testing
 
 ```
 xcodebuild test -project Margine.xcodeproj -scheme Margine \
-  -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest'
+  -destination 'platform=iOS Simulator,name=iPhone 17,OS=latest'
 ```
 
 Unit tests cover the arbitrage use case (including bookmaker filtering), the bookmaker preferences store, all three ViewModels, the live-odds actor/Combine pipeline, and the networking layer (status codes, decoding failures, rate-limit handling, URL construction) via a stubbed `URLProtocol`. They don't need any of the Setup files above.
