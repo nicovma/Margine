@@ -34,6 +34,17 @@ struct ProfileView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Perfil")
+            .alert(
+                "Cerrar sesión",
+                isPresented: Binding(
+                    get: { viewModel.errorMessage != nil },
+                    set: { if !$0 { viewModel.errorMessage = nil } }
+                )
+            ) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(viewModel.errorMessage ?? "")
+            }
         }
     }
 
@@ -139,7 +150,7 @@ struct ProfileView: View {
         Bookmaker(key: "pinnacle", title: "Pinnacle", markets: [])
     ])
     return ProfileView(viewModel: ProfileViewModel(
-        authViewModel: AuthViewModel(authUseCase: DefaultAuthUseCase(repository: MockAuthRepository(currentUser: AuthUser(uid: "preview", email: "nico@ejemplo.com")))),
+        authUseCase: DefaultAuthUseCase(repository: MockAuthRepository(currentUser: AuthUser(uid: "preview", email: "nico@ejemplo.com"))),
         bookmakerStore: store,
         refreshOdds: {}
     ))

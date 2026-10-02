@@ -4,10 +4,11 @@
 //
 //  Created by Nicolas Valentini on 13/9/2026.
 //
+import Combine
 import Foundation
 
 @MainActor
-final class BookmakerPreferencesStore: ObservableObject, BookmakerPreferences {
+final class BookmakerPreferencesStore: ObservableObject, BookmakerPreferences, BookmakerPreferencesManaging {
     private enum Keys {
         static let catalog = "bookmaker.catalog"
         static let disabledKeys = "bookmaker.disabledKeys"
@@ -17,6 +18,9 @@ final class BookmakerPreferencesStore: ObservableObject, BookmakerPreferences {
 
     @Published private(set) var knownBookmakers: [BookmakerInfo]
     @Published private(set) var disabledKeys: Set<String>
+
+    var knownBookmakersPublisher: AnyPublisher<[BookmakerInfo], Never> { $knownBookmakers.eraseToAnyPublisher() }
+    var disabledKeysPublisher: AnyPublisher<Set<String>, Never> { $disabledKeys.eraseToAnyPublisher() }
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults

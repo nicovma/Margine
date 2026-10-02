@@ -31,16 +31,6 @@
         }
       }
     },
-    ")." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ")."
-          }
-        }
-      }
-    },
     "% de margen" : {
       "localizations" : {
         "en" : {
@@ -207,12 +197,12 @@
         }
       }
     },
-    "El servidor respondió con un error (código " : {
+    "El servidor respondió con un error (código %lld)." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The server returned an error (code "
+            "value" : "The server returned an error (code %lld)."
           }
         }
       }

@@ -19,8 +19,6 @@ final class AuthViewModel: ObservableObject {
     private let analytics: AnalyticsLogging
     private var cancellables = Set<AnyCancellable>()
 
-    var currentUserEmail: String? { authUseCase.currentUser?.email }
-
     init(authUseCase: AuthUseCase, analytics: AnalyticsLogging = NoOpAnalyticsLogger()) {
         self.authUseCase = authUseCase
         self.analytics = analytics
@@ -29,7 +27,12 @@ final class AuthViewModel: ObservableObject {
         authUseCase.authStateChanges
             .map { $0 != nil }
             .removeDuplicates()
-            .sink { [weak self] in self?.isAuthenticated = $0 }
+            .sink { [weak self] isAuthenticated in
+                self?.isAuthenticated = isAuthenticated
+                // Signing out can happen outside this ViewModel (Profile tab),
+                // so a stale `.loaded` session state must not survive it.
+                if !isAuthenticated { self?.state = .idle }
+            }
             .store(in: &cancellables)
     }
 
@@ -78,15 +81,6 @@ final class AuthViewModel: ObservableObject {
             .flatMap(\.windows)
             .first(where: \.isKeyWindow)?
             .rootViewController
-    }
-
-    func signOut() {
-        do {
-            try authUseCase.signOut()
-            state = .idle
-        } catch {
-            state = .error(String(localized: "No se pudo cerrar la sesión. Intentá de nuevo."))
-        }
     }
 
     private func mapError(_ error: Error) -> String {

@@ -10,7 +10,7 @@ import Testing
 
 struct DetectArbitrageUseCaseTests {
     
-    @Test("Sin arbitraje cuando la suma de probabilidades implícitas supera 100%")
+    @Test("No arbitrage when the implied probability sum exceeds 100%")
     func noArbitrageWhenSumAboveOne() async throws {
         let event = Self.makeEvent(bookmakers: [
             Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.10), ("Draw", 3.40), ("Chelsea", 3.20)]),
@@ -25,7 +25,7 @@ struct DetectArbitrageUseCaseTests {
         #expect(result[0].arbitrageMargin == nil)
     }
     
-    @Test("Sin bookmakers, no hay arbitraje ni margen")
+    @Test("No bookmakers means no arbitrage and no margin")
     func noArbitrageWhenNoBookmakers() async throws {
         let event = Self.makeEvent(bookmakers: [])
         let sut = DefaultDetectArbitrageUseCase(repository: StubOddsRepository(events: [event]))
@@ -36,7 +36,7 @@ struct DetectArbitrageUseCaseTests {
         #expect(result[0].arbitrageMargin == nil)
     }
     
-    @Test("Detecta arbitraje cuando la suma de probabilidades implícitas es menor a 100%")
+    @Test("Detects arbitrage when the implied probability sum is below 100%")
     func detectsArbitrageWhenSumBelowOne() async throws {
         let event = Self.makeEvent(bookmakers: [
             Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.50), ("Draw", 3.60), ("Chelsea", 3.90)]),
@@ -51,7 +51,7 @@ struct DetectArbitrageUseCaseTests {
         #expect(margin > 0)
     }
     
-    @Test("Con cuotas empatadas entre casas, se queda con la primera encontrada")
+    @Test("With tied odds across bookmakers, keeps the first one found")
     func keepsFirstBookmakerWhenTied() async throws {
         let event = Self.makeEvent(bookmakers: [
             Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.50), ("Draw", 3.40), ("Chelsea", 3.20)]),
@@ -64,7 +64,7 @@ struct DetectArbitrageUseCaseTests {
         #expect(result[0].bestOutcomes["Arsenal"]?.bookmakerTitle == "Bet365")
     }
     
-    @Test("Un bookmaker deshabilitado queda afuera del cálculo de mejores cuotas")
+    @Test("A disabled bookmaker is left out of the best-odds calculation")
     func disabledBookmakerIsExcludedFromBestOutcomes() async throws {
         let event = Self.makeEvent(bookmakers: [
             Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.60), ("Draw", 3.60), ("Chelsea", 3.10)]),
@@ -79,7 +79,7 @@ struct DetectArbitrageUseCaseTests {
         #expect(result[0].bestOutcomes["Arsenal"]?.price == 2.30)
     }
 
-    @Test("Registra los bookmakers vistos en cada evento traído del repositorio")
+    @Test("Records the bookmakers seen in every fetched event")
     func recordsSeenBookmakersFromFetchedEvents() async throws {
         let event = Self.makeEvent(bookmakers: [
             Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.60), ("Draw", 3.60), ("Chelsea", 3.10)])
@@ -90,6 +90,52 @@ struct DetectArbitrageUseCaseTests {
         _ = try await sut.execute(sport: "soccer_epl")
 
         #expect(preferences.recordedBookmakers.map(\.title) == ["Bet365"])
+    }
+
+    @Test("No arbitrage when no enabled bookmaker prices one of the outcomes")
+    func noArbitrageWhenAnOutcomeIsOnlyOfferedByADisabledBookmaker() async throws {
+        // Home/away alone would sum to ~0.83 and look like an arbitrage, but the
+        // only "Draw" price belongs to a disabled bookmaker.
+        let event = Self.makeEvent(bookmakers: [
+            Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.40), ("Chelsea", 2.40)]),
+            Self.makeBookmaker(title: "Betfair", outcomes: [("Arsenal", 2.10), ("Draw", 3.40), ("Chelsea", 3.20)])
+        ])
+        let preferences = StubBookmakerPreferences(disabledKeys: ["betfair"])
+        let sut = DefaultDetectArbitrageUseCase(repository: StubOddsRepository(events: [event]), preferences: preferences)
+
+        let result = try await sut.execute(sport: "soccer_epl")
+
+        #expect(result[0].bestOutcomes["Draw"] == nil)
+        #expect(result[0].hasArbitrage == false)
+        #expect(result[0].arbitrageMargin == nil)
+    }
+
+    @Test("No arbitrage when the only price for an outcome is zero")
+    func noArbitrageWhenAnOutcomeHasOnlyAZeroPrice() async throws {
+        let event = Self.makeEvent(bookmakers: [
+            Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 2.40), ("Draw", 0), ("Chelsea", 2.40)])
+        ])
+        let sut = DefaultDetectArbitrageUseCase(repository: StubOddsRepository(events: [event]))
+
+        let result = try await sut.execute(sport: "soccer_epl")
+
+        #expect(result[0].hasArbitrage == false)
+        #expect(result[0].arbitrageMargin == nil)
+    }
+
+    @Test("Still detects arbitrage when best prices come from different bookmakers covering every outcome")
+    func detectsArbitrageAcrossBookmakersWhenAllOutcomesAreCovered() async throws {
+        let event = Self.makeEvent(bookmakers: [
+            Self.makeBookmaker(title: "Bet365", outcomes: [("Arsenal", 3.00), ("Draw", 3.00), ("Chelsea", 2.00)]),
+            Self.makeBookmaker(title: "Betfair", outcomes: [("Arsenal", 2.00), ("Draw", 3.00), ("Chelsea", 4.00)])
+        ])
+        let sut = DefaultDetectArbitrageUseCase(repository: StubOddsRepository(events: [event]))
+
+        let result = try await sut.execute(sport: "soccer_epl")
+
+        #expect(result[0].bestOutcomes["Arsenal"]?.bookmakerTitle == "Bet365")
+        #expect(result[0].bestOutcomes["Chelsea"]?.bookmakerTitle == "Betfair")
+        #expect(result[0].hasArbitrage == true)
     }
 
     // MARK: - Helpers

@@ -38,7 +38,7 @@ View ── ViewModel ── UseCase ── Repository ── NetworkService ─
 
 Live odds use a small reactive pipeline: `LiveOddsService` exposes a `CurrentValueSubject` polled every 60s via `Timer.publish`, bridged to an `actor LiveOddsCoordinator` that guards against overlapping refreshes (manual pull-to-refresh vs. the automatic poll never race).
 
-**Bookmaker filtering** (`Services/Bookmakers/`) is its own small piece, same protocol-first pattern: `BookmakerPreferencesStore` (backed by `UserDefaults`) records every bookmaker the app has ever seen in a response and tracks which ones are disabled — new bookmakers are opt-out, so existing behavior never silently changes. It's injected straight into `DefaultDetectArbitrageUseCase`, the only layer that already needs to look at each bookmaker's odds to compute `bestOutcomes` — filtering there means the Repository and ViewModel don't need to know it exists. The Profile tab reads and writes the same store, and triggers a manual refresh after a toggle so the change is reflected without waiting for the next poll.
+**Bookmaker filtering** (`Services/Bookmakers/`) is its own small piece, same protocol-first pattern: `BookmakerPreferencesStore` (backed by `UserDefaults`) records every bookmaker the app has ever seen in a response and tracks which ones are disabled — new bookmakers are opt-out, so existing behavior never silently changes. It's injected straight into `DefaultDetectArbitrageUseCase`, the only layer that already needs to look at each bookmaker's odds to compute `bestOutcomes` — filtering there means the Repository and ViewModel don't need to know it exists. The Profile tab reads and writes the same store through a separate `BookmakerPreferencesManaging` protocol (observe + toggle, nothing else), and triggers a manual refresh after a toggle so the change is reflected without waiting for the next poll.
 
 For a deeper dive into design decisions, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
@@ -72,7 +72,7 @@ xcodebuild test -project Margine.xcodeproj -scheme Margine \
   -destination 'platform=iOS Simulator,name=iPhone 17,OS=latest'
 ```
 
-Unit tests cover the arbitrage use case (including bookmaker filtering), the bookmaker preferences store, all four ViewModels, the live-odds actor/Combine pipeline, and the networking layer (status codes, decoding failures, rate-limit handling, URL construction) via a stubbed `URLProtocol`. They don't need any of the Setup files above.
+Unit tests cover the arbitrage use case (including bookmaker filtering), the bookmaker preferences store, all three ViewModels, the live-odds actor/Combine pipeline, and the networking layer (status codes, decoding failures, rate-limit handling, URL construction) via a stubbed `URLProtocol`. They don't need any of the Setup files above.
 
 The UI test target exercises the real login flow (happy and error paths) against a dedicated test Firebase account, and needs one more gitignored file, `MargineUITests/TestCredentials.swift`:
 ```swift
